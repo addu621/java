@@ -4,10 +4,10 @@ package com.example.cars.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
-public class user {
+@Table(name = "User")
+public class User {
 
-    public user(Integer userId, String userName, String userEmail, String userPassword, String address, String phoneNumber) {
+    public User(Integer userId, String userName, String userEmail, String userPassword, String address, String phoneNumber) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
