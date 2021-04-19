@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Table(name = "admin")
 public class admin {
 
+    public admin(){}
     public admin(Integer adminId, String adminName, String adminEmail, String adminPassword) {
         this.adminId = adminId;
         this.adminName = adminName;
