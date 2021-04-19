@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "user_details")
-public class User {
+public class User{
     @Id
     @Column(nullable = false)
     private String userEmail;
