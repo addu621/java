@@ -15,6 +15,12 @@ public class UserController {
     @Autowired
     UserService userService;
 
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello";
+    }
+    //http://localhost:8080/user/save
     @PostMapping("/save")
     public Map signUp(@RequestBody User user){
             return userService.save(user);
