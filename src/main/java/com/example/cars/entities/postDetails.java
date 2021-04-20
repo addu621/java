@@ -22,14 +22,14 @@ public class postDetails {
     @Column
     private Integer postId;
 
-    @JoinColumn
+    @JoinColumn(name = "userId")
     @ManyToOne
     private User userId;
 
     @Column
     private Date dateOfPost;
 
-    @JoinColumn
+    @JoinColumn(name = "modelId")
     @ManyToOne
     private modelDetails modelID;
 

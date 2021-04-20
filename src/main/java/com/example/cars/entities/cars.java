@@ -17,7 +17,7 @@ public class cars {
     @Column
     private Integer carId;
 
-    @JoinColumn
+    @JoinColumn(name = "brandId")
     @ManyToOne
     private carsBrand brandId;
 
