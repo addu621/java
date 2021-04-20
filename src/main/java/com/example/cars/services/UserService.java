@@ -43,7 +43,7 @@ public class UserService {
     }
 
     public Map verify(String userEmail,String verificationToken){
-        Long TOKEN_EXPIRE_TIME= Long.valueOf(6000000);
+        Long TOKEN_EXPIRE_TIME= Long.valueOf(600000);
         Map<String,Object> mp= new HashMap<String,Object>();
         try {
             User user = userRepo.findByUserEmail(userEmail);

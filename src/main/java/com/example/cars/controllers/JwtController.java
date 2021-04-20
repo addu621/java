@@ -6,6 +6,7 @@ import com.example.cars.jwtHelper.JwtUtil;
 import com.example.cars.model.JwtResponse;
 import com.example.cars.model.UserDto;
 import com.example.cars.services.CustomUserDetailsService;
+import com.example.cars.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,9 +31,12 @@ public class JwtController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello";
+    @Autowired
+    private UserService userService;
+
+    @RequestMapping(name="/hello", method = RequestMethod.POST)
+    public ResponseEntity<?> hello() {
+        return ResponseEntity.ok("Hi");
     }
 
     @RequestMapping("/welcome")
@@ -84,10 +88,5 @@ public class JwtController {
         } catch (BadCredentialsException e) {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
-    }
-
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@RequestBody UserDto user) throws Exception {
-        return ResponseEntity.ok(customUserDetailsService.save(user));
     }
 }
