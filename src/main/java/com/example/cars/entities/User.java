@@ -8,7 +8,7 @@ import java.util.Date;
 @Table(name = "user_details")
 public class User{
     @Id
-    @Column(nullable = false)
+    @Column(name = "email",unique=true, nullable = false)
     private String userEmail;
 
     @Column(nullable = false)
