@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "cars")
 public class cars {
 
-    public cars(Integer carId, Integer brandId, String carName) {
+    public cars(Integer carId, carsBrand brandId, String carName) {
         this.carId = carId;
         this.brandId = brandId;
         this.carName = carName;
@@ -17,8 +17,9 @@ public class cars {
     @Column
     private Integer carId;
 
-    @Column
-    private Integer brandId;
+    @JoinColumn
+    @ManyToOne
+    private carsBrand brandId;
 
     @Column
     private String carName;
@@ -31,11 +32,11 @@ public class cars {
         this.carId = carId;
     }
 
-    public Integer getBrandId() {
+    public carsBrand getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(Integer brandId) {
+    public void setBrandId(carsBrand brandId) {
         this.brandId = brandId;
     }
 

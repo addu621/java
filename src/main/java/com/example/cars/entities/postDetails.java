@@ -7,7 +7,7 @@ import java.util.Date;
 @Table(name = "postDetails")
 public class postDetails {
 
-    public postDetails(Integer userId, Integer postId, Date dateOfPost, Integer modelID, Integer kmsRun, Integer modelYear, Boolean isApproved, Boolean isSold) {
+    public postDetails(User userId, Integer postId, Date dateOfPost, modelDetails modelID, Integer kmsRun, Integer modelYear, Boolean isApproved, Boolean isSold) {
         this.userId = userId;
         this.postId = postId;
         this.dateOfPost = dateOfPost;
@@ -17,38 +17,39 @@ public class postDetails {
         this.isApproved = isApproved;
         this.isSold = isSold;
     }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private Integer userId;
-
-    @Column
     private Integer postId;
+
+    @JoinColumn
+    @ManyToOne
+    private User userId;
 
     @Column
     private Date dateOfPost;
 
-    @Column
-    private Integer modelID;
+    @JoinColumn
+    @ManyToOne
+    private modelDetails modelID;
 
-    @Column
+    @Column(nullable = false)
     private Integer kmsRun;
 
-    @Column
+    @Column(nullable = false)
     private Integer modelYear;
 
-    @Column
+    @Column(columnDefinition = "boolean default false")
     private Boolean isApproved;
 
-    @Column
+    @Column(columnDefinition = "boolean default false")
     private Boolean isSold;
 
-    public Integer getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
@@ -68,11 +69,11 @@ public class postDetails {
         this.dateOfPost = dateOfPost;
     }
 
-    public Integer getModelID() {
+    public modelDetails getModelID() {
         return modelID;
     }
 
-    public void setModelID(Integer modelID) {
+    public void setModelID(modelDetails modelID) {
         this.modelID = modelID;
     }
 
