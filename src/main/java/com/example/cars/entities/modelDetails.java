@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Table(name = "modelDetails")
 public class modelDetails {
 
+    modelDetails(){}
     public modelDetails(Integer modelId, cars carId, String modelName) {
         this.modelId = modelId;
         this.carId = carId;
@@ -14,7 +15,6 @@ public class modelDetails {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Integer modelId;
 

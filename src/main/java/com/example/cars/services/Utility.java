@@ -1,6 +1,12 @@
 package com.example.cars.services;
 
+import com.example.cars.entities.CarsBrand;
 import com.example.cars.entities.User;
+import com.example.cars.entities.cars;
+import com.example.cars.entities.modelDetails;
+import com.example.cars.repositories.CarsBrandRepo;
+import com.example.cars.repositories.CarsRepo;
+import com.example.cars.repositories.ModelDetailsRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +20,23 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class Utility {
     Logger logger = LoggerFactory.getLogger(Utility.class);
     @Autowired
     private JavaMailSender javaMailSender;
+
+    @Autowired
+    private ModelDetailsRepo modelDetailsRepo;
+
+    @Autowired
+    private CarsBrandRepo carsBrandRepo;
+
+    @Autowired
+    private CarsRepo carsRepo;
 
 
     @Async
@@ -41,7 +58,7 @@ public class Utility {
                 "<img src='cid:cars_logo' width=\"70%\">" +
                 "</div>";
 
-        helper.setFrom("dishant572000@gmail.com","Cars Studio");
+        helper.setFrom("studiocars2021@gmail.com","Cars Studio");
         helper.setSubject(mailSubject);
         helper.setText(mailContent,true);
         helper.setTo(user.getUserEmail());
@@ -62,5 +79,17 @@ public class Utility {
         }
 
         return token;
+    }
+
+    public List<CarsBrand> getAllBrands() {
+        return carsBrandRepo.findAll();
+    }
+
+    public List<Map> getAllCarsByBrand(Integer brandId) {
+         return carsRepo.getCarsByBrand(brandId);
+    }
+
+    public List<Map> getModelsByCarId(Integer car_id) {
+        return modelDetailsRepo.getModelsByCarId(car_id);
     }
 }

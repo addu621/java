@@ -1,12 +1,17 @@
 package com.example.cars.controllers;
 
+import com.example.cars.entities.CarsBrand;
 import com.example.cars.entities.User;
+import com.example.cars.entities.cars;
+import com.example.cars.entities.modelDetails;
 import com.example.cars.services.UserService;
+import com.example.cars.services.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -14,6 +19,9 @@ import java.util.Map;
 public class UserController {
     @Autowired
     UserService userService;
+
+    @Autowired
+    Utility utility;
 
 
     @GetMapping("/hello")
@@ -35,5 +43,19 @@ public class UserController {
     public String resendVerificationMail(@RequestParam String userEmail) throws UnsupportedEncodingException, MessagingException {
         return userService.resendVerificationMail(userEmail);
     }
+
+    @GetMapping("/getModelDetails")
+    public List<Map> getModelsByCarId(@RequestBody Integer car_id){
+        return utility.getModelsByCarId(car_id);
+    }
+    @GetMapping("/getBrands")
+    public List<CarsBrand> getAllCarBrands(){
+        return utility.getAllBrands();
+    }
+    @GetMapping("/getCars")
+    public List<Map> getAllCarsByBrand(@RequestBody Integer brandId){
+        return utility.getAllCarsByBrand(brandId);
+    }
+
 
 }

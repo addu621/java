@@ -6,20 +6,20 @@ import javax.persistence.*;
 @Table(name = "cars")
 public class cars {
 
-    public cars(Integer carId, carsBrand brandId, String carName) {
+    public cars(){}
+    public cars(Integer carId, CarsBrand brandId, String carName) {
         this.carId = carId;
         this.brandId = brandId;
         this.carName = carName;
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Integer carId;
 
     @JoinColumn(name = "brandId")
     @ManyToOne
-    private carsBrand brandId;
+    private CarsBrand brandId;
 
     @Column
     private String carName;
@@ -32,11 +32,11 @@ public class cars {
         this.carId = carId;
     }
 
-    public carsBrand getBrandId() {
+    public CarsBrand getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(carsBrand brandId) {
+    public void setBrandId(CarsBrand brandId) {
         this.brandId = brandId;
     }
 

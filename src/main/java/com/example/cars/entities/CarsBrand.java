@@ -4,15 +4,15 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "carsBrand")
-public class carsBrand {
+public class CarsBrand {
 
-    public carsBrand(Integer brandId, String brandName) {
+    public CarsBrand(){}
+    public CarsBrand(Integer brandId, String brandName) {
         this.brandId = brandId;
         this.brandName = brandName;
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Integer brandId;
 
