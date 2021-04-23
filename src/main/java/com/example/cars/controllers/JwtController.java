@@ -4,7 +4,6 @@ import com.example.cars.entities.User;
 import com.example.cars.model.JwtRequest;
 import com.example.cars.jwtHelper.JwtUtil;
 import com.example.cars.model.JwtResponse;
-import com.example.cars.model.UserDto;
 import com.example.cars.services.CustomUserDetailsService;
 import com.example.cars.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,20 +68,22 @@ public class JwtController {
 
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     public ResponseEntity<?> generateAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
         UserDetails userDetails = customUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+
 
         String token = jwtUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    private void authenticate(String userName, String passWord) throws Exception {
-        Objects.requireNonNull(userName);
-        Objects.requireNonNull(passWord);
+    private void authenticate(String username, String password) throws Exception {
+//        Objects.requireNonNull(username);
+//        Objects.requireNonNull(password);
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName, passWord));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         }catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {

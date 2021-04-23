@@ -1,9 +1,6 @@
 package com.example.cars.services;
 
-import com.example.cars.model.UserDao;
-import com.example.cars.model.UserDto;
 import com.example.cars.repositories.UserRepo;
-import com.example.cars.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,8 +14,7 @@ import java.util.ArrayList;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userDao;
-
+    private UserRepo userRepo;
 
 //    @Override
 //    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -49,21 +45,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDao user = userDao.findByUsername(username);
+
+        com.example.cars.entities.User user = userRepo.findByUserEmail(username);
+
         if (user == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+        return new org.springframework.security.core.userdetails.User(user.getUserEmail(), user.getUserPassword(),
                 new ArrayList<>());
     }
-
-    public UserDao save(UserDto user) {
-        UserDao newUser = new UserDao();
-        newUser.setUsername(user.getUsername());
-        newUser.setPassword(user.getPassword());
-        return userDao.save(newUser);
-    }
-
 
 
 }
