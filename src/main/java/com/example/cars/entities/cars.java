@@ -7,10 +7,11 @@ import javax.persistence.*;
 public class cars {
 
     public cars(){}
-    public cars(Integer carId, CarsBrand brandId, String carName) {
+    public cars(Integer carId, CarsBrand brandId, String carName, String carType) {
         this.carId = carId;
         this.brandId = brandId;
         this.carName = carName;
+        this.carType = carType;
     }
 
     @Id
@@ -23,6 +24,9 @@ public class cars {
 
     @Column
     private String carName;
+
+    @Column
+    private String carType;
 
     public Integer getCarId() {
         return carId;
@@ -46,5 +50,13 @@ public class cars {
 
     public void setCarName(String carName) {
         this.carName = carName;
+    }
+
+    public String getCarType() {
+        return carType;
+    }
+
+    public void setCarType(String carType) {
+        this.carName = carType;
     }
 }

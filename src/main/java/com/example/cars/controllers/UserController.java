@@ -57,5 +57,7 @@ public class UserController {
         return utility.getAllCarsByBrand(brandId);
     }
 
+    @GetMapping("/getCarType")
+    public List<cars> getCarsByCarType(@RequestBody String carType) { return utility.getCarsByCarType(carType);}
 
 }
