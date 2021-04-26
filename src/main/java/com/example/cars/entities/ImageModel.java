@@ -4,7 +4,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "image_table")
 public class ImageModel {
-
+    ImageModel(){}
     public ImageModel(String name, String type, byte[] picByte) {
         this.name = name;
         this.type = type;

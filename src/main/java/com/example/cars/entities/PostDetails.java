@@ -5,18 +5,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "postDetails")
-public class postDetails {
+public class PostDetails {
 
-    public postDetails(User userId, Integer postId, Date dateOfPost, modelDetails modelID, Integer kmsRun, Integer modelYear, Boolean isApproved, Boolean isSold) {
-        this.userId = userId;
-        this.postId = postId;
-        this.dateOfPost = dateOfPost;
-        this.modelID = modelID;
-        this.kmsRun = kmsRun;
-        this.modelYear = modelYear;
-        this.isApproved = isApproved;
-        this.isSold = isSold;
-    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
@@ -42,9 +32,17 @@ public class postDetails {
     @Column(columnDefinition = "boolean default false")
     private Boolean isApproved;
 
+    @Column(name = "aadharCard",length = 1000)
+    private byte[] aadharCard;
+
+    @Column(name = "registration_certificate",length = 1000)
+    private byte[] registrationCertificate;
+
+
     @Column(columnDefinition = "boolean default false")
     private Boolean isSold;
 
+    public PostDetails(){}
     public User getUserId() {
         return userId;
     }
@@ -99,6 +97,22 @@ public class postDetails {
 
     public void setApproved(Boolean approved) {
         isApproved = approved;
+    }
+
+    public byte[] getAadharCard() {
+        return aadharCard;
+    }
+
+    public void setAadharCard(byte[] aadharCard) {
+        this.aadharCard = aadharCard;
+    }
+
+    public byte[] getRegistrationCertificate() {
+        return registrationCertificate;
+    }
+
+    public void setRegistrationCertificate(byte[] rc) {
+        this.registrationCertificate = rc;
     }
 
     public Boolean getSold() {
