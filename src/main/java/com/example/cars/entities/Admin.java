@@ -4,11 +4,11 @@ package com.example.cars.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "admin")
-public class admin {
+@Table(name = "Admin")
+public class Admin {
 
-    public admin(){}
-    public admin(Integer adminId, String adminName, String adminEmail, String adminPassword) {
+    public Admin(){}
+    public Admin(Integer adminId, String adminName, String adminEmail, String adminPassword) {
         this.adminId = adminId;
         this.adminName = adminName;
         this.adminEmail = adminEmail;
