@@ -11,17 +11,20 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class AdminService implements UserDetailsService {
+public class AdminService{
 
     @Autowired
     private AdminRepo adminRepo;
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+    public String loginUser(String email,String password){
         Admin admin = adminRepo.findByAdminEmail(email);
-        if(admin==null) {
-            throw new UsernameNotFoundException("Admin not found with email/username: " + email);
+
+
+
+        if(admin!=null && admin.getAdminPassword().equals(password)){
+            return "Success";
         }
-        return new org.springframework.security.core.userdetails.User(admin.getAdminEmail(),admin.getAdminPassword(),
-                new ArrayList<>());
+
+        return "denied";
     }
 }
