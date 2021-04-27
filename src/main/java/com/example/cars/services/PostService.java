@@ -17,15 +17,15 @@ public class PostService {
     @Autowired
     Utility utility;
 
-    public PostDetails savePost(PostDetails postDetails, MultipartFile aadhar,MultipartFile rc) throws IOException {
+    public PostDetails savePost(PostDetails postDetails, MultipartFile insurance,MultipartFile rc) throws IOException {
         postDetails.setApproved(false);
         postDetails.setSold(false);
-        postDetails.setAadharCard(utility.compressBytes(aadhar.getBytes()));
+        postDetails.setInsuranceCertificate(utility.compressBytes(insurance.getBytes()));
         postDetails.setRegistrationCertificate(utility.compressBytes(rc.getBytes()));
         postDetails.setDateOfPost(new Date());
 
         PostDetails savedPost=postDetailsRepo.save(postDetails);
-        savedPost.setAadharCard(utility.decompressBytes(savedPost.getAadharCard()));
+        savedPost.setInsuranceCertificate(utility.decompressBytes(savedPost.getInsuranceCertificate()));
         savedPost.setRegistrationCertificate(utility.decompressBytes(savedPost.getRegistrationCertificate()));
 
         return savedPost;

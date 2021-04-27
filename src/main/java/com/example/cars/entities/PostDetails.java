@@ -32,8 +32,8 @@ public class PostDetails {
     @Column(columnDefinition = "boolean default false")
     private Boolean isApproved;
 
-    @Column(name = "aadharCard",length = 1000)
-    private byte[] aadharCard;
+    @Column(name = "insuranceCertificate",length = 1000)
+    private byte[] insuranceCertificate;
 
     @Column(name = "registration_certificate",length = 1000)
     private byte[] registrationCertificate;
@@ -99,12 +99,12 @@ public class PostDetails {
         isApproved = approved;
     }
 
-    public byte[] getAadharCard() {
-        return aadharCard;
+    public byte[] getInsuranceCertificate() {
+        return insuranceCertificate;
     }
 
-    public void setAadharCard(byte[] aadharCard) {
-        this.aadharCard = aadharCard;
+    public void setInsuranceCertificate(byte[] aadharCard) {
+        this.insuranceCertificate = aadharCard;
     }
 
     public byte[] getRegistrationCertificate() {
