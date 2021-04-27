@@ -12,4 +12,6 @@ import java.util.Map;
 public interface CarsRepo extends JpaRepository<cars,Integer> {
     @Query(value = "select car_id,car_name from cars where brand_id=?1",nativeQuery = true)
     List<Map> getCarsByBrand(Integer brandId);
+
+    List<cars> findByCarType(String carType);
 }

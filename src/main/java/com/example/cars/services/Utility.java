@@ -166,4 +166,6 @@ public class Utility {
     public List<Map> getModelsByCarId(Integer car_id) {
         return modelDetailsRepo.getModelsByCarId(car_id);
     }
+
+    public List<cars> getCarsByCarType(String carType) { return carsRepo.findByCarType(carType);}
 }

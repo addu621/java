@@ -1,0 +1,921 @@
+/**********Brand Start****************/
+insert into cars_brand values(1,"Maruti Suzuki");
+insert into cars_brand values(2,"Hyundai");
+insert into cars_brand values(3,"Tata");
+insert into cars_brand values(4,"Mahindra");
+insert into cars_brand values(5,"Toyota");
+insert into cars_brand values(6,"Honda");
+insert into cars_brand values(7,"Ford");
+insert into cars_brand values(8,"Skoda");
+insert into cars_brand values(9,"Renault");
+insert into cars_brand values(10,"BMW");
+insert into cars_brand values(11,"Volkswagen");
+insert into cars_brand values(12,"Mercedes-Benz");
+/**********Brand end****************/
+/*Maruti Cars Start*/
+/*insert into cars values(carid, name, category, brand id); */
+insert into cars values(1,"Swift","Hatchback",1);
+insert into cars values(2,"Baleno","Hatchback",1);
+insert into cars values(3,"Ertiga","MUV",1);
+insert into cars values(4,"Vitara Brezza","Compact SUV",1);
+insert into cars values(5,"Alto","Compact Car",1);
+insert into cars values(6,"Dzire","Compact Sedan",1);
+insert into cars values(7,"Wagon-R","Hatchback",1);
+insert into cars values(8,"Celerio","Hatchback",1);
+insert into cars values(9,"Ignis","Compact Car",1);
+insert into cars values(10,"XL6","MUV",1);
+insert into cars values(11,"S-Presso","Compact Car",1);
+insert into cars values(12,"Ciaz","Sedan",1);
+insert into cars values(13,"S-Cross","Compact SUV",1);
+insert into cars values(14,"Eeco","Van",1);
+
+
+
+
+/**************Swift-Models*****************/
+/*insert into model_details values(model id,"model ",carid);*/
+insert into model_details values(1,"LXI",1);
+insert into model_details values(2,"VXI",1);
+insert into model_details values(3,"VXI AMT",1);
+insert into model_details values(4,"ZXI",1);
+insert into model_details values(5,"ZXI AMT",1);
+insert into model_details values(6,"ZXI Plus",1);
+insert into model_details values(7,"ZXI Plus Dual Tone",1);
+insert into model_details values(8,"ZXI Plus AMT",1);
+insert into model_details values(9,"ZXI Plus AMT Dual Tone",1);
+/************Swift-Models End*******************/
+
+/***********Baleno-Models***********************/
+insert into model_details values(10,"Sigma",2);
+insert into model_details values(11,"Delta",2);
+insert into model_details values(12,"Zeta",2);
+insert into model_details values(13,"Delta Dualjet",2);
+insert into model_details values(14,"Delta Automatic",2);
+insert into model_details values(15,"Alpha",2);
+insert into model_details values(16,"Zeta Dualjet",2);
+insert into model_details values(17,"Zeta Automatic",2);
+insert into model_details values(18,"Alpha Automatic",2);
+/***********Baleno-Models End******************/
+
+/*************Ertiga-Models****************/
+insert into model_details values(19,"LXI",3);
+insert into model_details values(20,"VXI",3);
+insert into model_details values(21,"VXI CNG",3);
+insert into model_details values(22,"ZXI",3);
+insert into model_details values(23,"VXI AT",3);
+insert into model_details values(24,"ZXI Plus",3);
+insert into model_details values(25,"ZXI AT",3);
+/*************Ertiga-Models-Ends****************/
+
+/*************Vitara-Brezza********************/
+insert into model_details values(26,"LXI",4);
+insert into model_details values(27,"VXI",4);
+insert into model_details values(28,"ZXI",4);
+insert into model_details values(29,"ZXI Plus",4);
+insert into model_details values(30,"VXI AT SHVS",4);
+insert into model_details values(31,"ZXI Plus Dual Tone",4);
+insert into model_details values(32,"ZXI AT SHVS",4);
+insert into model_details values(33,"ZXI plus AT SHVS",4);
+insert into model_details values(34,"ZXI plus AT Dual Tone",4);
+/*************Vitara-Brezza-End********************/
+
+/*Alto Models Start Here*/
+insert into model_details values(35,"STD",5);
+insert into model_details values(36,"STD(O)",5);
+insert into model_details values(37,"LXI",5);
+insert into model_details values(38,"LXI(O)",5);
+insert into model_details values(39,"VXI",5);
+insert into model_details values(40,"VXI Plus",5);
+insert into model_details values(41,"LXI CNG",5);
+insert into model_details values(42,"LXI(O) CNG",5);
+/*Alto Models Ends Here*/
+
+
+/*Dzire Models Start Here*/
+insert into model_details values(43,"LXI",6);
+insert into model_details values(44,"VXI",6);
+insert into model_details values(45,"VXI AGS",6);
+insert into model_details values(46,"ZXI",6);
+insert into model_details values(47,"ZXI AGS",6);
+insert into model_details values(48,"ZXI Plus",6);
+insert into model_details values(49,"ZXI Plus AGS",6);
+/*Dzire Models Ends Here*/
+
+/*Wagon-R Models Start Here*/
+insert into model_details values(50,"LXI 1.0",7);
+insert into model_details values(51,"LXI(O) 1.0",7);
+insert into model_details values(52,"VXI 1.0",7);
+insert into model_details values(53,"VXI(O) 1.0",7);
+insert into model_details values(54,"VXI 1.2",7);
+insert into model_details values(55,"LXI 1.0 CNG",7);
+insert into model_details values(56,"VXI(O) 1.2",7);
+insert into model_details values(57,"VXI 1.0 AMT",7);
+insert into model_details values(58,"LXI(O) 1.0 CNG",7);
+insert into model_details values(59,"VXI(O) 1.0 AMT",7);
+insert into model_details values(60,"ZXI 1.2",7);
+insert into model_details values(61,"VXI 1.2 AMT",7);
+insert into model_details values(62,"VXI(O) 1.2 AMT ",7);
+insert into model_details values(63,"ZXI 1.2 AMT",7);
+/*Wagon-R Models Ends Here*/
+
+/*Celerio Models Starts Here*/
+insert into model_details values(64,"LXI",8);
+insert into model_details values(65,"LXI(O)",8);
+insert into model_details values(66,"VXI",8);
+insert into model_details values(67,"VXI(O)",8);
+insert into model_details values(68,"ZXI",8);
+insert into model_details values(69,"VXI AMT",8);
+insert into model_details values(70,"VXI(O) AMT",8);
+insert into model_details values(71,"ZXI (opt)",8);
+insert into model_details values(72,"ZXI AMT",8);
+insert into model_details values(73,"ZXI(O) AMT",8);
+insert into model_details values(74,"VXI CNG",8);
+insert into model_details values(75,"VXI(O) CNG",8);
+/*Celerio Models Ends Here*/
+
+/*Ignis Models Starts Here*/
+insert into model_details values(76,"Sigma 1.2 MT",9);
+insert into model_details values(77,"Delta 1.2 MT",9);
+insert into model_details values(78,"Zeta 1.2 MT",9);
+insert into model_details values(79,"Zeta 1.2 MT Dual Tone",9);
+insert into model_details values(80,"Delta 1.2 AMT",9);
+insert into model_details values(81,"Zeta 1.2 AMT",9);
+insert into model_details values(82,"Zeta 1.2 AMT Dual Tone",9);
+insert into model_details values(83,"Alpha 1.2 MT",9);
+insert into model_details values(84,"Alpha 1.2 MT Dual Tone",9);
+insert into model_details values(85,"Alpha 1.2 AMT",9);
+insert into model_details values(86,"Alpha 1.2 AMT Dual Tone",9);
+/*Ignis Models Ends Here*/
+
+
+/*XL6 Models Starts Here*/
+insert into model_details values(87,"Zeta MT Petrol",10);
+insert into model_details values(88,"Alpha MT Petrol",10);
+insert into model_details values(89,"Zeta MT Petrol",10);
+insert into model_details values(90,"Alpha AT Petrol",10);
+
+/*XL6 Models Ends Here*/
+
+/*S-Presso Models Starts Here*/
+insert into model_details values(91,"Std",11);
+insert into model_details values(92,"Std(O)",11);
+insert into model_details values(93,"LXI",11);
+insert into model_details values(94,"LXI(O)",11);
+insert into model_details values(95,"VXI",11);
+insert into model_details values(96,"VXI(O)",11);
+insert into model_details values(97,"VXI Plus",11);
+insert into model_details values(98,"VXI AMT",11);
+insert into model_details values(99,"VXI(O) AMT",11);
+insert into model_details values(100,"LXI CNG",11);
+insert into model_details values(101,"LXI(O) CNG",11);
+insert into model_details values(102,"VXI Plus AMT",11);
+insert into model_details values(103,"VXI CNG",11);
+insert into model_details values(104,"VXI(O) CNG",11);
+/*S-Presso Models Ends Here*/
+
+/*Ciaz Models Starts Here*/
+insert into model_details values(105,"Sigma 1.5",12);
+insert into model_details values(106,"Delta 1.5",12);
+insert into model_details values(107,"Zeta 1.5",12);
+insert into model_details values(108,"Alpha 1.5",12);
+insert into model_details values(109,"Delta 1.5 AT",12);
+insert into model_details values(110,"S 1.5 MT",12);
+insert into model_details values(111,"Zeta 1.5 AT",12);
+insert into model_details values(112,"Alpha 1.5 AT",12);
+
+
+/*Ciaz Models Ends Here*/
+
+/*S-Cross Models Starts Here*/
+insert into model_details values(113,"Sigma",13);
+insert into model_details values(114,"Delta",13);
+insert into model_details values(115,"Zeta",13);
+insert into model_details values(116,"Delta AT",13);
+insert into model_details values(117,"Alpha",13);
+insert into model_details values(118,"Zeta AT",13);
+insert into model_details values(119,"Alpha AT",13);
+/*S-Cross Models Ends Here*/
+
+
+/*Eeco Models Starts Here*/
+insert into model_details values(120,"5 STR",14);
+insert into model_details values(121,"7 STR",14);
+insert into model_details values(122,"5 STR WITH A/C + HTR",14);
+insert into model_details values(123,"5 STR WITH A/C + HTR CNG",14);
+
+/*Eeco Models Ends Here*/
+
+/*Maruti Cars END Here*/
+
+
+/*Hyundai Cars Start Here*/
+insert into cars values(15,"Creta","Compact SUV",2);
+insert into cars values(16,"Venue","Compact SUV",2);
+insert into cars values(17,"i20","Hatchback",2);
+insert into cars values(18,"Grand i10 Nios","Hatchback",2);
+insert into cars values(19,"Verna","Sedan",2);
+insert into cars values(20,"Aura","Compact Sedan",2);
+insert into cars values(21,"Santro","Hatchback",2);
+insert into cars values(22,"Elantra","Sedan",2);
+insert into cars values(23,"Tucson","SUV",2);
+insert into cars values(24,"Kona Electric","Electric",2);
+
+
+/*Creta Model Starts Here*/
+insert into model_details values(124,"E 1.5 Petrol",15);
+insert into model_details values(125,"E 1.5 Diesel",15);
+insert into model_details values(126,"EX 1.5 Petrol",15);
+insert into model_details values(127,"EX 1.5 Diesel",15);
+insert into model_details values(128,"S 1.5 Petrol",15);
+insert into model_details values(129,"S 1.5 Diesel",15);
+insert into model_details values(130,"SX 1.5 Petrol",15);
+insert into model_details values(131,"SX 1.5 Diesel",15);
+insert into model_details values(132,"SX 1.5 Petrol CVT",15);
+insert into model_details values(133,"SX(O) 1.5 Diesel",15);
+insert into model_details values(134,"SX(O) 1.5 Petrol CVT",15);
+insert into model_details values(135,"SX 1.4 Turbo 7 DCT",15);
+insert into model_details values(136,"SX 1.4 Turbo 7 DCT Dual Tone",15);
+insert into model_details values(137,"SX 1.5 Diesel Automatic",15);
+insert into model_details values(138,"SX(O) 1.4 Turbo 7 DCT",15);
+insert into model_details values(139,"SX(O) 1.4 Turbo 7 DCT Dual Tone",15);
+insert into model_details values(140,"SX(O) 1.5 Diesel Automatic",15);
+/*Creta Model Ends Here*/
+
+
+/*Venue Model Starts Here*/
+insert into model_details values(141,"E 1.2 Petrol",16);
+/*Venue Model Ends Here*/
+
+/*i20 Model Starts Here*/
+insert into model_details values(142,"Magna 1.2 MT",17);
+insert into model_details values(143,"Sportz 1.2 MT",17);
+insert into model_details values(144,"Sportz 1.2 MT Dual Tone",17);
+insert into model_details values(145,"Magna 1.5 MT Diesel",17);
+insert into model_details values(146,"Sportz 1.2 IVT",17);
+insert into model_details values(147,"Asta 1.2 MT",17);
+insert into model_details values(148,"Sportz 1.2 IVT Dual Tone",17);
+insert into model_details values(149,"Sportz 1.0 Turbo IMT",17);
+insert into model_details values(150,"Asta 1.2 MT Dual Tone",17);
+insert into model_details values(151,"Sportz 1.0 Turbo IMT Dual Tone",17);
+insert into model_details values(152,"Sportz 1.5 MT Diesel",17);
+insert into model_details values(153,"Asta (O) 1.2 MT",17);
+insert into model_details values(154,"Sportz 1.5 MT Diesel Dual Tone",17);
+insert into model_details values(155,"Asta (O) 1.2 MT Dual Tone",17);
+insert into model_details values(156,"Asta 1.2 IVT",17);
+insert into model_details values(157,"Asta 1.2 IVT Dual Tone",17);
+insert into model_details values(158,"Asta 1.0 Turbo IMT",17);
+insert into model_details values(159,"Asta 1.0 Turbo IMT Dual Tone",17);
+insert into model_details values(160,"Asta 1.0 Turbo DCT",17);
+insert into model_details values(161,"Asta 1.0 Turbo DCT Dual Tone",17);
+insert into model_details values(162,"Asta (O) 1.5 MT Diesel",17);
+insert into model_details values(163,"Asta (O) 1.5 MT Diesel Dual Tone",17);
+insert into model_details values(164,"Asta (O) 1.0 Turbo DCT",17);
+insert into model_details values(165,"Asta (O) 1.0 Turbo DCT Dual Tone",17);
+/*i20 Model Ends Here*/
+
+/*Grand i10 Nios Model Starts Here*/
+insert into model_details values(166,"Era 1.2 Kappa VTVT",18);
+insert into model_details values(167,"Magna 1.2 Kappa VTVT",18);
+insert into model_details values(168,"Magna AMT 1.2 Kappa VTVT",18);
+insert into model_details values(169,"Sportz 1.2 Kappa VTVT",18);
+insert into model_details values(170,"Magna 1.2 Kappa VTVT CNG",18);
+insert into model_details values(171,"Sportz 1.2 Kappa VTVT Dual Tone",18);
+insert into model_details values(172,"Sportz AMT 1.2 Kappa VTVT",18);
+insert into model_details values(173,"Magna U2 1.2 CRDi",18);
+insert into model_details values(174,"Sportz 1.2 Kappa VTVT CNG",18);
+insert into model_details values(175,"Asta 1.2 Kappa VTVT",18);
+insert into model_details values(176,"Sportz U2 1.2 CRDi",18);
+insert into model_details values(177,"Sportz 1.0 Turbo GDi",18);
+insert into model_details values(178,"Asta AMT 1.2 Kappa VTVT",18);
+insert into model_details values(179,"Sportz 1.0 Turbo GDi Dual Tone",18);
+insert into model_details values(180,"Sportz AMT 1.2 CRDi",18);
+insert into model_details values(181,"Asta U2 1.2 CRDi",18);
+/*Grand i10 Nios Model Ends Here*/
+
+/*Verna Model Starts Here*/
+insert into model_details values(182,"E 1.5 VTVT",19);
+insert into model_details values(183,"S Plus 1.5 VTVT",19);
+insert into model_details values(184,"SX 1.5 VTVT",19);
+insert into model_details values(185,"S Plus 1.5 CRDi",19);
+insert into model_details values(186,"SX 1.5 VTVT IVT",19);
+insert into model_details values(187,"SX 1.5 CRDi",19);
+insert into model_details values(188,"SX (O)1.5 VTVT",19);
+insert into model_details values(189,"SX 1.5 CRDi AT",19);
+insert into model_details values(190,"SX (O) 1.5 VTVT IVT",19);
+insert into model_details values(191,"SX (O) 1.0 Turbo DCT",19);
+insert into model_details values(192,"SX (O) 1.5 CRDi",19);
+insert into model_details values(193,"SX (O) 1.5 CRDi AT",19);
+/*Verna Model Ends Here*/
+
+/*Aura Model Starts Here*/
+insert into model_details values(194,"E 1.2 Petrol",20);
+insert into model_details values(195,"S 1.2 Petrol",20);
+insert into model_details values(196,"S 1.2 AMT Petrol",20);
+insert into model_details values(197,"SX 1.2 Petrol",20);
+insert into model_details values(198,"S 1.2 CNG Petrol",20);
+insert into model_details values(199,"SX 1.2 (O) Petrol",20);
+insert into model_details values(200,"SX Plus 1.2 AMT Petrol",20);
+insert into model_details values(201,"S 1.2 AMT CRDi",20);
+insert into model_details values(202,"S 1.2 CRDi",20);
+insert into model_details values(203,"SX Plus 1.0 Petrol",20);
+insert into model_details values(204,"SX 1.2 (O) CRDi",20);
+insert into model_details values(205,"SX Plus 1.2 AMT CRDi",20);
+/*Aura Model Ends Here*/
+
+/*Santro Model Starts Here*/
+insert into model_details values(206,"Era Executive",21);
+insert into model_details values(207,"Magna",21);
+insert into model_details values(208,"Sportz",21);
+insert into model_details values(209,"Magna AMT",21);
+insert into model_details values(210,"Magna CNG",21);
+insert into model_details values(211,"Asta",21);
+insert into model_details values(212,"Sportz AMT",21);
+insert into model_details values(213,"Sportz CNG",21);
+insert into model_details values(214,"Asta AMT",21);
+/*Santro Model Ends Here*/
+
+/*Elantra Model Starts Here*/
+insert into model_details values(215,"2.0 SX MT",21);
+insert into model_details values(216,"2.0 SX AT",22);
+insert into model_details values(217,"1.5 SX MT",22);
+insert into model_details values(218,"2.0 SX AT",22);
+insert into model_details values(219,"1.5 SX AT",22);
+
+/*Elantra Model Ends Here*/
+
+/*Tucson Model Starts Here*/
+insert into model_details values(220,"GL (O) 2WD AT Petrol",23);
+insert into model_details values(221,"GLS 2WD AT Petrol",23);
+insert into model_details values(222,"GL (O) 2WD AT Diesel",23);
+insert into model_details values(223,"GLS 2WD AT Diesel",23);
+insert into model_details values(224,"GLS 4WD AT Diesel",23);
+/*Tucson Model Ends Here*/
+
+
+/*Kona Electric Model Starts Here*/
+insert into model_details values(225,"Premium",24);
+insert into model_details values(226,"Premium Dual Tone",24);
+/*Kona Electric Ends Here*/
+
+
+
+/*Hyundai Cars Ends Here*/
+
+
+/*Tata Cars Starts Here*/
+insert into cars values(25,"Nexon","Compact SUV",3);
+insert into cars values(26,"Safari","SUV",3);
+insert into cars values(27,"Altroz","Hatchback",3);
+insert into cars values(28,"Tiago","Hatchback",3);
+insert into cars values(29,"Harrier","SUV",3);
+insert into cars values(30,"Tigor","Compact Sedan",3);
+insert into cars values(31,"Nexon EV","Electric",3);
+insert into cars values(32,"Tigor EV","Electric",3);
+
+
+/*Nexon Model Starts Here*/
+insert into model_details values(227,"XE",25);
+insert into model_details values(228,"XM",25);
+insert into model_details values(229,"XM (S)",25);
+insert into model_details values(230,"XE Diesel",25);
+insert into model_details values(231,"XMA",25);
+/*Nexon Model Ends Here*/
+
+
+
+/*Safari Model Starts Here*/
+insert into model_details values(232,"XE",26);
+insert into model_details values(233,"XM",26);
+insert into model_details values(234,"XMA",26);
+insert into model_details values(235,"XT",26);
+insert into model_details values(236,"XT Plus",26);
+/*Safari Model Ends Here*/
+
+/*Altroz Model Starts Here*/
+insert into model_details values(237,"XE Petrol",27);
+insert into model_details values(238,"XE Rhytm Petrol",27);
+insert into model_details values(239,"XM Petrol",27);
+insert into model_details values(240,"XM Petrol Plus",27);
+insert into model_details values(241,"XE Diesel",27);
+/*Altroz Model Ends Here*/
+
+/*Tiago Model Starts Here*/
+insert into model_details values(242,"XE",28);
+insert into model_details values(243,"XT",28);
+insert into model_details values(244,"Limited Edition",28);
+insert into model_details values(245,"XZ",28);
+insert into model_details values(246,"XTA",28);
+insert into model_details values(247,"XZ Plus",28);
+/*Tiago Model Ends Here*/
+
+/*Harrier Model Starts Here*/
+insert into model_details values(248,"XE",29);
+insert into model_details values(249,"XM",29);
+insert into model_details values(250,"XMA",29);
+insert into model_details values(251,"XT",29);
+insert into model_details values(252,"XT Dark Edition",29);
+insert into model_details values(253,"XT Camo",29);
+/*Harrier Model Ends Here*/
+
+/*Tigor Model Starts Here*/
+insert into model_details values(254,"XE",30);
+insert into model_details values(255,"XM",30);
+insert into model_details values(256,"XZ",30);
+insert into model_details values(257,"XMA",30);
+insert into model_details values(258,"XZ Plus",30);
+insert into model_details values(259,"XZA Plus",30);
+/*Tigor Model Ends Here*/
+
+/*Nexon EV Model Starts Here*/
+insert into model_details values(260,"XM",31);
+insert into model_details values(261,"XZ Plus",31);
+insert into model_details values(262,"XZ Plus LUX",31);
+/*Nexon EV Model Ends Here*/
+
+/*Tigor EV Model Starts Here*/
+insert into model_details values(263,"XE Plus",32);
+insert into model_details values(264,"XM Plus",32);
+insert into model_details values(265,"XT Plus",32);
+/*Tigor EV Model Ends Here*/
+
+
+/*Tata Cars Ends Here*/
+
+/*Mahindra Cars Ends Here*/
+insert into cars values(33,"Thar","SUV",4);
+insert into cars values(34,"XUV 300","Compact SUV",4);
+insert into cars values(35,"Scorpio","SUV",4);
+insert into cars values(36,"Bolero","Compact SUV",4);
+insert into cars values(37,"XUV 500","SUV",4);
+insert into cars values(38,"Marazzo","MUV",4);
+insert into cars values(39,"KUV100 NXT","Hatchback",4);
+insert into cars values(40,"Alturas G4","SUV",4);
+
+/*Thar Model Starts Here*/
+insert into model_details values(266,"AX Std 6-STR Soft Top Petrol MT",33);
+insert into model_details values(267,"AX 6-STR Soft Top Petrol MT",33);
+insert into model_details values(268,"AX 6-STR Soft Top Diesel MT",33);
+insert into model_details values(269,"AX 4-STR Convertible Petrol MT",33);
+insert into model_details values(270,"AX 4-STR Convertible Diesel MT",33);
+/*Thar Model Ends Here*/
+
+/*XUV 300 Model Starts Here*/
+insert into model_details values(271,"1.5 W4",34);
+insert into model_details values(272,"1.2 W6",34);
+insert into model_details values(273,"1.2 W6 AMT",34);
+insert into model_details values(274,"1.5 W6",34);
+/*XUV 300 Model Ends Here*/
+
+/*Scorpio Model Starts Here*/
+insert into model_details values(275,"S5",35);
+insert into model_details values(276,"S7",35);
+insert into model_details values(277,"S9",35);
+insert into model_details values(278,"S11",35);
+/*Scorpio Model Ends Here*/
+
+/*Bolero Model Starts Here*/
+/*Bolero Model Ends Here*/
+
+/*XUV 500 Model Starts Here*/
+insert into model_details values(279,"W5",37);
+insert into model_details values(280,"W7",37);
+insert into model_details values(281,"W7 AT",37);
+insert into model_details values(282,"W9",37);
+insert into model_details values(283,"W9 AT",37);
+insert into model_details values(284,"W11 Opt",37);
+/*XUV 500 Model Ends Here*/
+
+/*Marazzo Model Starts Here*/
+insert into model_details values(285,"M2 8 STR",38);
+insert into model_details values(286,"M2 7 STR",38);
+insert into model_details values(287,"M4 Plus 7 STR",38);
+insert into model_details values(288,"M4 Plus 8 STR",38);
+insert into model_details values(289,"M6 Plus 7 STR",38);
+insert into model_details values(290,"M6 Plus 8 STR",38);
+/*Marazzo Model Ends Here*/
+
+/*KUV100 NXT Model Starts Here*/
+insert into model_details values(291,"K2 Plus 6 STR",39);
+insert into model_details values(292,"K4 Plus 6 STR",39);
+insert into model_details values(293,"K6 Plus 6 STR",39);
+insert into model_details values(294,"K8 6 STR",39);
+/*KUV100 NXT Model Ends Here*/
+
+
+/*Alturas G4 Model Starts Here*/
+insert into model_details values(295,"2WD AT",40);
+insert into model_details values(296,"4WD AT",40);
+/*Alturas G4 Model Ends Here*/
+
+
+
+
+/*Mahindra Cars Ends Here*/
+
+/*Toyota Cars Starts Here*/
+
+insert into cars values(41,"Innova Crysta","MUV",5);
+insert into cars values(42,"Fortuner","SUV",5);
+insert into cars values(43,"Urban Cruiser","Compact SUV",5);
+insert into cars values(44,"Glanza","Hatchback",5);
+insert into cars values(45,"Yaris","Sedan",5);
+
+/*Innova Crysta Model Starts Here*/
+insert into model_details values(297,"2.7 GX 7 STR",41);
+insert into model_details values(298,"2.7 GX 8 STR",41);
+insert into model_details values(299,"2.4 G 7 STR",41);
+insert into model_details values(300,"2.4 G 8 STR",41);
+insert into model_details values(301,"2.7 GX AT 7 STR",41);
+insert into model_details values(302,"2.7 GX AT 8 STR",41);
+/*Innova Crysta  Model Ends Here*/
+
+/*Fortuner Model Starts Here*/
+insert into model_details values(303,"2.7 Petrol 4x2 MT",42);
+insert into model_details values(304,"2.7 Petrol 4x2 AT",42);
+insert into model_details values(305,"2.8 Diesel 4x2 MT",42);
+insert into model_details values(306,"2.8 Diesel 4x2 AT",42);
+insert into model_details values(307,"2.8 Diesel 4x4 MT",42);
+insert into model_details values(308,"2.8 Diesel 4x4 AT",42);
+/*Fortuner G4 Model Ends Here*/
+
+
+/*Urban Cruiser Model Starts Here*/
+insert into model_details values(310,"Mid Grade MT",43);
+insert into model_details values(311,"High Grade MT",43);
+insert into model_details values(312,"Premium Grade MT",43);
+insert into model_details values(313,"Mid Grade AT",43);
+insert into model_details values(314,"High Grade AT",43);
+insert into model_details values(315,"Premium Grade AT",43);
+/*Urban Cruiser Model Ends Here*/
+
+
+/*Glanza Model Starts Here*/
+insert into model_details values(316,"G",44);
+insert into model_details values(317,"G Hybrid",44);
+insert into model_details values(318,"V",44);
+insert into model_details values(319,"G CVT",44);
+insert into model_details values(320,"V CVT",44);
+/*Glanza Model Ends Here*/
+
+
+/*Yaris Model Starts Here*/
+insert into model_details values(321,"J CVT OPT",45);
+insert into model_details values(322,"G MT OPT",45);
+insert into model_details values(323,"G CVT OPT",45);
+insert into model_details values(324,"J MT",45);
+insert into model_details values(325,"G MT",45);
+/*Yaris Model Ends Here*/
+
+
+
+
+/*Toyota Cars Ends Here*/
+
+
+
+
+/*Honda Cars Starts Here*/
+
+insert into cars values(46,"Amaze","Sedan",6);
+insert into cars values(47,"All New City","Sedan",6);
+insert into cars values(48,"Jazz","Hatchback",6);
+insert into cars values(49,"WR-V","SUV",6);
+insert into cars values(50,"City","Sedan",6);
+
+/*Amaze Model Starts Here*/
+insert into model_details values(326,"1.2 E MT Petrol",46);
+insert into model_details values(327,"1.2 S MT Petrol",46);
+insert into model_details values(328,"1.2 S MT Petrol Special Edition",46);
+insert into model_details values(329,"1.2 V MT Petrol",46);
+insert into model_details values(330,"1.2 E MT Diesel",46);
+insert into model_details values(331,"1.2 S CVT Petrol",46);
+/*Amaze Model Ends Here*/
+
+/*All New City Model Starts Here*/
+insert into model_details values(332,"V Petrol",47);
+insert into model_details values(333,"V CVT Petrol",47);
+insert into model_details values(334,"VX Petrol",47);
+insert into model_details values(335,"V Diesel",47);
+insert into model_details values(336,"ZX Petrol",47);
+insert into model_details values(337,"VX CVT Petrol",47);
+/*All New City Model Ends Here*/
+
+/*Jazz Model Starts Here*/
+insert into model_details values(338,"V",48);
+insert into model_details values(339,"VX",48);
+insert into model_details values(340,"V CVT",48);
+insert into model_details values(341,"ZX",48);
+insert into model_details values(342,"VX CVT",48);
+insert into model_details values(343,"ZX CVT",46);
+/*Jazz Model Ends Here*/
+
+/*WR-V Model Starts Here*/
+insert into model_details values(344,"SV MT Petrol",49);
+insert into model_details values(345,"Exclusive Edition Petrol",49);
+insert into model_details values(346,"VX MT Petrol",49);
+insert into model_details values(347,"SV MT Diesel",49);
+insert into model_details values(348,"Exclusive Edition Diesel",49);
+insert into model_details values(349,"VX MT Diesel",49);
+/*WR-V Model Ends Here*/
+
+/*City Model Starts Here*/
+insert into model_details values(350,"SV Petrol",50);
+insert into model_details values(351,"V Petrol",50);
+/*City Model Ends Here*/
+
+/*Honda Cars Ends Here*/
+
+
+
+
+/*Ford Cars Starts Here*/
+
+insert into cars values(51,"EcoSport","SUV",7);
+insert into cars values(52,"Endeavour","SUV",7);
+insert into cars values(53,"Figo","Hatchback",7);
+insert into cars values(54,"Freestyle","Hatchback",7);
+insert into cars values(55,"Aspire","Compact Sedan",7);
+
+/*EcoSport Model Starts Here*/
+insert into model_details values(352,"Ambiente 1.5L Ti-VCT",51);
+insert into model_details values(353,"Trend 1.5L Ti-VCT",51);
+insert into model_details values(354,"Ambiente 1.5L TDCi",51);
+insert into model_details values(355,"Trend 1.5L TDCi",51);
+insert into model_details values(356,"Titanium 1.5L Ti-VCT",51);
+insert into model_details values(357,"Titanium 1.5L TDCi",51);
+/*EcoSport Model Ends Here*/
+
+/*Endeavour Model Starts Here*/
+insert into model_details values(358,"Titanium 2.0 4x2 AT",52);
+insert into model_details values(359,"Titanium Plus 2.0 4x2 AT",52);
+insert into model_details values(360,"Titanium Plus 2.0 4x4 AT",52);
+insert into model_details values(361,"Sport 2.0 4x4 AT",52);
+/*Endeavour Model Ends Here*/
+
+/*Figo Model Starts Here*/
+insert into model_details values(362,"Ambiente 1.2 Ti-VCT",53);
+insert into model_details values(363,"Titanium 1.2 Ti-VCT MT",53);
+insert into model_details values(364,"Titanium Blu 1.2 Ti-VCT",53);
+insert into model_details values(365,"Titanium1.5 TDCi",53);
+insert into model_details values(366,"Titanium Blu 1.5 TDCi",53);
+/*Figo Model Ends Here*/
+
+/*Freestyle Model Starts Here*/
+insert into model_details values(367,"Titanium 1.2 Ti-VCT",54);
+insert into model_details values(368,"Titanium Plus 1.2 Ti-VCT",54);
+insert into model_details values(369,"Titanium1.5 TDCi",54);
+insert into model_details values(370,"Titanium Plus 1.5 TDCi",54);
+insert into model_details values(371,"Flair Edition 1.2 Ti-VCT",54);
+insert into model_details values(372,"Flair Edition 1.5 TDCi",54);
+/*Freestyle Model Ends Here*/
+
+/*Aspire Model Starts Here*/
+insert into model_details values(373,"Titanium 1.2 Ti-VCT",55);
+insert into model_details values(374,"Titanium Plus 1.2 Ti-VCT",55);
+insert into model_details values(375,"Titanium1.5 TDCi",55);
+insert into model_details values(376,"Titanium Plus 1.5 TDCi",55);
+/*Aspire Model Ends Here*/
+
+
+/*Ford Cars Ends Here*/
+
+
+
+/*Skoda Cars Starts Here*/
+
+insert into cars values(56,"Rapid TSI","SUV",8);
+insert into cars values(57,"Superb","SUV",8);
+insert into cars values(58,"Octavia","Hatchback",8);
+
+
+/*Rapid TSI Model Starts Here*/
+insert into model_details values(377,"Rider",56);
+insert into model_details values(378,"Rider Plus",56);
+insert into model_details values(379,"Rider Plus AT",56);
+insert into model_details values(380,"Ambition",56);
+insert into model_details values(381,"Ambition AT",56);
+insert into model_details values(382,"Onyx",56);
+insert into model_details values(383,"Onyx AT",56);
+insert into model_details values(384,"Style",56);
+insert into model_details values(385,"Style AT",56);
+/*Rapid TSI Model Ends Here*/
+
+/*Superb Model Starts Here*/
+insert into model_details values(386,"Sportline AT",57);
+insert into model_details values(387,"L&K AT",57);
+/*Superb Model Ends Here*/
+
+/*Octavia Model Starts Here*/
+insert into model_details values(388,"RS 245",58);
+/*Octavia Model Ends Here*/
+
+/*Skoda Cars Ends Here*/
+
+
+/*Renault Cars Starts Here*/
+
+insert into cars values(59,"Kwid","Compact SUV",9);
+insert into cars values(60,"Triber","SUV",9);
+insert into cars values(61,"Kiger","SUV",9);
+insert into cars values(62,"Duster","SUV",9);
+
+
+/*Kwid Model Starts Here*/
+insert into model_details values(389,"STD",59);
+insert into model_details values(390,"RXE",59);
+insert into model_details values(391,"RXL",59);
+insert into model_details values(392,"Neotech RXL",59);
+insert into model_details values(393,"RXL 1.0 MT",59);
+insert into model_details values(394,"RXT",59);
+insert into model_details values(395,"RXT 1.0 Opt",59);
+insert into model_details values(396,"RXT 1.0 AMT",59);
+/*Kwid Model Ends Here*/
+
+/*Triber Model Starts Here*/
+insert into model_details values(397,"RXE",60);
+insert into model_details values(398,"RXL",60);
+insert into model_details values(399,"RXL EASY-R MAT",60);
+insert into model_details values(400,"RXT",60);
+insert into model_details values(401,"RXT EASY-R MAT",60);
+/*Triber Model Ends Here*/
+
+/*Kiger Model Starts Here*/
+insert into model_details values(402,"RXE MT",61);
+insert into model_details values(403,"RXE MT Dual Tone",61);
+insert into model_details values(404,"RXL MT",61);
+insert into model_details values(405,"RXL MT Dual Tone",61);
+/*Kiger Model Ends Here*/
+
+/*Duster Model Starts Here*/
+insert into model_details values(406,"RXS 1.5 Petrol MT",62);
+insert into model_details values(407,"RXZ 1.5 Petrol MT",62);
+insert into model_details values(408,"RXE 1.3 Turbo Petrol MT",62);
+insert into model_details values(409,"RXS 1.3 Turbo Petrol MT",62);
+insert into model_details values(410,"RXS 1.3 Turbo Petrol MT",62);
+insert into model_details values(411,"RXS 1.3 Turbo Petrol CVT",62);
+insert into model_details values(412,"RXZ 1.3 Turbo Petrol CVT",62);
+/*Duster Model Ends Here*/
+
+/*Renault Cars Ends Here*/
+
+/*BMW Cars Starts Here*/
+
+insert into cars values(63,"6 Series GT","Compact SUV",10);
+insert into cars values(64,"X1","SUV",10);
+insert into cars values(65,"3 Series","Sedan",10);
+insert into cars values(66,"X4","Sedan",10);
+insert into cars values(67,"5 Series","Sedan",10);
+insert into cars values(68,"X3","MUV",10);
+	
+/*6 Series GT Model Starts Here*/
+insert into model_details values(413,"630i M Sport",63);
+insert into model_details values(414,"620d Luxury Line",63);
+insert into model_details values(415,"630d M Sport",63);
+/*6 Series GT Model Ends Here*/
+
+/*X1 Model Starts Here*/
+insert into model_details values(416,"sDrive 20i SportX",64);
+insert into model_details values(417,"sDrive20i xLine",64);
+insert into model_details values(418,"sDrive20d xLine",64);
+insert into model_details values(419,"sDrive20d M Sport",64);
+/*X1 Model Ends Here*/
+
+/*3 Series Model Starts Here*/
+insert into model_details values(420,"330i Sport",65);
+insert into model_details values(421,"320d Luxury Edition",65);
+insert into model_details values(422,"330i M Sport",65);
+insert into model_details values(423,"M340i",65);
+/*3 Series Model Ends Here*/
+
+/*X4 Model Starts Here*/
+insert into model_details values(424,"xDrive20d M Sport X",66);
+insert into model_details values(425,"xDrive30i M Sport X",66);
+insert into model_details values(426,"xDrive30d M Sport X",66);
+/*X4 Model Ends Here*/
+
+/*5 Series Model Starts Here*/
+insert into model_details values(427,"530i Sport",67);
+insert into model_details values(428,"520d Luxury Line",67);
+insert into model_details values(429,"530i M Sport",67);
+insert into model_details values(430,"530d M Sport",67);
+/*5 Series Model Ends Here*/
+
+/*X3 Model Starts Here*/
+insert into model_details values(431,"xDrive30i SportX",68);
+insert into model_details values(432,"xDrive 30i Luxury Line",68);
+insert into model_details values(433,"xDrive 20d Luxury Line",68);
+/*X3 Model Ends Here*/
+
+/*BMW Cars Ends Here*/
+
+
+
+/*Volkswagen Cars Starts Here*/
+
+insert into cars values(69,"Polo","Hatchback",11);
+insert into cars values(70,"T-Roc","Compact SUV",11);
+insert into cars values(71,"Vento","Sedan",11);
+insert into cars values(72,"Tiguan","SUV",11);
+
+/*Polo Model Starts Here*/
+insert into model_details values(434,"Trendline 1.0L MPI",69);
+insert into model_details values(435,"Comfortline 1.0L MPI",69);
+insert into model_details values(436,"Comfortline 1.0L TSI",69);
+insert into model_details values(437,"Highline Plus 1.0L TSI",69);
+insert into model_details values(438,"Highline Plus 1.0L TSI AT",69);
+insert into model_details values(439,"GT",69);
+/*Polo Model Ends Here*/
+
+/*T-Roc Model Starts Here*/
+insert into model_details values(440,"1.5 TSI",70);
+/*T-Roc Model Ends Here*/
+
+/*Vento Model Starts Here*/
+insert into model_details values(441,"Trendline 1.0L TSI",71);
+insert into model_details values(442,"Comfortline 1.0L TSI",71);
+insert into model_details values(443,"Highline 1.0L TSI",71);
+insert into model_details values(444,"Highline 1.0L TSI Automatic",71);
+insert into model_details values(445,"Highline Plus 1.0L TSI",71);
+insert into model_details values(446,"Highline Plus 1.0L TSI Automatic",71);
+/*Vento Model Ends Here*/
+
+/*Tiguan Model Starts Here*/
+insert into model_details values(447,"2.0 TSI",72);
+/*Tiguan Model Ends Here*/
+
+/*Volkswagen Cars Ends Here*/
+
+
+
+/*Mercedes-Benz Cars Starts Here*/
+
+insert into cars values(73,"A-Class","Sedan",12);
+insert into cars values(74,"E-Class","Sedan",12);
+insert into cars values(75,"C-Class","Sedan",12);
+insert into cars values(76,"C-Coupe","Sedan",12);
+insert into cars values(77,"CLS","Sedan",12);
+insert into cars values(78,"GLC","SUV",12);
+
+/*A-Class Model Starts Here*/
+insert into model_details values(448,"200",73);
+insert into model_details values(449,"200d",73);
+insert into model_details values(450,"AMG 35 4MATIC",73);
+/*A-Class Model Ends Here*/
+
+/*E-Class Model Starts Here*/
+insert into model_details values(451,"E 200 Expression",74);
+insert into model_details values(452,"E 220d Expression",74);
+insert into model_details values(453,"E 200 Exclusive",74);
+insert into model_details values(454,"E 220d Exclusive",74);
+insert into model_details values(455,"E 350d AMG Line",74);
+/*E-Class Model Ends Here*/
+
+/*C-Class Model Starts Here*/
+insert into model_details values(456,"C 200 Progressive",73);
+insert into model_details values(457,"C 220d Progressive",73);
+insert into model_details values(458,"C 300d AMG line",73);
+/*C-Class Model Ends Here*/
+
+/*C-Coupe Model Starts Here*/
+insert into model_details values(459,"43 AMG 4MATIC",73);
+insert into model_details values(460,"C 63 AMG",73);
+/*C-Coupe Model Ends Here*/
+
+/*CLS Model Starts Here*/
+insert into model_details values(461,"300d",73);
+/*CLS Model Ends Here*/
+
+/*GLC Model Starts Here*/
+insert into model_details values(462,"200 Progressive",73);
+insert into model_details values(463,"220d 4MATIC Progressive",73);
+/*GLC Model Ends Here*/
+
+
+insert into model_details values(464,"S 1.2 Petrol",16);
+insert into model_details values(465,"E 1.5 CRDi",16);
+insert into model_details values(466,"S Plus 1.2 Petrol",16);
+insert into model_details values(467,"S 1.0 Turbo",16);
+insert into model_details values(468,"S 1.5 CRDi",16);
+insert into model_details values(469,"S 1.0 Turbo DCT",16);
+insert into model_details values(470,"SX 1.0 Turbo",16);
+insert into model_details values(471,"SX 1.0 Turbo iMT",16);
+insert into model_details values(472,"SX 1.5 CRDi",16);
+insert into model_details values(473,"Sport SX 1.0 Turbo iMT",16);
+insert into model_details values(474,"Sport SX 1.5 CRDi",16);
+insert into model_details values(475,"SX (O) 1.0 Turbo",16);
+insert into model_details values(476,"SX (O) 1.0 Turbo iMT",16);
+insert into model_details values(477,"Sport SX (O) 1.0 Turbo iMT",16);
+insert into model_details values(478,"SX Plus 1.0 Turbo DCT",16);
+insert into model_details values(479,"Sport SX Plus 1.0 Turbo DCT",16);
+insert into model_details values(480,"SX (O) 1.5 CRDi",16);
+insert into model_details values(481,"Sport SX (O) 1.5 CRDi",16);
+insert into model_details values(482,"1.2 W4",34);
+insert into model_details values(483,"S3 Plus",35);
+insert into model_details values(484,"B4",36);
+insert into model_details values(485,"B6",36);
+insert into model_details values(486,"B8",36);
+insert into model_details values(487,"J MT OPT",45);
+/*Mercedes-Benz Cars Ends Here*/
+
+
+/*background-image: linear-gradient(to right top, #9ed8f0, #a8ddf1, #b2e2f3, #bce6f4, #c6ebf6, #c5eaf5, #c4e8f4, #c3e7f3, #b7dfef, #aad7eb, #9fcee7, #94c6e3);*/
