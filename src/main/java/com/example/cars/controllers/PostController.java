@@ -28,10 +28,10 @@ public class PostController {
     PostService postService;
 
     @PostMapping("/save")
-    public PostDetails savePost(@ModelAttribute PostDetails postDetails,@RequestParam("aadhar") MultipartFile aadhar,@RequestParam("rc")MultipartFile rc) throws IOException {
+    public PostDetails savePost(@ModelAttribute PostDetails postDetails,@RequestParam("insurance") MultipartFile insurance,@RequestParam("rc")MultipartFile rc) throws IOException {
 
 
-        return postService.savePost(postDetails,aadhar,rc);
+        return postService.savePost(postDetails,insurance,rc);
     }
 
 
