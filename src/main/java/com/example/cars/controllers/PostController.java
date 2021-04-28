@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
@@ -34,6 +35,18 @@ public class PostController {
     }
 
 
+    @GetMapping("/sellReq")
+    public List sellRequests() {
+        return postService.sellRequests();
+    }
 
+    @GetMapping("/buyReq")
+    public List buyRequests() {
+        return postService.buyRequests();
+    }
 
+    @GetMapping("/{postId}")
+    public PostDetails getPostsById(@PathVariable("postId") String postId) {
+        return postService.getPostsById(postId);
+    }
 }

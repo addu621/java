@@ -12,7 +12,7 @@ public class InspectionDetails {
         this.price = price;
         this.isReadyForSale = isReadyForSale;
         this.mileage = mileage;
-        Engine = engine;
+        this.engine = engine;
         this.maxPower = maxPower;
         this.torque = torque;
         this.seats = seats;
@@ -52,7 +52,7 @@ public class InspectionDetails {
     private Double mileage;
 
     @Column
-    private Integer Engine;
+    private Integer engine;
 
     @Column
     private Double maxPower;
@@ -153,11 +153,11 @@ public class InspectionDetails {
     }
 
     public Integer getEngine() {
-        return Engine;
+        return engine;
     }
 
     public void setEngine(Integer engine) {
-        Engine = engine;
+        engine = engine;
     }
 
     public Double getMaxPower() {

@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class PostService {
@@ -29,5 +30,21 @@ public class PostService {
         savedPost.setRegistrationCertificate(utility.decompressBytes(savedPost.getRegistrationCertificate()));
 
         return savedPost;
+    }
+
+    public List sellRequests() {
+        List request = postDetailsRepo.findAll();
+        return request;
+    }
+
+    public List buyRequests() {
+        List request = postDetailsRepo.findAll();
+        return request;
+    }
+
+    public PostDetails getPostsById(String postId) {
+        PostDetails postDetails = postDetailsRepo.findByPostId(Integer.parseInt(postId));
+        return postDetails;
+
     }
 }
