@@ -7,7 +7,7 @@ import java.sql.Blob;
 @Table(name = "InspectionDetails")
 public class InspectionDetails {
 
-    public InspectionDetails(Integer postId, Integer price, Boolean isReadyForSale, Double mileage, Integer engine, Double maxPower, Integer torque, Integer seats, String color, Integer gearBox, String driverType, String steeringType, Double turningRadius, String frontBrakeType, String rearBrakeType, String tyreType, Integer wheelSize, Integer cargoVolume, String engineType, Integer numberOfCylinder, Integer valvesPerCylinder, Integer length, Integer width, Integer height, Integer groundClearance, Integer wheelBase, Integer grossWeight) {
+    public InspectionDetails(Integer postId, Integer price, Boolean isReadyForSale, Double mileage, Integer engine, Double maxPower, Integer torque, Integer seats, Integer gearBox, String driverType, String steeringType, Double turningRadius, String frontBrakeType, String rearBrakeType, String tyreType, Integer wheelSize, Integer cargoVolume, String engineType, Integer numberOfCylinder, Integer valvesPerCylinder, Integer length, Integer width, Integer height, Integer groundClearance, Integer wheelBase, Integer grossWeight, Boolean adjustableSteering, Boolean adjustableSeatHeight, Integer powerWindows, Boolean centralLocking, Boolean autoClimateControl, Boolean adjustableHeadRest, Boolean pushStartButton, Boolean smartDisplay, Integer airBags, Boolean fogLamps, Boolean rearWiper, String bodyColor, Boolean motorisedORVM, Boolean reverseGearCamera, Boolean parkingSensors, Boolean adjustableHeadlights, String multimediaSystem, Boolean steeringMediaControls, Integer speakers, Integer woofers, Boolean navigation, Boolean rearTftScreen) {
         this.postId = postId;
         this.price = price;
         this.isReadyForSale = isReadyForSale;
@@ -16,7 +16,6 @@ public class InspectionDetails {
         this.maxPower = maxPower;
         this.torque = torque;
         this.seats = seats;
-        this.color = color;
         this.gearBox = gearBox;
         this.driverType = driverType;
         this.steeringType = steeringType;
@@ -35,6 +34,28 @@ public class InspectionDetails {
         this.groundClearance = groundClearance;
         this.wheelBase = wheelBase;
         this.grossWeight = grossWeight;
+        this.adjustableSteering = adjustableSteering;
+        this.adjustableSeatHeight = adjustableSeatHeight;
+        this.powerWindows = powerWindows;
+        this.centralLocking = centralLocking;
+        this.autoClimateControl = autoClimateControl;
+        this.adjustableHeadRest = adjustableHeadRest;
+        this.pushStartButton = pushStartButton;
+        this.smartDisplay = smartDisplay;
+        this.airBags = airBags;
+        this.fogLamps = fogLamps;
+        this.rearWiper = rearWiper;
+        this.bodyColor = bodyColor;
+        this.motorisedORVM = motorisedORVM;
+        this.reverseGearCamera = reverseGearCamera;
+        this.parkingSensors = parkingSensors;
+        this.adjustableHeadlights = adjustableHeadlights;
+        this.multimediaSystem = multimediaSystem;
+        this.steeringMediaControls = steeringMediaControls;
+        this.speakers = speakers;
+        this.woofers = woofers;
+        this.navigation = navigation;
+        this.rearTftScreen = rearTftScreen;
     }
 
     @Id
@@ -62,9 +83,6 @@ public class InspectionDetails {
 
     @Column
     private Integer seats;
-
-    @Column
-    private String color;
 
     @Column
     private Integer gearBox;
@@ -119,6 +137,72 @@ public class InspectionDetails {
 
     @Column
     private Integer grossWeight;
+
+    @Column
+    private Boolean adjustableSteering;
+
+    @Column
+    private Boolean adjustableSeatHeight;
+
+    @Column
+    private Integer powerWindows;
+
+    @Column
+    private Boolean centralLocking;
+
+    @Column
+    private Boolean autoClimateControl;
+
+    @Column
+    private Boolean adjustableHeadRest;
+
+    @Column
+    private Boolean pushStartButton;
+
+    @Column
+    private Boolean smartDisplay;
+
+    @Column
+    private Integer airBags;
+
+    @Column
+    private Boolean fogLamps;
+
+    @Column
+    private Boolean rearWiper;
+
+    @Column
+    private String bodyColor;
+
+    @Column
+    private Boolean motorisedORVM;
+
+    @Column
+    private Boolean reverseGearCamera;
+
+    @Column
+    private Boolean parkingSensors;
+
+    @Column
+    private Boolean adjustableHeadlights;
+
+    @Column
+    private String multimediaSystem;
+
+    @Column
+    private Boolean steeringMediaControls;
+
+    @Column
+    private Integer speakers;
+
+    @Column
+    private Integer woofers;
+
+    @Column
+    private Boolean navigation;
+
+    @Column
+    private Boolean rearTftScreen;
 
     public Integer getPostId() {
         return postId;
@@ -182,14 +266,6 @@ public class InspectionDetails {
 
     public void setSeats(Integer seats) {
         this.seats = seats;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public Integer getGearBox() {
@@ -334,5 +410,181 @@ public class InspectionDetails {
 
     public void setGrossWeight(Integer grossWeight) {
         this.grossWeight = grossWeight;
+    }
+
+    public Boolean getAdjustableSteering() {
+        return adjustableSteering;
+    }
+
+    public void setAdjustableSteering(Boolean adjustableSteering) {
+        this.adjustableSteering = adjustableSteering;
+    }
+
+    public Boolean getAdjustableSeatHeight() {
+        return adjustableSeatHeight;
+    }
+
+    public void setAdjustableSeatHeight(Boolean adjustableSeatHeight) {
+        this.adjustableSeatHeight = adjustableSeatHeight;
+    }
+
+    public Integer getPowerWindows() {
+        return powerWindows;
+    }
+
+    public void setPowerWindows(Integer powerWindows) {
+        this.powerWindows = powerWindows;
+    }
+
+    public Boolean getCentralLocking() {
+        return centralLocking;
+    }
+
+    public void setCentralLocking(Boolean centralLocking) {
+        this.centralLocking = centralLocking;
+    }
+
+    public Boolean getAutoClimateControl() {
+        return autoClimateControl;
+    }
+
+    public void setAutoClimateControl(Boolean autoClimateControl) {
+        this.autoClimateControl = autoClimateControl;
+    }
+
+    public Boolean getAdjustableHeadRest() {
+        return adjustableHeadRest;
+    }
+
+    public void setAdjustableHeadRest(Boolean adjustableHeadRest) {
+        this.adjustableHeadRest = adjustableHeadRest;
+    }
+
+    public Boolean getPushStartButton() {
+        return pushStartButton;
+    }
+
+    public void setPushStartButton(Boolean pushStartButton) {
+        this.pushStartButton = pushStartButton;
+    }
+
+    public Boolean getSmartDisplay() {
+        return smartDisplay;
+    }
+
+    public void setSmartDisplay(Boolean smartDisplay) {
+        this.smartDisplay = smartDisplay;
+    }
+
+    public Integer getAirBags() {
+        return airBags;
+    }
+
+    public void setAirBags(Integer airBags) {
+        this.airBags = airBags;
+    }
+
+    public Boolean getFogLamps() {
+        return fogLamps;
+    }
+
+    public void setFogLamps(Boolean fogLamps) {
+        this.fogLamps = fogLamps;
+    }
+
+    public Boolean getRearWiper() {
+        return rearWiper;
+    }
+
+    public void setRearWiper(Boolean rearWiper) {
+        this.rearWiper = rearWiper;
+    }
+
+    public String getBodyColor() {
+        return bodyColor;
+    }
+
+    public void setBodyColor(String bodyColor) {
+        this.bodyColor = bodyColor;
+    }
+
+    public Boolean getMotorisedORVM() {
+        return motorisedORVM;
+    }
+
+    public void setMotorisedORVM(Boolean motorisedORVM) {
+        this.motorisedORVM = motorisedORVM;
+    }
+
+    public Boolean getReverseGearCamera() {
+        return reverseGearCamera;
+    }
+
+    public void setReverseGearCamera(Boolean reverseGearCamera) {
+        this.reverseGearCamera = reverseGearCamera;
+    }
+
+    public Boolean getParkingSensors() {
+        return parkingSensors;
+    }
+
+    public void setParkingSensors(Boolean parkingSensors) {
+        this.parkingSensors = parkingSensors;
+    }
+
+    public Boolean getAdjustableHeadlights() {
+        return adjustableHeadlights;
+    }
+
+    public void setAdjustableHeadlights(Boolean adjustableHeadlights) {
+        this.adjustableHeadlights = adjustableHeadlights;
+    }
+
+    public String getMultimediaSystem() {
+        return multimediaSystem;
+    }
+
+    public void setMultimediaSystem(String multimediaSystem) {
+        this.multimediaSystem = multimediaSystem;
+    }
+
+    public Boolean getSteeringMediaControls() {
+        return steeringMediaControls;
+    }
+
+    public void setSteeringMediaControls(Boolean steeringMediaControls) {
+        this.steeringMediaControls = steeringMediaControls;
+    }
+
+    public Integer getSpeakers() {
+        return speakers;
+    }
+
+    public void setSpeakers(Integer speakers) {
+        this.speakers = speakers;
+    }
+
+    public Integer getWoofers() {
+        return woofers;
+    }
+
+    public void setWoofers(Integer woofers) {
+        this.woofers = woofers;
+    }
+
+    public Boolean getNavigation() {
+        return navigation;
+    }
+
+    public void setNavigation(Boolean navigation) {
+        this.navigation = navigation;
+    }
+
+    public Boolean getRearTftScreen() {
+        return rearTftScreen;
+    }
+
+    public void setRearTftScreen(Boolean rearTftScreen) {
+        this.rearTftScreen = rearTftScreen;
     }
 }
