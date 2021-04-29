@@ -11,6 +11,7 @@ import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -107,6 +108,27 @@ public class UserService {
 
     public String addFavourite(UserFavourites userFavourites) {
         userFavRepo.save(userFavourites);
-        return "Car Id: " + userFavourites.getCarId() + "is added to favourites of User Id:" + userFavourites.getUserId();
+        return "Car Id: " + userFavourites.getCarId() + " is added to favourites of User Id:" + userFavourites.getUserId();
+    }
+
+    public String removeFavourite(UserFavourites userFavourites) {
+        userFavRepo.delete(userFavourites);
+        return "User Id: " + userFavourites.getUserId() + " hates Car " + userFavourites.getCarId();
+    }
+
+    public String remFav(String userId, String carId) {
+        List<UserFavourites> userFavouritesList = userFavRepo.findAll();
+        for(UserFavourites userFavourites : userFavouritesList)
+        {
+            if(userFavourites.getUserId().toString().equals(userId))
+            {
+             if(userFavourites.getCarId().toString().equals(carId))
+             {
+                 userFavRepo.delete(userFavourites);
+                 return "User Id: " + userFavourites.getUserId() + " hates Car " + userFavourites.getCarId();
+             }
+            }
+        }
+        return "No data exists with User id: " + userId + " and CarId: " + carId;
     }
 }

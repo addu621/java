@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Table(name = "user_favourites")
 public class UserFavourites {
 
+    public UserFavourites() {}
     public UserFavourites(Integer id, Integer userId, Integer carId) {
         this.id = id;
         this.userId = userId;

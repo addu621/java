@@ -60,4 +60,14 @@ public class UserController {
     public String addToFav(@RequestBody UserFavourites userFavourites) {
         return userService.addFavourite(userFavourites);
     }
+
+    @DeleteMapping("/removeFav")
+    public String removeFromFav(@RequestBody UserFavourites userFavourites) {
+        return userService.removeFavourite(userFavourites);
+    }
+
+    @PutMapping("/remFav/{userId}/{carId}")
+    public String remFav(@PathVariable String userId, @PathVariable String carId) {
+        return userService.remFav(userId, carId);
+    }
 }
