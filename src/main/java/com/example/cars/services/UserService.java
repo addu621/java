@@ -1,6 +1,8 @@
 package com.example.cars.services;
 
 import com.example.cars.entities.User;
+import com.example.cars.entities.UserFavourites;
+import com.example.cars.repositories.UserFavRepo;
 import com.example.cars.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,10 @@ public class UserService {
     private Utility utility;
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private UserFavRepo userFavRepo;
+
 
     public Map save(User user){
         String token= utility.getToken(6);
@@ -99,4 +105,8 @@ public class UserService {
             return "User with this Email Id already Exists!";
     }
 
+    public String addFavourite(UserFavourites userFavourites) {
+        userFavRepo.save(userFavourites);
+        return "Car Id: " + userFavourites.getCarId() + "is added to favourites of User Id:" + userFavourites.getUserId();
+    }
 }

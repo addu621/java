@@ -1,9 +1,6 @@
 package com.example.cars.controllers;
 
-import com.example.cars.entities.CarsBrand;
-import com.example.cars.entities.User;
-import com.example.cars.entities.cars;
-import com.example.cars.entities.modelDetails;
+import com.example.cars.entities.*;
 import com.example.cars.services.UserService;
 import com.example.cars.services.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +19,6 @@ public class UserController {
 
     @Autowired
     Utility utility;
-
 
     @GetMapping("/hello")
     public String hello() {
@@ -60,4 +56,8 @@ public class UserController {
     @GetMapping("/getCarType")
     public List<cars> getCarsByCarType(@RequestBody String carType) { return utility.getCarsByCarType(carType);}
 
+    @PostMapping("/addFav")
+    public String addToFav(@RequestBody UserFavourites userFavourites) {
+        return userService.addFavourite(userFavourites);
+    }
 }
