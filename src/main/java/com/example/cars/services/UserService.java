@@ -1,6 +1,8 @@
 package com.example.cars.services;
 
 import com.example.cars.entities.User;
+import com.example.cars.entities.UserFavourites;
+import com.example.cars.repositories.UserFavRepo;
 import com.example.cars.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -17,6 +20,10 @@ public class UserService {
     private Utility utility;
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private UserFavRepo userFavRepo;
+
 
     public Map save(User user){
         String token= utility.getToken(6);
@@ -99,4 +106,30 @@ public class UserService {
             return "User with this Email Id already Exists!";
     }
 
+    public String addFavourite(UserFavourites userFavourites) {
+        userFavRepo.save(userFavourites);
+        return "Car Id: " + userFavourites.getCarId() + " is added to favourites of User Id:" + userFavourites.getUserId();
+    }
+
+    public String removeFavourite(Integer userFavourites) {
+        userFavRepo.deleteById(userFavourites);
+        return "User deleted";
+//        return "User Id: " + userFavourites.getUserId() + " hates Car " + userFavourites.getCarId();
+    }
+
+    public String remFav(String userId, String carId) {
+        List<UserFavourites> userFavouritesList = userFavRepo.findAll();
+        for(UserFavourites userFavourites : userFavouritesList)
+        {
+            if(userFavourites.getUserId().toString().equals(userId))
+            {
+             if(userFavourites.getCarId().toString().equals(carId))
+             {
+                 userFavRepo.delete(userFavourites);
+                 return "User Id: " + userFavourites.getUserId() + " hates Car " + userFavourites.getCarId();
+             }
+            }
+        }
+        return "No data exists with User id: " + userId + " and CarId: " + carId;
+    }
 }

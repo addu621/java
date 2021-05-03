@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PostDetailsRepo extends JpaRepository<PostDetails,Integer> {
+
+    PostDetails findByPostId(Integer postId);
 }
