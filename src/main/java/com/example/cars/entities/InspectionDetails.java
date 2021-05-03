@@ -7,35 +7,6 @@ import java.sql.Blob;
 @Table(name = "InspectionDetails")
 public class InspectionDetails {
 
-    public InspectionDetails(Integer postId, Integer price, Boolean isReadyForSale, Double mileage, Integer engine, Double maxPower, Integer torque, Integer seats, String color, Integer gearBox, String driverType, String steeringType, Double turningRadius, String frontBrakeType, String rearBrakeType, String tyreType, Integer wheelSize, Integer cargoVolume, String engineType, Integer numberOfCylinder, Integer valvesPerCylinder, Integer length, Integer width, Integer height, Integer groundClearance, Integer wheelBase, Integer grossWeight) {
-        this.postId = postId;
-        this.price = price;
-        this.isReadyForSale = isReadyForSale;
-        this.mileage = mileage;
-        Engine = engine;
-        this.maxPower = maxPower;
-        this.torque = torque;
-        this.seats = seats;
-        this.color = color;
-        this.gearBox = gearBox;
-        this.driverType = driverType;
-        this.steeringType = steeringType;
-        this.turningRadius = turningRadius;
-        this.frontBrakeType = frontBrakeType;
-        this.rearBrakeType = rearBrakeType;
-        this.tyreType = tyreType;
-        this.wheelSize = wheelSize;
-        this.cargoVolume = cargoVolume;
-        this.engineType = engineType;
-        this.numberOfCylinder = numberOfCylinder;
-        this.valvesPerCylinder = valvesPerCylinder;
-        this.length = length;
-        this.width = width;
-        this.height = height;
-        this.groundClearance = groundClearance;
-        this.wheelBase = wheelBase;
-        this.grossWeight = grossWeight;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -119,6 +90,21 @@ public class InspectionDetails {
 
     @Column
     private Integer grossWeight;
+
+    @Column(name = "carPic1",length = 16777215)
+    private byte[] carPic1;
+
+    @Column(name = "carPic2",length = 16777215)
+    private byte[] carPic2;
+
+    @Column(name = "carPic3",length = 16777215)
+    private byte[] carPic3;
+
+    @Column(name = "carPic4",length = 16777215)
+    private byte[] carPic4;
+
+    @Column(name = "carPic5",length = 16777215)
+    private byte[] carPic5;
 
     public Integer getPostId() {
         return postId;
@@ -334,5 +320,45 @@ public class InspectionDetails {
 
     public void setGrossWeight(Integer grossWeight) {
         this.grossWeight = grossWeight;
+    }
+
+    public byte[] getCarPic1() {
+        return carPic1;
+    }
+
+    public void setCarPic1(byte[] carPic1) {
+        this.carPic1 = carPic1;
+    }
+
+    public byte[] getCarPic2() {
+        return carPic2;
+    }
+
+    public void setCarPic2(byte[] carPic2) {
+        this.carPic2 = carPic2;
+    }
+
+    public byte[] getCarPic3() {
+        return carPic3;
+    }
+
+    public void setCarPic3(byte[] carPic3) {
+        this.carPic3 = carPic3;
+    }
+
+    public byte[] getCarPic4() {
+        return carPic4;
+    }
+
+    public void setCarPic4(byte[] carPic4) {
+        this.carPic4 = carPic4;
+    }
+
+    public byte[] getCarPic5() {
+        return carPic5;
+    }
+
+    public void setCarPic5(byte[] carPic5) {
+        this.carPic5 = carPic5;
     }
 }

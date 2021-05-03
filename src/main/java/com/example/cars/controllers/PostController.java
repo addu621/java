@@ -22,6 +22,7 @@ import java.util.zip.Inflater;
 
 @RestController
 @RequestMapping("/post")
+@CrossOrigin("*")
 public class PostController {
 
     @Autowired

@@ -7,15 +7,7 @@ import javax.persistence.*;
 @Table(name = "Admin")
 public class Admin {
 
-    public Admin(){}
-    public Admin(Integer adminId, String adminName, String adminEmail, String adminPassword) {
-        this.adminId = adminId;
-        this.adminName = adminName;
-        this.adminEmail = adminEmail;
-        this.adminPassword = adminPassword;
-    }
 
-    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Integer adminId;
@@ -23,11 +15,20 @@ public class Admin {
     @Column
     private String adminName;
 
+    @Id
     @Column
     private String adminEmail;
 
     @Column
     private String adminPassword;
+
+    public Admin(){};
+
+    public Admin(String adminName, String adminEmail, String adminPassword) {
+        this.adminName = adminName;
+        this.adminEmail = adminEmail;
+        this.adminPassword = adminPassword;
+    }
 
     public Integer getAdminId() {
         return adminId;

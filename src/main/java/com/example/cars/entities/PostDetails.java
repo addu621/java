@@ -32,12 +32,10 @@ public class PostDetails {
     @Column(columnDefinition = "boolean default false")
     private Boolean isApproved;
 
-    @Lob
-    @Column(name = "insuranceCertificate")
+    @Column(name = "insuranceCertificate",length = 16777215)
     private byte[] insuranceCertificate;
 
-    @Lob
-    @Column(name = "registration_certificate")
+    @Column(name = "registration_certificate",length = 16777215)
     private byte[] registrationCertificate;
 
 

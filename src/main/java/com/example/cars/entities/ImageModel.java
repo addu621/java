@@ -1,15 +1,10 @@
 package com.example.cars.entities;
 import javax.persistence.*;
+import java.sql.Blob;
 
 @Entity
 @Table(name = "image_table")
 public class ImageModel {
-    ImageModel(){}
-    public ImageModel(String name, String type, byte[] picByte) {
-        this.name = name;
-        this.type = type;
-        this.picByte = picByte;
-    }
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,9 +22,13 @@ public class ImageModel {
 
         //which is more than the default length for picByte column
 
-    @Column(name = "picByte", length = 1000)
+    @Column(name = "picByte")
 
-    private byte[] picByte;
+    private Blob picByte;
+
+    public ImageModel(){}
+    public ImageModel(String name, String type, Blob picByte) {
+    }
 
     public String getName() {
 
@@ -55,16 +54,25 @@ public class ImageModel {
 
     }
 
-    public byte[] getPicByte() {
+    public Blob getPicByte() {
 
         return picByte;
 
     }
 
-    public void setPicByte(byte[] picByte) {
+    public void setPicByte(Blob picByte) {
 
         this.picByte = picByte;
 
     }
 
+    @Override
+    public String toString() {
+        return "ImageModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", picByte=" + picByte +
+                '}';
+    }
 }

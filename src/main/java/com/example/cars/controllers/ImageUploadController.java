@@ -3,14 +3,14 @@ import java.io.ByteArrayOutputStream;
 
 import com.example.cars.entities.ImageModel;
 import com.example.cars.repositories.ImageRepo;
+import org.hibernate.SessionFactory;
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity.BodyBuilder;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.sql.Blob;
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
@@ -22,19 +22,28 @@ public class ImageUploadController {
     @Autowired
     ImageRepo imageRepository;
 
+    @Autowired
+    private SessionFactory sessionFactory;
+
+
     @PostMapping("/upload")
 
-    public String uploadImage(@RequestBody MultipartFile file) throws IOException {
+    public ImageModel uploadImage(@RequestBody MultipartFile file) throws IOException {
+
 
         System.out.println("Original Image Byte Size - " + file.getBytes().length);
 
-        ImageModel img = new ImageModel(file.getOriginalFilename(), file.getContentType(),
+        ImageModel img = new ImageModel();
 
-                compressBytes(file.getBytes()));
+        Blob pic=this.sessionFactory.getCurrentSession().getLobHelper().createBlob(file.getBytes());
 
-        imageRepository.save(img);
+        img.setName(file.getOriginalFilename());
+        img.setType(file.getContentType());
+        img.setPicByte(pic);
 
-        return "Success";
+        ImageModel newImage=imageRepository.save(img);
+
+        return newImage;
 
     }
 
@@ -46,7 +55,7 @@ public class ImageUploadController {
 
         ImageModel img = new ImageModel(retrievedImage.getName(), retrievedImage.getType(),
 
-                decompressBytes(retrievedImage.getPicByte()));
+                retrievedImage.getPicByte());
 
         return img;
 

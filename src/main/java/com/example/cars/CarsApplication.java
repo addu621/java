@@ -1,5 +1,6 @@
 package com.example.cars;
 
+import com.example.cars.services.AdminService;
 import com.example.cars.services.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -13,9 +14,13 @@ import java.util.Date;
 @SpringBootApplication
 public class CarsApplication {
 	@Autowired
-	private Utility utility;
+	private AdminService adminService;
 
 	public static void main(String[] args) { SpringApplication.run(CarsApplication.class, args); }
 
+	@EventListener(ApplicationReadyEvent.class)
+	public void createAdmins() {
+		adminService.createAdmins();
+	}
 
 }
