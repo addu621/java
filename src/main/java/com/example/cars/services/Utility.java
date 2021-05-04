@@ -63,6 +63,7 @@ public class Utility {
                 "<img src='cid:cars_logo' width=\"70%\">" +
                 "</div>";
 
+
         helper.setFrom("studiocars2021@gmail.com","Cars Studio");
         helper.setSubject(mailSubject);
         helper.setText(mailContent,true);
