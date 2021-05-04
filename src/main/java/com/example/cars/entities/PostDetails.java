@@ -32,6 +32,9 @@ public class PostDetails {
     @Column(columnDefinition = "boolean default false")
     private Boolean isApproved;
 
+    @Column
+    private String location;
+
     @Column(name = "insuranceCertificate",length = 16777215)
     private byte[] insuranceCertificate;
 
@@ -121,5 +124,13 @@ public class PostDetails {
 
     public void setSold(Boolean sold) {
         isSold = sold;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

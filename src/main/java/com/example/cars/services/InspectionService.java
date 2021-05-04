@@ -19,18 +19,18 @@ public class InspectionService {
     public InspectionDetails saveInspectionDetails(InspectionDetails inspectionDetails, MultipartFile carPic1, MultipartFile carPic2, MultipartFile carPic3, MultipartFile carPic4, MultipartFile carPic5) throws IOException {
 
         inspectionDetails.setCarPic1(utility.compressBytes(carPic1.getBytes()));
-        inspectionDetails.setCarPic1(utility.compressBytes(carPic2.getBytes()));
-        inspectionDetails.setCarPic1(utility.compressBytes(carPic3.getBytes()));
-        inspectionDetails.setCarPic1(utility.compressBytes(carPic4.getBytes()));
-        inspectionDetails.setCarPic1(utility.compressBytes(carPic5.getBytes()));
+        inspectionDetails.setCarPic2(utility.compressBytes(carPic2.getBytes()));
+        inspectionDetails.setCarPic3(utility.compressBytes(carPic3.getBytes()));
+        inspectionDetails.setCarPic4(utility.compressBytes(carPic4.getBytes()));
+        inspectionDetails.setCarPic5(utility.compressBytes(carPic5.getBytes()));
 
         InspectionDetails savedInspectionDetails=inspectionDetailsRepo.save(inspectionDetails);
 
         savedInspectionDetails.setCarPic1(utility.decompressBytes(savedInspectionDetails.getCarPic1()));
-        savedInspectionDetails.setCarPic1(utility.decompressBytes(savedInspectionDetails.getCarPic2()));
-        savedInspectionDetails.setCarPic1(utility.decompressBytes(savedInspectionDetails.getCarPic3()));
-        savedInspectionDetails.setCarPic1(utility.decompressBytes(savedInspectionDetails.getCarPic4()));
-        savedInspectionDetails.setCarPic1(utility.decompressBytes(savedInspectionDetails.getCarPic5()));
+        savedInspectionDetails.setCarPic2(utility.decompressBytes(savedInspectionDetails.getCarPic2()));
+        savedInspectionDetails.setCarPic3(utility.decompressBytes(savedInspectionDetails.getCarPic3()));
+        savedInspectionDetails.setCarPic4(utility.decompressBytes(savedInspectionDetails.getCarPic4()));
+        savedInspectionDetails.setCarPic5(utility.decompressBytes(savedInspectionDetails.getCarPic5()));
 
         return savedInspectionDetails;
     }

@@ -86,7 +86,7 @@ public class Utility {
         return token;
     }
 
-    public static byte[] compressBytes(byte[] data) {
+    public byte[] compressBytes(byte[] data) {
 
         Deflater deflater = new Deflater();
 
@@ -123,7 +123,7 @@ public class Utility {
 
     // uncompress the image bytes before returning it to the angular application
 
-    public static byte[] decompressBytes(byte[] data) {
+    public byte[] decompressBytes(byte[] data) {
 
         Inflater inflater = new Inflater();
 

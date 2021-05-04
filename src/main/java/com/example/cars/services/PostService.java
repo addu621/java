@@ -44,6 +44,8 @@ public class PostService {
 
     public PostDetails getPostsById(String postId) {
         PostDetails postDetails = postDetailsRepo.findByPostId(Integer.parseInt(postId));
+        postDetails.setInsuranceCertificate(utility.decompressBytes(postDetails.getInsuranceCertificate()));
+        postDetails.setRegistrationCertificate(utility.decompressBytes(postDetails.getRegistrationCertificate()));
         return postDetails;
 
     }
