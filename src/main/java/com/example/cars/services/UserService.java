@@ -5,6 +5,7 @@ import com.example.cars.entities.UserFavourites;
 import com.example.cars.repositories.UserFavRepo;
 import com.example.cars.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -24,6 +25,9 @@ public class UserService {
     @Autowired
     private UserFavRepo userFavRepo;
 
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
+
 
     public Map save(User user){
         String token= utility.getToken(6);
@@ -37,6 +41,8 @@ public class UserService {
             if(existingUser!=null){
                 throw new Exception("User with this Email Id already Exists!");
             }
+            user.setUserPassword(bcryptEncoder.encode(user.getUserPassword()));
+            System.out.println(user.getUserPassword());
             User savedUser=userRepo.save(user);
             mp.put("user",savedUser);
             mp.put("message","Please Verify your email");
