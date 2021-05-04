@@ -22,6 +22,9 @@ public class Dealer {
     @Column
     private Integer totalRequests;
 
+    @Column
+    private String email;
+
     public Integer getId() {
         return id;
     }
@@ -60,5 +63,13 @@ public class Dealer {
 
     public void setTotalRequests(Integer totalRequests) {
         this.totalRequests = totalRequests;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
