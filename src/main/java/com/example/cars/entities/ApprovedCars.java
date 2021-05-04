@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Table(name = "ApprovedCars")
 public class ApprovedCars {
 
-
-    public ApprovedCars(Integer carId, Integer postID, Integer modelID, Integer sellerID, Integer price, Boolean isSold) {
+    public ApprovedCars(){}
+    public ApprovedCars(Integer carId, PostDetails postID, modelDetails modelID, User sellerID, Integer price, Boolean isSold) {
         this.carId = carId;
         this.postID = postID;
         this.modelID = modelID;
@@ -17,18 +17,20 @@ public class ApprovedCars {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Integer carId;
 
-    @Column
-    private Integer postID;
+    @JoinColumn
+    @OneToOne
+    private PostDetails postID;
 
-    @Column
-    private Integer modelID;
+    @JoinColumn
+    @OneToOne
+    private modelDetails modelID;
 
-    @Column
-    private Integer sellerID;
+    @JoinColumn
+    @OneToOne
+    private User sellerID;
 
     @Column
     private Integer price;
@@ -44,27 +46,27 @@ public class ApprovedCars {
         this.carId = carId;
     }
 
-    public Integer getPostID() {
+    public PostDetails getPostID() {
         return postID;
     }
 
-    public void setPostID(Integer postID) {
+    public void setPostID(PostDetails postID) {
         this.postID = postID;
     }
 
-    public Integer getModelID() {
+    public modelDetails getModelID() {
         return modelID;
     }
 
-    public void setModelID(Integer modelID) {
+    public void setModelID(modelDetails modelID) {
         this.modelID = modelID;
     }
 
-    public Integer getSellerID() {
+    public User getSellerID() {
         return sellerID;
     }
 
-    public void setSellerID(Integer sellerID) {
+    public void setSellerID(User sellerID) {
         this.sellerID = sellerID;
     }
 
