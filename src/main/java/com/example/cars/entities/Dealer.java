@@ -8,7 +8,7 @@ public class Dealer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private Integer id;
+    private Integer dealerId;
 
     @Column
     private String name;
@@ -26,11 +26,11 @@ public class Dealer {
     private String email;
 
     public Integer getId() {
-        return id;
+        return dealerId;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.dealerId = dealerId;
     }
 
     public String getName() {
