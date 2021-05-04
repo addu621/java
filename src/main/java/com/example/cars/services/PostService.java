@@ -1,6 +1,8 @@
 package com.example.cars.services;
 
+import com.example.cars.entities.BuyRequest;
 import com.example.cars.entities.PostDetails;
+import com.example.cars.repositories.BuyRequestRepo;
 import com.example.cars.repositories.PostDetailsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,9 @@ public class PostService {
 
     @Autowired
     Utility utility;
+
+    @Autowired
+    BuyRequestRepo buyRequestRepo;
 
     public PostDetails savePost(PostDetails postDetails, MultipartFile insurance,MultipartFile rc) throws IOException {
         postDetails.setApproved(false);
@@ -48,5 +53,16 @@ public class PostService {
         postDetails.setRegistrationCertificate(utility.decompressBytes(postDetails.getRegistrationCertificate()));
         return postDetails;
 
+    }
+
+    public String saveBuyRequest(BuyRequest buyRequest) {
+        String result="success";
+        try{
+            buyRequestRepo.save(buyRequest);
+        }catch (Exception ex){
+            result="error";
+        }
+
+        return result;
     }
 }

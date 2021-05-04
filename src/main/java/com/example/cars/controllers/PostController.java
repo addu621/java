@@ -1,25 +1,14 @@
 package com.example.cars.controllers;
 
+import com.example.cars.entities.BuyRequest;
 import com.example.cars.entities.PostDetails;
-import com.example.cars.entities.User;
-import com.example.cars.entities.modelDetails;
-import com.example.cars.repositories.PostDetailsRepo;
 import com.example.cars.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.zip.DataFormatException;
-import java.util.zip.Deflater;
-import java.util.zip.Inflater;
 
 @RestController
 @RequestMapping("/post")
@@ -50,5 +39,10 @@ public class PostController {
     @GetMapping("/{postId}")
     public PostDetails getPostsById(@PathVariable("postId") String postId) {
         return postService.getPostsById(postId);
+    }
+
+    @PostMapping("/buyReq/save")
+    public String saveBuyRequest(@RequestBody BuyRequest buyRequest){
+        return postService.saveBuyRequest(buyRequest);
     }
 }
