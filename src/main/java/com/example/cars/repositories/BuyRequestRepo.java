@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BuyRequestRepo extends JpaRepository<BuyRequest,Integer> {
+
+    BuyRequest findByBuyId(Integer buyId);
+
 }

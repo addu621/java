@@ -13,10 +13,12 @@ public class BuyRequest {
     private Integer buyId;
 
 
-    @Column
+    @JoinColumn
+    @ManyToOne
     private User userId;
 
-    @Column
+    @JoinColumn
+    @OneToOne
     private PostDetails postId;
 
     @Column
