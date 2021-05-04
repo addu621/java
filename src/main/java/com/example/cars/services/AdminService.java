@@ -34,11 +34,23 @@ public class AdminService{
 
     public void createAdmins() {
 
-        Admin adm1=new Admin("Dishant","dishant572000@gmail.com","abc123");
+        Admin adm1=new Admin("Dishant","dishant.vashistha@hashedin.com","abc123");
+        Admin adm2=new Admin("Adarsh","adarsh.singh@hashedin.com","abc123");
+        Admin adm3=new Admin("Vibhor","vibhor.nautiyal@hashedin.com","abc123");
+        Admin adm4=new Admin("Mayank","mayank.sharma@hashedin.com","abc123");
         try {
             adminRepo.save(adm1);
         }catch(Exception exception){}
-        logger.info("Admin Created Successfully");
+        try {
+            adminRepo.save(adm2);
+        }catch(Exception exception){}
+        try {
+            adminRepo.save(adm3);
+        }catch(Exception exception){}
+        try {
+            adminRepo.save(adm4);
+        }catch(Exception exception){}
+        logger.info("All Admins Created Successfully");
 
     }
 }
