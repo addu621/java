@@ -7,12 +7,14 @@ import javax.persistence.*;
 public class ApprovedCars {
 
     public ApprovedCars(){}
-    public ApprovedCars(Integer carId, PostDetails postID, modelDetails modelID, User sellerID, Integer price, Boolean isSold) {
+
+    public ApprovedCars(Integer carId, PostDetails postID, modelDetails modelID, User sellerID, Integer price, InspectionDetails inspectionDetails, Boolean isSold) {
         this.carId = carId;
         this.postID = postID;
         this.modelID = modelID;
         this.sellerID = sellerID;
         this.price = price;
+        this.inspectionDetails = inspectionDetails;
         this.isSold = isSold;
     }
 
@@ -34,6 +36,9 @@ public class ApprovedCars {
 
     @Column
     private Integer price;
+
+    @JoinColumn
+    private InspectionDetails inspectionDetails;
 
     @Column(columnDefinition = "boolean default false")
     private Boolean isSold;
@@ -84,5 +89,13 @@ public class ApprovedCars {
 
     public void setSold(Boolean sold) {
         isSold = sold;
+    }
+
+    public InspectionDetails getInspectionDetails() {
+        return inspectionDetails;
+    }
+
+    public void setInspectionDetails(InspectionDetails inspectionDetails) {
+        this.inspectionDetails = inspectionDetails;
     }
 }
