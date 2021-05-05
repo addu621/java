@@ -9,7 +9,6 @@ public class InspectionDetails {
 
     public InspectionDetails(){}
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Integer postId;
 
