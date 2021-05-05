@@ -38,6 +38,7 @@ public class ApprovedCars {
     private Integer price;
 
     @JoinColumn
+    @OneToOne
     private InspectionDetails inspectionDetails;
 
     @Column(columnDefinition = "boolean default false")
