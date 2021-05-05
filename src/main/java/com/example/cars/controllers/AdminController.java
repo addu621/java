@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 import java.util.List;
@@ -45,7 +46,7 @@ public class AdminController {
     }
 
     @GetMapping("/sendForVerification")
-    public String sendVerificationReq(@RequestBody Map<String,String> mp) throws MessagingException, UnsupportedEncodingException {
+    public String sendVerificationReq(@RequestBody Map<String,String> mp) throws MessagingException, IOException {
         return adminService.sendVerificationReq(mp.get("postId"),mp.get("dealerId"));
     }
 }

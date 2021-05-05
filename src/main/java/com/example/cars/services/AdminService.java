@@ -18,8 +18,7 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.io.File;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.ArrayList;
 
 @Service
@@ -38,6 +37,9 @@ public class AdminService{
 
     @Autowired
     private DealerRepo dealerRepo;
+
+    @Autowired
+    private Utility utility;
 
     public String loginUser(String email,String password){
         Admin admin = adminRepo.findByAdminEmail(email);
@@ -73,7 +75,7 @@ public class AdminService{
 
     }
 
-    public String sendVerificationReq(String postId, String dealerId) throws MessagingException, UnsupportedEncodingException {
+    public String sendVerificationReq(String postId, String dealerId) throws MessagingException, IOException {
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
@@ -104,8 +106,23 @@ public class AdminService{
         mimeMessageHelper.setText(mailContent,true);
         mimeMessageHelper.setTo(dealer.getEmail());
 
-//        File file =
-//        mimeMessageHelper.addAttachment("Registration Certificate",);
+        byte[] registration_certificate = utility.decompressBytes(postDetails.getRegistrationCertificate());
+        byte[] insurance_certificate = utility.decompressBytes(postDetails.getInsuranceCertificate());
+
+        File rcFile = new File("c:\\rcFile.jpg");
+        File insuranceFile = new File("c:\\insurance.jpg");
+
+        OutputStream rcOs = new FileOutputStream(rcFile);
+        rcOs.write(registration_certificate);
+        rcOs.close();
+
+        OutputStream insOs = new FileOutputStream(insuranceFile);
+        insOs.write(insurance_certificate);
+        insOs.close();
+
+        mimeMessageHelper.addAttachment("Registration Certificate",rcFile);
+
+        mimeMessageHelper.addAttachment("Insurance Certificate",insuranceFile);
 
         javaMailSender.send(mimeMessage);
         return "Post with postId: "+postDetails.getPostId()+" is assigned to dealer: "+dealer.getId() ;
