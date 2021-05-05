@@ -5,26 +5,21 @@ import java.util.Date;
 
 @Entity
 @Table(name = "buyDetails")
-public class buyDetails {
-
-    public buyDetails(Integer userId, Integer buyId, Integer postId, Date dateOfRequest, Boolean isApproved) {
-        this.userId = userId;
-        this.buyId = buyId;
-        this.postId = postId;
-        this.dateOfRequest = dateOfRequest;
-        this.isApproved = isApproved;
-    }
+public class BuyRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private Integer userId;
-
-    @Column
     private Integer buyId;
 
-    @Column
-    private Integer postId;
+
+    @JoinColumn
+    @ManyToOne
+    private User userId;
+
+    @JoinColumn
+    @OneToOne
+    private PostDetails postId;
 
     @Column
     private Date dateOfRequest;
@@ -32,13 +27,8 @@ public class buyDetails {
     @Column
     private Boolean isApproved;
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+    @Column
+    private String location;
 
     public Integer getBuyId() {
         return buyId;
@@ -48,11 +38,19 @@ public class buyDetails {
         this.buyId = buyId;
     }
 
-    public Integer getPostId() {
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
+
+    public PostDetails getPostId() {
         return postId;
     }
 
-    public void setPostId(Integer postId) {
+    public void setPostId(PostDetails postId) {
         this.postId = postId;
     }
 
@@ -71,4 +69,13 @@ public class buyDetails {
     public void setApproved(Boolean approved) {
         isApproved = approved;
     }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
 }

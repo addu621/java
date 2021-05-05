@@ -6,65 +6,73 @@ import javax.persistence.*;
 @Table(name = "ApprovedCars")
 public class ApprovedCars {
 
+    public ApprovedCars(){}
 
-    public ApprovedCars(Integer carId, Integer postID, Integer modelID, Integer sellerID, Integer price, Boolean isSold) {
-        this.carId = carId;
+    public ApprovedCars(Integer approvedCarId, PostDetails postID, modelDetails modelID, User sellerID, Integer price, InspectionDetails inspectionDetails, Boolean isSold) {
+        this.approvedCarId = approvedCarId;
         this.postID = postID;
         this.modelID = modelID;
         this.sellerID = sellerID;
         this.price = price;
+        this.inspectionDetails = inspectionDetails;
         this.isSold = isSold;
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private Integer carId;
+    private Integer approvedCarId;
 
-    @Column
-    private Integer postID;
+    @JoinColumn
+    @OneToOne
+    private PostDetails postID;
 
-    @Column
-    private Integer modelID;
+    @JoinColumn
+    @OneToOne
+    private modelDetails modelID;
 
-    @Column
-    private Integer sellerID;
+    @JoinColumn
+    @OneToOne
+    private User sellerID;
 
     @Column
     private Integer price;
+
+    @JoinColumn
+    @OneToOne
+    private InspectionDetails inspectionDetails;
 
     @Column(columnDefinition = "boolean default false")
     private Boolean isSold;
 
     public Integer getCarId() {
-        return carId;
+        return approvedCarId;
     }
 
     public void setCarId(Integer carId) {
-        this.carId = carId;
+        this.approvedCarId = carId;
     }
 
-    public Integer getPostID() {
+    public PostDetails getPostID() {
         return postID;
     }
 
-    public void setPostID(Integer postID) {
+    public void setPostID(PostDetails postID) {
         this.postID = postID;
     }
 
-    public Integer getModelID() {
+    public modelDetails getModelID() {
         return modelID;
     }
 
-    public void setModelID(Integer modelID) {
+    public void setModelID(modelDetails modelID) {
         this.modelID = modelID;
     }
 
-    public Integer getSellerID() {
+    public User getSellerID() {
         return sellerID;
     }
 
-    public void setSellerID(Integer sellerID) {
+    public void setSellerID(User sellerID) {
         this.sellerID = sellerID;
     }
 
@@ -82,5 +90,13 @@ public class ApprovedCars {
 
     public void setSold(Boolean sold) {
         isSold = sold;
+    }
+
+    public InspectionDetails getInspectionDetails() {
+        return inspectionDetails;
+    }
+
+    public void setInspectionDetails(InspectionDetails inspectionDetails) {
+        this.inspectionDetails = inspectionDetails;
     }
 }
