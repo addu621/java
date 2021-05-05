@@ -1,10 +1,8 @@
 package com.example.cars.services;
 
-import com.example.cars.entities.Admin;
-import com.example.cars.entities.ApprovedCars;
-import com.example.cars.entities.InspectionTeam;
-import com.example.cars.entities.PostDetails;
+import com.example.cars.entities.*;
 import com.example.cars.repositories.AdminRepo;
+import com.example.cars.repositories.InspectionDetailsRepo;
 import com.example.cars.repositories.InspectionTeamRepo;
 import com.example.cars.repositories.PostDetailsRepo;
 import org.slf4j.Logger;
@@ -19,7 +17,9 @@ import javax.mail.internet.MimeMessage;
 import java.io.*;
 import java.util.ArrayList;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AdminService{
@@ -38,6 +38,8 @@ public class AdminService{
     @Autowired
     private InspectionTeamRepo inspectionTeamRepo;
 
+    @Autowired
+    private InspectionDetailsRepo inspectionDetailsRepo;
 
     @Autowired
     private Utility utility;
@@ -142,6 +144,20 @@ public class AdminService{
 
         return team.getName();
 
+    }
+
+    public Map sendVerificationReq3(Integer postId) {
+
+        PostDetails post = postDetailsRepo.findByPostId(postId);
+        Map<String,Object> mp = new HashMap<>();
+
+        InspectionTeam team = inspectionTeamRepo.findByInspectionTeamId(post.getInspectionTeamId());
+
+        InspectionDetails details = inspectionDetailsRepo.findByPostId(post.getInspectionTeamId());
+
+        mp.put("inspectionDetails", details);
+        mp.put("inspectionTeamName", team.getName());
+        return mp;
     }
 
 

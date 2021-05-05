@@ -9,7 +9,6 @@ public class InspectionDetails {
 
     public InspectionDetails(){}
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Integer postId;
 
@@ -27,9 +26,6 @@ public class InspectionDetails {
     private Double mileage;
 
     @Column
-    private Integer engine;
-
-    @Column
     private Double maxPower;
 
     @Column
@@ -42,7 +38,7 @@ public class InspectionDetails {
     private Integer gearBox;
 
     @Column
-    private String driverType;
+    private String driveType;
 
     @Column
     private String steeringType;
@@ -209,14 +205,6 @@ public class InspectionDetails {
         this.mileage = mileage;
     }
 
-    public Integer getEngine() {
-        return engine;
-    }
-
-    public void setEngine(Integer engine) {
-        engine = engine;
-    }
-
     public Double getMaxPower() {
         return maxPower;
     }
@@ -249,12 +237,12 @@ public class InspectionDetails {
         this.gearBox = gearBox;
     }
 
-    public String getDriverType() {
-        return driverType;
+    public String getDriveType() {
+        return driveType;
     }
 
-    public void setDriverType(String driverType) {
-        this.driverType = driverType;
+    public void setDriveType(String driveType) {
+        this.driveType = driveType;
     }
 
     public String getSteeringType() {

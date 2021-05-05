@@ -81,5 +81,9 @@ public class AdminController {
         return this.adminService.addInspectionTeam(inspectionTeam);
     }
 
+    @GetMapping("/getInspectionDetailsByPostId")
+    public Map sendVerificationReq3(@RequestParam Integer postId){
+        return this.adminService.sendVerificationReq3(postId);
+    }
 
 }
