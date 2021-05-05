@@ -41,6 +41,8 @@ public class PostDetails {
     @Column(name = "registration_certificate",length = 16777215)
     private byte[] registrationCertificate;
 
+    @Column(columnDefinition = "boolean default false")
+    private boolean isInspectionDone;
 
     @Column(columnDefinition = "boolean default false")
     private Boolean isSold;
@@ -132,5 +134,13 @@ public class PostDetails {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public boolean isInspectionDone() {
+        return isInspectionDone;
+    }
+
+    public void setInspectionDone(boolean inspectionDone) {
+        isInspectionDone = inspectionDone;
     }
 }
