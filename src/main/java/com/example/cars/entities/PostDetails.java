@@ -1,5 +1,7 @@
 package com.example.cars.entities;
 
+import javassist.runtime.Inner;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,6 +17,9 @@ public class PostDetails {
     @JoinColumn(name = "userId")
     @ManyToOne
     private User userId;
+
+    @Column
+    private Integer inspectionTeamId;
 
     @Column
     private Date dateOfPost;
@@ -154,4 +159,13 @@ public class PostDetails {
     public void setSentForInspection(boolean sentForInspection) {
         isSentForInspection = sentForInspection;
     }
+
+    public Integer getInspectionTeamId() {
+        return inspectionTeamId;
+    }
+
+    public void setInspectionTeamId(Integer inspectionTeamId) {
+        this.inspectionTeamId = inspectionTeamId;
+    }
 }
+

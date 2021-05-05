@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
@@ -48,10 +49,16 @@ public class AdminController {
         return postService.getPostsById(postId);
     }
 
-    @GetMapping("/sendForVerification")
-    public String sendVerificationReq(@RequestBody Map<String,String> mp) throws MessagingException, UnsupportedEncodingException {
-        return adminService.sendVerificationReq(mp.get("postId"),mp.get("dealerId"));
+    @PostMapping("/sendForInspection")
+    public String sendVerificationReq(@RequestBody Map<String,String> mp) throws MessagingException, IOException {
+        return adminService.sendVerificationReq(mp.get("postId"),mp.get("inspectionTeamId"));
     }
+
+    @GetMapping("/sendForInspection")
+    public String sendVerificationReq2(@RequestBody Map<String,String> mp) {
+        return adminService.sendVerificationReq2(mp.get("inspectionTeamId"));
+    }
+
     @GetMapping("/getBuyRequest/{reqId}")
     public Map getBuyRequest(@PathVariable("reqId") String reqId){
         BuyRequest buyRequest=this.postService.getBuyRequest(reqId);

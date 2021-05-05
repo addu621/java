@@ -5,10 +5,13 @@ import com.example.cars.entities.UserFavourites;
 import com.example.cars.repositories.UserFavRepo;
 import com.example.cars.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,6 +31,8 @@ public class UserService {
     @Autowired
     private PasswordEncoder bcryptEncoder;
 
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     public Map save(User user){
         String token= utility.getToken(6);
@@ -120,7 +125,6 @@ public class UserService {
     public String removeFavourite(Integer userFavourites) {
         userFavRepo.deleteById(userFavourites);
         return "User deleted";
-//        return "User Id: " + userFavourites.getUserId() + " hates Car " + userFavourites.getCarId();
     }
 
     public String remFav(String userId, String carId) {
@@ -137,5 +141,15 @@ public class UserService {
             }
         }
         return "No data exists with User id: " + userId + " and CarId: " + carId;
+    }
+
+    public String sendCustomizeRequest(String requestedItems) throws MessagingException {
+        //"inspectionTeamId: 9001, customize: abc, abcd, xyz, abcde"
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
+
+
+        return "";
     }
 }

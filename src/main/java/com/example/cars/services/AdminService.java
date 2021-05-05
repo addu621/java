@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.*;
+import java.util.ArrayList;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -36,6 +38,9 @@ public class AdminService{
     @Autowired
     private InspectionTeamRepo inspectionTeamRepo;
 
+
+    @Autowired
+    private Utility utility;
 
     public String loginUser(String email,String password){
         Admin admin = adminRepo.findByAdminEmail(email);
@@ -71,17 +76,17 @@ public class AdminService{
 
     }
 
-    public String sendVerificationReq(String postId, String dealerId) throws MessagingException, UnsupportedEncodingException {
+    public String sendVerificationReq(String postId, String inspectionTeamId) throws MessagingException, IOException {
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
 
         PostDetails postDetails = postDetailsRepo.findByPostId(Integer.parseInt(postId));
 
-        InspectionTeam inspectionTeam = inspectionTeamRepo.findByInspectionTeamId(Integer.parseInt(dealerId));
+        InspectionTeam inspectionTeam = inspectionTeamRepo.findByInspectionTeamId(Integer.parseInt(inspectionTeamId));
 
         String mailSubject = "Car Inspection Request";
-        String mailContent = "<div style=\"margin-left: 10%; \">" +
+        String mailContent = "<div>" +
                 "<h1 style=\"color: purple\">Inspection Email</h1>" +
                 "<div>" +
                 "<p>" +
@@ -90,10 +95,13 @@ public class AdminService{
                 "Find the details of Car and customer below - <br>" +
                 "<br>" +
                 "<br>" + "Location: "+postDetails.getLocation() +
+//                "<br>" + "Brand Name: "+postDetails.getModelID().getCarId().getBrandId().getBrandName() +
+//                "<br>" + "Car Name: "+postDetails.getModelID().getCarId().getCarName() +
                 "<br>" + "Model Id: "+postDetails.getModelID() +
                 "<br>" + "Model Year: "+postDetails.getModelYear() +
                 "<br>" + "Model Kms-Run: "+postDetails.getKmsRun() +
                 "</p>" +
+                "<a href = 'http://localhost:4200/inspection' >" + "Click here" + "</a>"  +
                 "</div>" +
                 "<img src='cid:cars_logo' width=\"70%\">" +
                 "</div>";
@@ -101,13 +109,42 @@ public class AdminService{
         mimeMessageHelper.setSubject(mailSubject);
         mimeMessageHelper.setText(mailContent,true);
         mimeMessageHelper.setTo(inspectionTeam.getEmail());
+        byte[] registration_certificate = utility.decompressBytes(postDetails.getRegistrationCertificate());
+        byte[] insurance_certificate = utility.decompressBytes(postDetails.getInsuranceCertificate());
 
-//        File file =
-//        mimeMessageHelper.addAttachment("Registration Certificate",);
+        File rcFile = new File("/rcFile.jpg");
+        File insuranceFile = new File("/insFile.jpg");
+
+        OutputStream rcOs = new FileOutputStream(rcFile);
+        rcOs.write(registration_certificate);
+        rcOs.close();
+
+        OutputStream insOs = new FileOutputStream(insuranceFile);
+        insOs.write(insurance_certificate);
+        insOs.close();
+
+        mimeMessageHelper.addAttachment("Registration Certificate",rcFile);
+
+        mimeMessageHelper.addAttachment("Insurance Certificate",insuranceFile);
+
+        postDetails.setSentForInspection(true);
+        postDetails.setInspectionTeamId(Integer.parseInt(inspectionTeamId));
+        postDetailsRepo.save(postDetails);
 
         javaMailSender.send(mimeMessage);
-        return "Post with postId: "+postDetails.getPostId()+" is assigned to dealer: "+ inspectionTeam.getId() ;
+
+        return inspectionTeam.getName();
     }
+
+    public String sendVerificationReq2(String inspectionTeamId){
+
+        InspectionTeam team = inspectionTeamRepo.findByInspectionTeamId(Integer.parseInt(inspectionTeamId));
+
+        return team.getName();
+
+    }
+
+
 
     public String addInspectionTeam(InspectionTeam inspectionTeam) {
         try {

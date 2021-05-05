@@ -13,6 +13,10 @@ public class InspectionDetails {
     @Column
     private Integer postId;
 
+    @JoinColumn
+    @OneToOne
+    private InspectionTeam inspectionTeam;
+
     @Column
     private Integer price;
 
@@ -153,6 +157,9 @@ public class InspectionDetails {
 
     @Column
     private Boolean rearTftScreen;
+
+    @Column
+    private Integer ownership;
 
     @Column(length = 16777215)
     byte[] carPic1;
@@ -592,5 +599,21 @@ public class InspectionDetails {
 
     public void setCarPic5(byte[] carPic5) {
         this.carPic5 = carPic5;
+    }
+
+    public InspectionTeam getInspectionTeam() {
+        return inspectionTeam;
+    }
+
+    public void setInspectionTeam(InspectionTeam inspectionTeam) {
+        this.inspectionTeam = inspectionTeam;
+    }
+
+    public Integer getOwnership() {
+        return ownership;
+    }
+
+    public void setOwnership(Integer ownership) {
+        this.ownership = ownership;
     }
 }

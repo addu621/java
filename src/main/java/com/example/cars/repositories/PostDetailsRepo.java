@@ -14,4 +14,5 @@ public interface PostDetailsRepo extends JpaRepository<PostDetails,Integer> {
 
     @Query(value = "select * from post_details where is_approved=false",nativeQuery = true)
     List<PostDetails> findAllUnApprovedPosts();
+
 }
