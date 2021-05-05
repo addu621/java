@@ -103,7 +103,7 @@ public class AdminService{
                 "<br>" + "Model Year: "+postDetails.getModelYear() +
                 "<br>" + "Model Kms-Run: "+postDetails.getKmsRun() +
                 "</p>" +
-                "<a href = 'http://localhost:4200/inspection' >" + "Click here" + "</a>"  +
+                "<a href ='http://localhost:4200/inspection/"+postId+"/+"+inspectionTeamId+"' >" + "Click here" + "</a>"  +
                 "</div>" +
                 "<img src='cid:cars_logo' width=\"70%\">" +
                 "</div>";
@@ -131,6 +131,10 @@ public class AdminService{
 
         postDetails.setSentForInspection(true);
         postDetails.setInspectionTeamId(Integer.parseInt(inspectionTeamId));
+        inspectionTeam.setPendingRequests(inspectionTeam.getPendingRequests()+1);
+        inspectionTeam.setTotalRequests(inspectionTeam.getTotalRequests()+1);
+
+        inspectionTeamRepo.save(inspectionTeam);
         postDetailsRepo.save(postDetails);
 
         javaMailSender.send(mimeMessage);
@@ -174,4 +178,8 @@ public class AdminService{
     }
 
 
+    public List<InspectionTeam> getInspectionCentre(String city) {
+
+        return this.inspectionTeamRepo.findAllByLocation(city);
+    }
 }

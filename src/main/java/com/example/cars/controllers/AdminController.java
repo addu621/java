@@ -55,8 +55,8 @@ public class AdminController {
     }
 
     @GetMapping("/sendForInspection")
-    public String sendVerificationReq2(@RequestBody Map<String,String> mp) {
-        return adminService.sendVerificationReq2(mp.get("inspectionTeamId"));
+    public String sendVerificationReq2(@RequestParam String inspectionTeamId) {
+        return adminService.sendVerificationReq2(inspectionTeamId);
     }
 
     @GetMapping("/getBuyRequest/{reqId}")
@@ -85,5 +85,10 @@ public class AdminController {
     public Map sendVerificationReq3(@RequestParam Integer postId){
         return this.adminService.sendVerificationReq3(postId);
     }
+    @GetMapping("/getInspectionCentre")
+    public List<InspectionTeam> getInspectionCentre(@RequestParam String city){
+        return this.adminService.getInspectionCentre(city);
+    }
+
 
 }
