@@ -8,8 +8,8 @@ public class ApprovedCars {
 
     public ApprovedCars(){}
 
-    public ApprovedCars(Integer carId, PostDetails postID, modelDetails modelID, User sellerID, Integer price, InspectionDetails inspectionDetails, Boolean isSold) {
-        this.carId = carId;
+    public ApprovedCars(Integer approvedCarId, PostDetails postID, modelDetails modelID, User sellerID, Integer price, InspectionDetails inspectionDetails, Boolean isSold) {
+        this.approvedCarId = approvedCarId;
         this.postID = postID;
         this.modelID = modelID;
         this.sellerID = sellerID;
@@ -20,7 +20,7 @@ public class ApprovedCars {
 
     @Id
     @Column
-    private Integer carId;
+    private Integer approvedCarId;
 
     @JoinColumn
     @OneToOne
@@ -44,11 +44,11 @@ public class ApprovedCars {
     private Boolean isSold;
 
     public Integer getCarId() {
-        return carId;
+        return approvedCarId;
     }
 
     public void setCarId(Integer carId) {
-        this.carId = carId;
+        this.approvedCarId = carId;
     }
 
     public PostDetails getPostID() {
