@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
@@ -83,7 +84,7 @@ public class AdminService{
 
         String mailSubject = "Car Inspection Request";
         String mailContent = "<div style=\"margin-left: 10%; \">" +
-                "<h1 style=\"color: purple\">Verification Email</h1>" +
+                "<h1 style=\"color: purple\">Inspection Email</h1>" +
                 "<div>" +
                 "<p>" +
                 "Hi "+dealer.getName() +
@@ -98,13 +99,15 @@ public class AdminService{
                 "</div>" +
                 "<img src='cid:cars_logo' width=\"70%\">" +
                 "</div>";
-
         mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
         mimeMessageHelper.setSubject(mailSubject);
         mimeMessageHelper.setText(mailContent,true);
         mimeMessageHelper.setTo(dealer.getEmail());
 
+//        File file =
+//        mimeMessageHelper.addAttachment("Registration Certificate",);
+
         javaMailSender.send(mimeMessage);
-        return "Success";
+        return "Post with postId: "+postDetails.getPostId()+" is assigned to dealer: "+dealer.getId() ;
     }
 }
