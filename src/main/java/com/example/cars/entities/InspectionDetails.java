@@ -157,6 +157,18 @@ public class InspectionDetails {
     @Column
     private Integer ownership;
 
+    @Column
+    private String bodyType;
+
+    @Column
+    private String fuelType;
+
+    @Column
+    private String displacementVolume;
+
+    @Column
+    private Integer doors;
+
     @Column(length = 16777215)
     byte[] carPic1;
 
@@ -603,5 +615,37 @@ public class InspectionDetails {
 
     public void setOwnership(Integer ownership) {
         this.ownership = ownership;
+    }
+
+    public String getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(String bodyType) {
+        this.bodyType = bodyType;
+    }
+
+    public String getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public String getDisplacementVolume() {
+        return displacementVolume;
+    }
+
+    public void setDisplacementVolume(String displacementVolume) {
+        this.displacementVolume = displacementVolume;
+    }
+
+    public Integer getDoors() {
+        return doors;
+    }
+
+    public void setDoors(Integer doors) {
+        this.doors = doors;
     }
 }
