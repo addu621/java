@@ -47,6 +47,9 @@ public class PostDetails {
     @Column(columnDefinition = "boolean default false")
     private Boolean isSold;
 
+    @Column(columnDefinition = "boolean default false")
+    private boolean isSentForInspection;
+
     public PostDetails(){}
     public User getUserId() {
         return userId;
@@ -142,5 +145,13 @@ public class PostDetails {
 
     public void setInspectionDone(boolean inspectionDone) {
         isInspectionDone = inspectionDone;
+    }
+
+    public boolean isSentForInspection() {
+        return isSentForInspection;
+    }
+
+    public void setSentForInspection(boolean sentForInspection) {
+        isSentForInspection = sentForInspection;
     }
 }

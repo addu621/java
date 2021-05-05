@@ -1,9 +1,7 @@
 package com.example.cars.controllers;
 
-import com.example.cars.entities.Admin;
+import com.example.cars.entities.*;
 import com.example.cars.entities.BuyRequest;
-import com.example.cars.entities.BuyRequest;
-import com.example.cars.entities.PostDetails;
 import com.example.cars.services.AdminService;
 import com.example.cars.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,4 +68,11 @@ public class AdminController {
 
         return this.postService.changeApproveStatus(mp.get("postId"),mp.get("status"));
     }
+
+    @PostMapping("/addInspectionTeam")
+    public String addInspectionTeam(@RequestBody InspectionTeam inspectionTeam){
+        return this.adminService.addInspectionTeam(inspectionTeam);
+    }
+
+
 }

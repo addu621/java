@@ -67,4 +67,9 @@ public class UserController {
         return userService.removeFavourite(userFavourites);
     }
 
+    @GetMapping("/getApprovedCars")
+    public List<ApprovedCars> getApprovedCars(){
+        return this.utility.getApprovedCars();
+    }
+
 }

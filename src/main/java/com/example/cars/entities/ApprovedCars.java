@@ -22,33 +22,33 @@ public class ApprovedCars {
     @Column
     private Integer approvedCarId;
 
-    @JoinColumn
+    @JoinColumn(name = "postID")
     @OneToOne
     private PostDetails postID;
 
-    @JoinColumn
+    @JoinColumn(name = "modelId")
     @OneToOne
     private modelDetails modelID;
 
-    @JoinColumn
+    @JoinColumn(name = "sellerId")
     @OneToOne
     private User sellerID;
 
     @Column
     private Integer price;
 
-    @JoinColumn
+    @JoinColumn(name = "inspectionDetails")
     @OneToOne
     private InspectionDetails inspectionDetails;
 
     @Column(columnDefinition = "boolean default false")
     private Boolean isSold;
 
-    public Integer getCarId() {
+    public Integer getApprovedCarId() {
         return approvedCarId;
     }
 
-    public void setCarId(Integer carId) {
+    public void setApprovedCarId(Integer carId) {
         this.approvedCarId = carId;
     }
 

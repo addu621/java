@@ -1,14 +1,16 @@
 package com.example.cars.entities;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 
 @Entity
 @Table
-public class Dealer {
+public class InspectionTeam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private Integer dealerId;
+    private Integer inspectionTeamId;
 
     @Column
     private String name;
@@ -16,21 +18,21 @@ public class Dealer {
     @Column
     private String location;
 
-    @Column
+    @Column(columnDefinition = "integer default 0")
     private Integer pendingRequests;
 
-    @Column
+    @Column(columnDefinition = "integer default 0")
     private Integer totalRequests;
 
     @Column
     private String email;
 
     public Integer getId() {
-        return dealerId;
+        return inspectionTeamId;
     }
 
     public void setId(Integer id) {
-        this.dealerId = dealerId;
+        this.inspectionTeamId = inspectionTeamId;
     }
 
     public String getName() {

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface InspectionDetailsRepo extends JpaRepository<InspectionDetails,Integer> {
+    InspectionDetails findByPostId(int parseInt);
 }

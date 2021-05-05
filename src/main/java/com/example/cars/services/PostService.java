@@ -1,8 +1,12 @@
 package com.example.cars.services;
 
+import com.example.cars.entities.ApprovedCars;
 import com.example.cars.entities.BuyRequest;
+import com.example.cars.entities.InspectionDetails;
 import com.example.cars.entities.PostDetails;
 import com.example.cars.repositories.BuyRequestRepo;
+import com.example.cars.repositories.InspectionDetailsRepo;
+import com.example.cars.repositories.InspectionTeamRepo;
 import com.example.cars.repositories.PostDetailsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +29,9 @@ public class PostService {
 
     @Autowired
     BuyRequestRepo buyRequestRepo;
+
+    @Autowired
+    InspectionDetailsRepo inspectionDetailsRepo;
 
     public PostDetails savePost(PostDetails postDetails, MultipartFile insurance,MultipartFile rc) throws IOException {
         postDetails.setApproved(false);
@@ -84,9 +91,17 @@ public class PostService {
 
             post.setApproved(Boolean.parseBoolean(status));
 
+            ApprovedCars approveCar=new ApprovedCars();
+            InspectionDetails inspectionDetails=inspectionDetailsRepo.findByPostId(Integer.parseInt(postId));
+
+            approveCar.setPostID(post);
+            approveCar.setSold(false);
+            approveCar.setInspectionDetails(inspectionDetails);
+            approveCar.setPrice(inspectionDetails.getPrice());
+
             this.postDetailsRepo.save(post);
 
-                return "approved";
+            return "approved";
         }
         catch (Exception ex){
             return "error";

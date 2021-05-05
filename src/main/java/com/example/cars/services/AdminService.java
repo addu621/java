@@ -1,26 +1,23 @@
 package com.example.cars.services;
 
 import com.example.cars.entities.Admin;
-import com.example.cars.entities.Dealer;
+import com.example.cars.entities.ApprovedCars;
+import com.example.cars.entities.InspectionTeam;
 import com.example.cars.entities.PostDetails;
 import com.example.cars.repositories.AdminRepo;
-import com.example.cars.repositories.DealerRepo;
+import com.example.cars.repositories.InspectionTeamRepo;
 import com.example.cars.repositories.PostDetailsRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AdminService{
@@ -37,7 +34,8 @@ public class AdminService{
     private PostDetailsRepo postDetailsRepo;
 
     @Autowired
-    private DealerRepo dealerRepo;
+    private InspectionTeamRepo inspectionTeamRepo;
+
 
     public String loginUser(String email,String password){
         Admin admin = adminRepo.findByAdminEmail(email);
@@ -80,14 +78,14 @@ public class AdminService{
 
         PostDetails postDetails = postDetailsRepo.findByPostId(Integer.parseInt(postId));
 
-        Dealer dealer = dealerRepo.findByDealerId(Integer.parseInt(dealerId));
+        InspectionTeam inspectionTeam = inspectionTeamRepo.findByInspectionTeamId(Integer.parseInt(dealerId));
 
         String mailSubject = "Car Inspection Request";
         String mailContent = "<div style=\"margin-left: 10%; \">" +
                 "<h1 style=\"color: purple\">Inspection Email</h1>" +
                 "<div>" +
                 "<p>" +
-                "Hi "+dealer.getName() +
+                "Hi "+ inspectionTeam.getName() +
                 ",<br>" + "You have recieved a customer Car-Inspection request.<br>" +
                 "Find the details of Car and customer below - <br>" +
                 "<br>" +
@@ -102,12 +100,25 @@ public class AdminService{
         mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
         mimeMessageHelper.setSubject(mailSubject);
         mimeMessageHelper.setText(mailContent,true);
-        mimeMessageHelper.setTo(dealer.getEmail());
+        mimeMessageHelper.setTo(inspectionTeam.getEmail());
 
 //        File file =
 //        mimeMessageHelper.addAttachment("Registration Certificate",);
 
         javaMailSender.send(mimeMessage);
-        return "Post with postId: "+postDetails.getPostId()+" is assigned to dealer: "+dealer.getId() ;
+        return "Post with postId: "+postDetails.getPostId()+" is assigned to dealer: "+ inspectionTeam.getId() ;
     }
+
+    public String addInspectionTeam(InspectionTeam inspectionTeam) {
+        try {
+            inspectionTeam.setPendingRequests(0);
+            inspectionTeam.setTotalRequests(0);
+            inspectionTeamRepo.save(inspectionTeam);
+            return "success";
+        }catch (Exception ex){
+            return "error";
+        }
+    }
+
+
 }
