@@ -67,4 +67,8 @@ public class UserController {
         return userService.removeFavourite(userFavourites);
     }
 
+    @GetMapping
+    public String sendCustomizeRequest(@RequestBody String requestedItems) throws MessagingException {
+        return userService.sendCustomizeRequest(requestedItems);
+    }
 }
