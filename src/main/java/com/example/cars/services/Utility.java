@@ -1,9 +1,7 @@
 package com.example.cars.services;
 
-import com.example.cars.entities.CarsBrand;
-import com.example.cars.entities.User;
-import com.example.cars.entities.cars;
-import com.example.cars.entities.modelDetails;
+import com.example.cars.entities.*;
+import com.example.cars.repositories.ApprovedCarsRepo;
 import com.example.cars.repositories.CarsBrandRepo;
 import com.example.cars.repositories.CarsRepo;
 import com.example.cars.repositories.ModelDetailsRepo;
@@ -42,6 +40,9 @@ public class Utility {
 
     @Autowired
     private CarsRepo carsRepo;
+
+    @Autowired
+    private ApprovedCarsRepo approvedCarsRepo;
 
 
     @Async
@@ -169,4 +170,8 @@ public class Utility {
     }
 
     public List<cars> getCarsByCarType(String carType) { return carsRepo.findByCarType(carType);}
+
+    public List<ApprovedCars> getApprovedCars() {
+        return this.approvedCarsRepo.findAllApprovedCars();
+    }
 }

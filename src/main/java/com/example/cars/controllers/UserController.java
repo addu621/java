@@ -71,4 +71,9 @@ public class UserController {
     public String sendCustomizeRequest(@RequestBody String requestedItems) throws MessagingException {
         return userService.sendCustomizeRequest(requestedItems);
     }
+    @GetMapping("/getApprovedCars")
+    public List<ApprovedCars> getApprovedCars(){
+        return this.utility.getApprovedCars();
+    }
+
 }

@@ -1,25 +1,25 @@
 package com.example.cars.services;
 
 import com.example.cars.entities.Admin;
-import com.example.cars.entities.Dealer;
+import com.example.cars.entities.ApprovedCars;
+import com.example.cars.entities.InspectionTeam;
 import com.example.cars.entities.PostDetails;
 import com.example.cars.repositories.AdminRepo;
-import com.example.cars.repositories.DealerRepo;
+import com.example.cars.repositories.InspectionTeamRepo;
 import com.example.cars.repositories.PostDetailsRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.*;
 import java.util.ArrayList;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 @Service
 public class AdminService{
@@ -36,7 +36,8 @@ public class AdminService{
     private PostDetailsRepo postDetailsRepo;
 
     @Autowired
-    private DealerRepo dealerRepo;
+    private InspectionTeamRepo inspectionTeamRepo;
+
 
     @Autowired
     private Utility utility;
@@ -75,28 +76,28 @@ public class AdminService{
 
     }
 
-    public String sendVerificationReq(String postId, String dealerId) throws MessagingException, IOException {
+    public String sendVerificationReq(String postId, String inspectionTeamId) throws MessagingException, IOException {
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
 
         PostDetails postDetails = postDetailsRepo.findByPostId(Integer.parseInt(postId));
 
-        Dealer dealer = dealerRepo.findByDealerId(Integer.parseInt(dealerId));
+        InspectionTeam inspectionTeam = inspectionTeamRepo.findByInspectionTeamId(Integer.parseInt(inspectionTeamId));
 
         String mailSubject = "Car Inspection Request";
         String mailContent = "<div>" +
                 "<h1 style=\"color: purple\">Inspection Email</h1>" +
                 "<div>" +
                 "<p>" +
-                "Hi "+dealer.getName() +
+                "Hi "+ inspectionTeam.getName() +
                 ",<br>" + "You have recieved a customer Car-Inspection request.<br>" +
                 "Find the details of Car and customer below - <br>" +
                 "<br>" +
                 "<br>" + "Location: "+postDetails.getLocation() +
-                "<br>" + "Brand Name: "+postDetails.getModelID().getCarId().getBrandId().getBrandName() +
-                "<br>" + "Car Name: "+postDetails.getModelID().getCarId().getCarName() +
-                "<br>" + "Model Name: "+postDetails.getModelID().getModelName() +
+//                "<br>" + "Brand Name: "+postDetails.getModelID().getCarId().getBrandId().getBrandName() +
+//                "<br>" + "Car Name: "+postDetails.getModelID().getCarId().getCarName() +
+                "<br>" + "Model Id: "+postDetails.getModelID() +
                 "<br>" + "Model Year: "+postDetails.getModelYear() +
                 "<br>" + "Model Kms-Run: "+postDetails.getKmsRun() +
                 "</p>" +
@@ -106,7 +107,7 @@ public class AdminService{
         mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
         mimeMessageHelper.setSubject(mailSubject);
         mimeMessageHelper.setText(mailContent,true);
-        mimeMessageHelper.setTo(dealer.getEmail());
+        mimeMessageHelper.setTo(inspectionTeam.getEmail());
 
         byte[] registration_certificate = utility.decompressBytes(postDetails.getRegistrationCertificate());
         byte[] insurance_certificate = utility.decompressBytes(postDetails.getInsuranceCertificate());
@@ -126,7 +127,35 @@ public class AdminService{
 
         mimeMessageHelper.addAttachment("Insurance Certificate",insuranceFile);
 
+        postDetails.setSentForInspection(true);
+        postDetails.setInspectionTeamId(Integer.parseInt(inspectionTeamId));
+        postDetailsRepo.save(postDetails);
+
         javaMailSender.send(mimeMessage);
-        return "Post with postId: "+postDetails.getPostId()+" is assigned to dealer: "+dealer.getId() ;
+
+        return inspectionTeam.getName();
     }
+
+    public String sendVerificationReq2(String inspectionTeamId){
+
+        InspectionTeam team = inspectionTeamRepo.findByInspectionTeamId(Integer.parseInt(inspectionTeamId));
+
+        return team.getName();
+
+    }
+
+
+
+    public String addInspectionTeam(InspectionTeam inspectionTeam) {
+        try {
+            inspectionTeam.setPendingRequests(0);
+            inspectionTeam.setTotalRequests(0);
+            inspectionTeamRepo.save(inspectionTeam);
+            return "success";
+        }catch (Exception ex){
+            return "error";
+        }
+    }
+
+
 }

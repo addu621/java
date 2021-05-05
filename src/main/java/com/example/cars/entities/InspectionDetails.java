@@ -13,6 +13,10 @@ public class InspectionDetails {
     @Column
     private Integer postId;
 
+    @JoinColumn
+    @OneToOne
+    private InspectionTeam inspectionTeam;
+
     @Column
     private Integer price;
 
@@ -592,5 +596,13 @@ public class InspectionDetails {
 
     public void setCarPic5(byte[] carPic5) {
         this.carPic5 = carPic5;
+    }
+
+    public InspectionTeam getInspectionTeam() {
+        return inspectionTeam;
+    }
+
+    public void setInspectionTeam(InspectionTeam inspectionTeam) {
+        this.inspectionTeam = inspectionTeam;
     }
 }

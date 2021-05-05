@@ -1,7 +1,9 @@
 package com.example.cars.services;
 
 import com.example.cars.entities.InspectionDetails;
+import com.example.cars.entities.PostDetails;
 import com.example.cars.repositories.InspectionDetailsRepo;
+import com.example.cars.repositories.PostDetailsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +17,9 @@ public class InspectionService {
 
     @Autowired
     Utility utility;
+
+    @Autowired
+    PostDetailsRepo postDetailsRepo;
 
     public InspectionDetails saveInspectionDetails(InspectionDetails inspectionDetails, MultipartFile carPic1, MultipartFile carPic2, MultipartFile carPic3, MultipartFile carPic4, MultipartFile carPic5) throws IOException {
 
@@ -32,6 +37,9 @@ public class InspectionService {
         savedInspectionDetails.setCarPic4(utility.decompressBytes(savedInspectionDetails.getCarPic4()));
         savedInspectionDetails.setCarPic5(utility.decompressBytes(savedInspectionDetails.getCarPic5()));
 
+        PostDetails post=postDetailsRepo.findByPostId(inspectionDetails.getPostId());
+        post.setInspectionDone(true);
+        postDetailsRepo.save(post);
         return savedInspectionDetails;
     }
 }
