@@ -19,11 +19,11 @@ public class InspectionTeamController {
 
     @PostMapping("/save")
     public InspectionDetails saveInspectionDetails(@ModelAttribute InspectionDetails inspectionDetails,
-                                             @RequestParam("carPic1") MultipartFile carPic1,
-                                             @RequestParam("carPic2")MultipartFile carPic2,
-                                             @RequestParam("carPic3")MultipartFile carPic3,
-                                             @RequestParam("carPic4")MultipartFile carPic4,
-                                             @RequestParam("carPic5")MultipartFile carPic5) throws IOException {
+                                             @RequestParam("carpic1") MultipartFile carPic1,
+                                             @RequestParam("carpic2") MultipartFile carPic2,
+                                             @RequestParam("carpic3") MultipartFile carPic3,
+                                             @RequestParam("carpic4") MultipartFile carPic4,
+                                             @RequestParam("carpic5") MultipartFile carPic5) throws IOException {
 
 
         return inspectionService.saveInspectionDetails(inspectionDetails,carPic1,carPic2,carPic3,carPic4,carPic5);

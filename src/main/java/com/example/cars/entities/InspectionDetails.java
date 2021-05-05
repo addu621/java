@@ -8,6 +8,68 @@ import java.sql.Blob;
 public class InspectionDetails {
 
     public InspectionDetails(){}
+
+    public InspectionDetails(Integer postId, InspectionTeam inspectionTeam, String price, String isReadyForSale, String mileage, String maxPower, String torque, String seats, String gearBox, String driveType, String steeringType, String turningRadius, String frontBrakeType, String rearBrakeType, String tyreType, String wheelSize, String cargoVolume, String engineType, String numberOfCylinder, String valvesPerCylinder, String length, String width, String height, String groundClearance, String wheelBase, String grossWeight, String adjustableSteering, String adjustableSeatHeight, String powerWindows, String centralLocking, String autoClimateControl, String adjustableHeadRest, String pushStartButton, String smartDisplay, String airBags, String fogLamps, String rearWiper, String bodyColor, String motorisedORVM, String reverseGearCamera, String parkingSensors, String adjustableHeadlights, String multimediaSystem, String steeringMediaControls, String speakers, String woofers, String navigation, String rearTftScreen, String ownership, String bodyType, String fuelType, String displacementVolume, String doors, byte[] carPic1, byte[] carPic2, byte[] carPic3, byte[] carPic4, byte[] carPic5) {
+        this.postId = postId;
+        this.inspectionTeam = inspectionTeam;
+        this.price = price;
+        this.isReadyForSale = isReadyForSale;
+        this.mileage = mileage;
+        this.maxPower = maxPower;
+        this.torque = torque;
+        this.seats = seats;
+        this.gearBox = gearBox;
+        this.driveType = driveType;
+        this.steeringType = steeringType;
+        this.turningRadius = turningRadius;
+        this.frontBrakeType = frontBrakeType;
+        this.rearBrakeType = rearBrakeType;
+        this.tyreType = tyreType;
+        this.wheelSize = wheelSize;
+        this.cargoVolume = cargoVolume;
+        this.engineType = engineType;
+        this.numberOfCylinder = numberOfCylinder;
+        this.valvesPerCylinder = valvesPerCylinder;
+        this.length = length;
+        this.width = width;
+        this.height = height;
+        this.groundClearance = groundClearance;
+        this.wheelBase = wheelBase;
+        this.grossWeight = grossWeight;
+        this.adjustableSteering = adjustableSteering;
+        this.adjustableSeatHeight = adjustableSeatHeight;
+        this.powerWindows = powerWindows;
+        this.centralLocking = centralLocking;
+        this.autoClimateControl = autoClimateControl;
+        this.adjustableHeadRest = adjustableHeadRest;
+        this.pushStartButton = pushStartButton;
+        this.smartDisplay = smartDisplay;
+        this.airBags = airBags;
+        this.fogLamps = fogLamps;
+        this.rearWiper = rearWiper;
+        this.bodyColor = bodyColor;
+        this.motorisedORVM = motorisedORVM;
+        this.reverseGearCamera = reverseGearCamera;
+        this.parkingSensors = parkingSensors;
+        this.adjustableHeadlights = adjustableHeadlights;
+        this.multimediaSystem = multimediaSystem;
+        this.steeringMediaControls = steeringMediaControls;
+        this.speakers = speakers;
+        this.woofers = woofers;
+        this.navigation = navigation;
+        this.rearTftScreen = rearTftScreen;
+        this.ownership = ownership;
+        this.bodyType = bodyType;
+        this.fuelType = fuelType;
+        this.displacementVolume = displacementVolume;
+        this.doors = doors;
+        this.carPic1 = carPic1;
+        this.carPic2 = carPic2;
+        this.carPic3 = carPic3;
+        this.carPic4 = carPic4;
+        this.carPic5 = carPic5;
+    }
+
     @Id
     @Column
     private Integer postId;
@@ -17,25 +79,25 @@ public class InspectionDetails {
     private InspectionTeam inspectionTeam;
 
     @Column
-    private Integer price;
+    private String price;
 
     @Column
-    private Boolean isReadyForSale;
+    private String isReadyForSale;
 
     @Column
-    private Double mileage;
+    private String mileage;
 
     @Column
-    private Double maxPower;
+    private String maxPower;
 
     @Column
-    private Integer torque;
+    private String torque;
 
     @Column
-    private Integer seats;
+    private String seats;
 
     @Column
-    private Integer gearBox;
+    private String gearBox;
 
     @Column
     private String driveType;
@@ -44,7 +106,7 @@ public class InspectionDetails {
     private String steeringType;
 
     @Column
-    private Double turningRadius;
+    private String turningRadius;
 
     @Column
     private String frontBrakeType;
@@ -56,106 +118,106 @@ public class InspectionDetails {
     private String tyreType;
 
     @Column
-    private Integer wheelSize;
+    private String wheelSize;
 
     @Column
-    private Integer cargoVolume;
+    private String cargoVolume;
 
     @Column
     private String engineType;
 
     @Column
-    private Integer numberOfCylinder;
+    private String numberOfCylinder;
 
     @Column
-    private Integer valvesPerCylinder;
+    private String valvesPerCylinder;
 
     @Column
-    private Integer length;
+    private String length;
 
     @Column
-    private Integer width;
+    private String width;
 
     @Column
-    private Integer height;
+    private String height;
 
     @Column
-    private Integer groundClearance;
+    private String groundClearance;
 
     @Column
-    private Integer wheelBase;
+    private String wheelBase;
 
     @Column
-    private Integer grossWeight;
+    private String grossWeight;
 
     @Column
-    private Boolean adjustableSteering;
+    private String adjustableSteering;
 
     @Column
-    private Boolean adjustableSeatHeight;
+    private String adjustableSeatHeight;
 
     @Column
-    private Integer powerWindows;
+    private String powerWindows;
 
     @Column
-    private Boolean centralLocking;
+    private String centralLocking;
 
     @Column
-    private Boolean autoClimateControl;
+    private String autoClimateControl;
 
     @Column
-    private Boolean adjustableHeadRest;
+    private String adjustableHeadRest;
 
     @Column
-    private Boolean pushStartButton;
+    private String pushStartButton;
 
     @Column
-    private Boolean smartDisplay;
+    private String smartDisplay;
 
     @Column
-    private Integer airBags;
+    private String airBags;
 
     @Column
-    private Boolean fogLamps;
+    private String fogLamps;
 
     @Column
-    private Boolean rearWiper;
+    private String rearWiper;
 
     @Column
     private String bodyColor;
 
     @Column
-    private Boolean motorisedORVM;
+    private String motorisedORVM;
 
     @Column
-    private Boolean reverseGearCamera;
+    private String reverseGearCamera;
 
     @Column
-    private Boolean parkingSensors;
+    private String parkingSensors;
 
     @Column
-    private Boolean adjustableHeadlights;
+    private String adjustableHeadlights;
 
     @Column
     private String multimediaSystem;
 
     @Column
-    private Boolean steeringMediaControls;
+    private String steeringMediaControls;
 
     @Column
-    private Integer speakers;
+    private String speakers;
 
     @Column
-    private Integer woofers;
+    private String woofers;
 
     @Column
-    private Boolean navigation;
+    private String navigation;
 
     @Column
-    private Boolean rearTftScreen;
+    private String rearTftScreen;
 
     @Column
-    private Integer ownership;
+    private String ownership;
 
     @Column
     private String bodyType;
@@ -167,7 +229,7 @@ public class InspectionDetails {
     private String displacementVolume;
 
     @Column
-    private Integer doors;
+    private String doors;
 
     @Column(length = 16777215)
     byte[] carPic1;
@@ -193,59 +255,67 @@ public class InspectionDetails {
         this.postId = postId;
     }
 
-    public Integer getPrice() {
+    public InspectionTeam getInspectionTeam() {
+        return inspectionTeam;
+    }
+
+    public void setInspectionTeam(InspectionTeam inspectionTeam) {
+        this.inspectionTeam = inspectionTeam;
+    }
+
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public Boolean getReadyForSale() {
+    public String getIsReadyForSale() {
         return isReadyForSale;
     }
 
-    public void setReadyForSale(Boolean readyForSale) {
-        isReadyForSale = readyForSale;
+    public void setIsReadyForSale(String isReadyForSale) {
+        this.isReadyForSale = isReadyForSale;
     }
 
-    public Double getMileage() {
+    public String getMileage() {
         return mileage;
     }
 
-    public void setMileage(Double mileage) {
+    public void setMileage(String mileage) {
         this.mileage = mileage;
     }
 
-    public Double getMaxPower() {
+    public String getMaxPower() {
         return maxPower;
     }
 
-    public void setMaxPower(Double maxPower) {
+    public void setMaxPower(String maxPower) {
         this.maxPower = maxPower;
     }
 
-    public Integer getTorque() {
+    public String getTorque() {
         return torque;
     }
 
-    public void setTorque(Integer torque) {
+    public void setTorque(String torque) {
         this.torque = torque;
     }
 
-    public Integer getSeats() {
+    public String getSeats() {
         return seats;
     }
 
-    public void setSeats(Integer seats) {
+    public void setSeats(String seats) {
         this.seats = seats;
     }
 
-    public Integer getGearBox() {
+    public String getGearBox() {
         return gearBox;
     }
 
-    public void setGearBox(Integer gearBox) {
+    public void setGearBox(String gearBox) {
         this.gearBox = gearBox;
     }
 
@@ -265,11 +335,11 @@ public class InspectionDetails {
         this.steeringType = steeringType;
     }
 
-    public Double getTurningRadius() {
+    public String getTurningRadius() {
         return turningRadius;
     }
 
-    public void setTurningRadius(Double turningRadius) {
+    public void setTurningRadius(String turningRadius) {
         this.turningRadius = turningRadius;
     }
 
@@ -297,19 +367,19 @@ public class InspectionDetails {
         this.tyreType = tyreType;
     }
 
-    public Integer getWheelSize() {
+    public String getWheelSize() {
         return wheelSize;
     }
 
-    public void setWheelSize(Integer wheelSize) {
+    public void setWheelSize(String wheelSize) {
         this.wheelSize = wheelSize;
     }
 
-    public Integer getCargoVolume() {
+    public String getCargoVolume() {
         return cargoVolume;
     }
 
-    public void setCargoVolume(Integer cargoVolume) {
+    public void setCargoVolume(String cargoVolume) {
         this.cargoVolume = cargoVolume;
     }
 
@@ -321,155 +391,155 @@ public class InspectionDetails {
         this.engineType = engineType;
     }
 
-    public Integer getNumberOfCylinder() {
+    public String getNumberOfCylinder() {
         return numberOfCylinder;
     }
 
-    public void setNumberOfCylinder(Integer numberOfCylinder) {
+    public void setNumberOfCylinder(String numberOfCylinder) {
         this.numberOfCylinder = numberOfCylinder;
     }
 
-    public Integer getValvesPerCylinder() {
+    public String getValvesPerCylinder() {
         return valvesPerCylinder;
     }
 
-    public void setValvesPerCylinder(Integer valvesPerCylinder) {
+    public void setValvesPerCylinder(String valvesPerCylinder) {
         this.valvesPerCylinder = valvesPerCylinder;
     }
 
-    public Integer getLength() {
+    public String getLength() {
         return length;
     }
 
-    public void setLength(Integer length) {
+    public void setLength(String length) {
         this.length = length;
     }
 
-    public Integer getWidth() {
+    public String getWidth() {
         return width;
     }
 
-    public void setWidth(Integer width) {
+    public void setWidth(String width) {
         this.width = width;
     }
 
-    public Integer getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
-    public Integer getGroundClearance() {
+    public String getGroundClearance() {
         return groundClearance;
     }
 
-    public void setGroundClearance(Integer groundClearance) {
+    public void setGroundClearance(String groundClearance) {
         this.groundClearance = groundClearance;
     }
 
-    public Integer getWheelBase() {
+    public String getWheelBase() {
         return wheelBase;
     }
 
-    public void setWheelBase(Integer wheelBase) {
+    public void setWheelBase(String wheelBase) {
         this.wheelBase = wheelBase;
     }
 
-    public Integer getGrossWeight() {
+    public String getGrossWeight() {
         return grossWeight;
     }
 
-    public void setGrossWeight(Integer grossWeight) {
+    public void setGrossWeight(String grossWeight) {
         this.grossWeight = grossWeight;
     }
 
-    public Boolean getAdjustableSteering() {
+    public String getAdjustableSteering() {
         return adjustableSteering;
     }
 
-    public void setAdjustableSteering(Boolean adjustableSteering) {
+    public void setAdjustableSteering(String adjustableSteering) {
         this.adjustableSteering = adjustableSteering;
     }
 
-    public Boolean getAdjustableSeatHeight() {
+    public String getAdjustableSeatHeight() {
         return adjustableSeatHeight;
     }
 
-    public void setAdjustableSeatHeight(Boolean adjustableSeatHeight) {
+    public void setAdjustableSeatHeight(String adjustableSeatHeight) {
         this.adjustableSeatHeight = adjustableSeatHeight;
     }
 
-    public Integer getPowerWindows() {
+    public String getPowerWindows() {
         return powerWindows;
     }
 
-    public void setPowerWindows(Integer powerWindows) {
+    public void setPowerWindows(String powerWindows) {
         this.powerWindows = powerWindows;
     }
 
-    public Boolean getCentralLocking() {
+    public String getCentralLocking() {
         return centralLocking;
     }
 
-    public void setCentralLocking(Boolean centralLocking) {
+    public void setCentralLocking(String centralLocking) {
         this.centralLocking = centralLocking;
     }
 
-    public Boolean getAutoClimateControl() {
+    public String getAutoClimateControl() {
         return autoClimateControl;
     }
 
-    public void setAutoClimateControl(Boolean autoClimateControl) {
+    public void setAutoClimateControl(String autoClimateControl) {
         this.autoClimateControl = autoClimateControl;
     }
 
-    public Boolean getAdjustableHeadRest() {
+    public String getAdjustableHeadRest() {
         return adjustableHeadRest;
     }
 
-    public void setAdjustableHeadRest(Boolean adjustableHeadRest) {
+    public void setAdjustableHeadRest(String adjustableHeadRest) {
         this.adjustableHeadRest = adjustableHeadRest;
     }
 
-    public Boolean getPushStartButton() {
+    public String getPushStartButton() {
         return pushStartButton;
     }
 
-    public void setPushStartButton(Boolean pushStartButton) {
+    public void setPushStartButton(String pushStartButton) {
         this.pushStartButton = pushStartButton;
     }
 
-    public Boolean getSmartDisplay() {
+    public String getSmartDisplay() {
         return smartDisplay;
     }
 
-    public void setSmartDisplay(Boolean smartDisplay) {
+    public void setSmartDisplay(String smartDisplay) {
         this.smartDisplay = smartDisplay;
     }
 
-    public Integer getAirBags() {
+    public String getAirBags() {
         return airBags;
     }
 
-    public void setAirBags(Integer airBags) {
+    public void setAirBags(String airBags) {
         this.airBags = airBags;
     }
 
-    public Boolean getFogLamps() {
+    public String getFogLamps() {
         return fogLamps;
     }
 
-    public void setFogLamps(Boolean fogLamps) {
+    public void setFogLamps(String fogLamps) {
         this.fogLamps = fogLamps;
     }
 
-    public Boolean getRearWiper() {
+    public String getRearWiper() {
         return rearWiper;
     }
 
-    public void setRearWiper(Boolean rearWiper) {
+    public void setRearWiper(String rearWiper) {
         this.rearWiper = rearWiper;
     }
 
@@ -481,35 +551,35 @@ public class InspectionDetails {
         this.bodyColor = bodyColor;
     }
 
-    public Boolean getMotorisedORVM() {
+    public String getMotorisedORVM() {
         return motorisedORVM;
     }
 
-    public void setMotorisedORVM(Boolean motorisedORVM) {
+    public void setMotorisedORVM(String motorisedORVM) {
         this.motorisedORVM = motorisedORVM;
     }
 
-    public Boolean getReverseGearCamera() {
+    public String getReverseGearCamera() {
         return reverseGearCamera;
     }
 
-    public void setReverseGearCamera(Boolean reverseGearCamera) {
+    public void setReverseGearCamera(String reverseGearCamera) {
         this.reverseGearCamera = reverseGearCamera;
     }
 
-    public Boolean getParkingSensors() {
+    public String getParkingSensors() {
         return parkingSensors;
     }
 
-    public void setParkingSensors(Boolean parkingSensors) {
+    public void setParkingSensors(String parkingSensors) {
         this.parkingSensors = parkingSensors;
     }
 
-    public Boolean getAdjustableHeadlights() {
+    public String getAdjustableHeadlights() {
         return adjustableHeadlights;
     }
 
-    public void setAdjustableHeadlights(Boolean adjustableHeadlights) {
+    public void setAdjustableHeadlights(String adjustableHeadlights) {
         this.adjustableHeadlights = adjustableHeadlights;
     }
 
@@ -521,44 +591,84 @@ public class InspectionDetails {
         this.multimediaSystem = multimediaSystem;
     }
 
-    public Boolean getSteeringMediaControls() {
+    public String getSteeringMediaControls() {
         return steeringMediaControls;
     }
 
-    public void setSteeringMediaControls(Boolean steeringMediaControls) {
+    public void setSteeringMediaControls(String steeringMediaControls) {
         this.steeringMediaControls = steeringMediaControls;
     }
 
-    public Integer getSpeakers() {
+    public String getSpeakers() {
         return speakers;
     }
 
-    public void setSpeakers(Integer speakers) {
+    public void setSpeakers(String speakers) {
         this.speakers = speakers;
     }
 
-    public Integer getWoofers() {
+    public String getWoofers() {
         return woofers;
     }
 
-    public void setWoofers(Integer woofers) {
+    public void setWoofers(String woofers) {
         this.woofers = woofers;
     }
 
-    public Boolean getNavigation() {
+    public String getNavigation() {
         return navigation;
     }
 
-    public void setNavigation(Boolean navigation) {
+    public void setNavigation(String navigation) {
         this.navigation = navigation;
     }
 
-    public Boolean getRearTftScreen() {
+    public String getRearTftScreen() {
         return rearTftScreen;
     }
 
-    public void setRearTftScreen(Boolean rearTftScreen) {
+    public void setRearTftScreen(String rearTftScreen) {
         this.rearTftScreen = rearTftScreen;
+    }
+
+    public String getOwnership() {
+        return ownership;
+    }
+
+    public void setOwnership(String ownership) {
+        this.ownership = ownership;
+    }
+
+    public String getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(String bodyType) {
+        this.bodyType = bodyType;
+    }
+
+    public String getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public String getDisplacementVolume() {
+        return displacementVolume;
+    }
+
+    public void setDisplacementVolume(String displacementVolume) {
+        this.displacementVolume = displacementVolume;
+    }
+
+    public String getDoors() {
+        return doors;
+    }
+
+    public void setDoors(String doors) {
+        this.doors = doors;
     }
 
     public byte[] getCarPic1() {
@@ -599,53 +709,5 @@ public class InspectionDetails {
 
     public void setCarPic5(byte[] carPic5) {
         this.carPic5 = carPic5;
-    }
-
-    public InspectionTeam getInspectionTeam() {
-        return inspectionTeam;
-    }
-
-    public void setInspectionTeam(InspectionTeam inspectionTeam) {
-        this.inspectionTeam = inspectionTeam;
-    }
-
-    public Integer getOwnership() {
-        return ownership;
-    }
-
-    public void setOwnership(Integer ownership) {
-        this.ownership = ownership;
-    }
-
-    public String getBodyType() {
-        return bodyType;
-    }
-
-    public void setBodyType(String bodyType) {
-        this.bodyType = bodyType;
-    }
-
-    public String getFuelType() {
-        return fuelType;
-    }
-
-    public void setFuelType(String fuelType) {
-        this.fuelType = fuelType;
-    }
-
-    public String getDisplacementVolume() {
-        return displacementVolume;
-    }
-
-    public void setDisplacementVolume(String displacementVolume) {
-        this.displacementVolume = displacementVolume;
-    }
-
-    public Integer getDoors() {
-        return doors;
-    }
-
-    public void setDoors(Integer doors) {
-        this.doors = doors;
     }
 }

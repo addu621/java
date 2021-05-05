@@ -4,10 +4,7 @@ import com.example.cars.entities.ApprovedCars;
 import com.example.cars.entities.BuyRequest;
 import com.example.cars.entities.InspectionDetails;
 import com.example.cars.entities.PostDetails;
-import com.example.cars.repositories.BuyRequestRepo;
-import com.example.cars.repositories.InspectionDetailsRepo;
-import com.example.cars.repositories.InspectionTeamRepo;
-import com.example.cars.repositories.PostDetailsRepo;
+import com.example.cars.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -32,6 +29,9 @@ public class PostService {
 
     @Autowired
     InspectionDetailsRepo inspectionDetailsRepo;
+
+    @Autowired
+    ApprovedCarsRepo approvedCarsRepo;
 
     public PostDetails savePost(PostDetails postDetails, MultipartFile insurance,MultipartFile rc) throws IOException {
         postDetails.setApproved(false);
@@ -89,21 +89,24 @@ public class PostService {
             }
             PostDetails post=this.postDetailsRepo.findByPostId(Integer.parseInt(postId));
 
-            post.setApproved(Boolean.parseBoolean(status));
+            post.setApproved(true);
 
             ApprovedCars approveCar=new ApprovedCars();
-            InspectionDetails inspectionDetails=inspectionDetailsRepo.findByPostId(Integer.parseInt(postId));
 
+            InspectionDetails inspectionDetails=inspectionDetailsRepo.findByPostId(Integer.parseInt(postId));
+            approveCar.setApprovedCarId(Integer.parseInt(postId));
             approveCar.setPostID(post);
             approveCar.setSold(false);
             approveCar.setInspectionDetails(inspectionDetails);
-            approveCar.setPrice(inspectionDetails.getPrice());
+            approveCar.setPrice(Integer.parseInt(inspectionDetails.getPrice()));
 
             this.postDetailsRepo.save(post);
+            this.approvedCarsRepo.save(approveCar);
 
             return "approved";
         }
         catch (Exception ex){
+            System.out.println(ex.getMessage());
             return "error";
         }
 
