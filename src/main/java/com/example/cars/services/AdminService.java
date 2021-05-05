@@ -85,7 +85,7 @@ public class AdminService{
         Dealer dealer = dealerRepo.findByDealerId(Integer.parseInt(dealerId));
 
         String mailSubject = "Car Inspection Request";
-        String mailContent = "<div style=\"margin-left: 10%; \">" +
+        String mailContent = "<div>" +
                 "<h1 style=\"color: purple\">Inspection Email</h1>" +
                 "<div>" +
                 "<p>" +
@@ -94,7 +94,9 @@ public class AdminService{
                 "Find the details of Car and customer below - <br>" +
                 "<br>" +
                 "<br>" + "Location: "+postDetails.getLocation() +
-                "<br>" + "Model Id: "+postDetails.getModelID() +
+                "<br>" + "Brand Name: "+postDetails.getModelID().getCarId().getBrandId().getBrandName() +
+                "<br>" + "Car Name: "+postDetails.getModelID().getCarId().getCarName() +
+                "<br>" + "Model Name: "+postDetails.getModelID().getModelName() +
                 "<br>" + "Model Year: "+postDetails.getModelYear() +
                 "<br>" + "Model Kms-Run: "+postDetails.getKmsRun() +
                 "</p>" +
@@ -109,8 +111,8 @@ public class AdminService{
         byte[] registration_certificate = utility.decompressBytes(postDetails.getRegistrationCertificate());
         byte[] insurance_certificate = utility.decompressBytes(postDetails.getInsuranceCertificate());
 
-        File rcFile = new File("c:\\rcFile.jpg");
-        File insuranceFile = new File("c:\\insurance.jpg");
+        File rcFile = new File("/rcFile.jpg");
+        File insuranceFile = new File("/insFile.jpg");
 
         OutputStream rcOs = new FileOutputStream(rcFile);
         rcOs.write(registration_certificate);
