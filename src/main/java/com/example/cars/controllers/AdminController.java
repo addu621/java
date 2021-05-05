@@ -74,5 +74,10 @@ public class AdminController {
         return this.adminService.addInspectionTeam(inspectionTeam);
     }
 
+    @GetMapping("/getInspectionCentre")
+    public List<InspectionTeam> getInspectionCentre(@RequestParam String city){
+        return this.adminService.getInspectionCentre(city);
+    }
+
 
 }

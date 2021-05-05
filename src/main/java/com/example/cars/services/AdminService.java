@@ -121,4 +121,8 @@ public class AdminService{
     }
 
 
+    public List<InspectionTeam> getInspectionCentre(String city) {
+
+        return this.inspectionTeamRepo.findAllByLocation(city);
+    }
 }
