@@ -8,7 +8,7 @@ public class Dealer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    private Integer id;
+    private Integer dealerId;
 
     @Column
     private String name;
@@ -22,12 +22,15 @@ public class Dealer {
     @Column
     private Integer totalRequests;
 
+    @Column
+    private String email;
+
     public Integer getId() {
-        return id;
+        return dealerId;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.dealerId = dealerId;
     }
 
     public String getName() {
@@ -60,5 +63,13 @@ public class Dealer {
 
     public void setTotalRequests(Integer totalRequests) {
         this.totalRequests = totalRequests;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

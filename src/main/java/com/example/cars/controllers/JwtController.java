@@ -16,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 @RestController
@@ -67,17 +69,29 @@ public class JwtController {
 //        return ResponseEntity.ok(new JwtResponse(token));
 //    }
 
-    @RequestMapping(value = "/token", method = RequestMethod.POST)
-    public ResponseEntity<?> generateAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Map generateAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+        try {
+            authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        UserDetails userDetails = customUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+            UserDetails userDetails = customUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
 
-        String token = jwtUtil.generateToken(userDetails);
+            String token = jwtUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+            Map<String, String> mp = new HashMap<>();
+            mp.put("token", token);
+            mp.put("userEmail", authenticationRequest.getUsername());
+
+            return mp;
+        }
+        catch (Exception e)
+        {
+            Map<String, String> mp = new HashMap<>();
+            mp.put("Error", "Invalid Credentials");
+            return mp;
+        }
     }
 
     private void authenticate(String username, String password) throws Exception {
