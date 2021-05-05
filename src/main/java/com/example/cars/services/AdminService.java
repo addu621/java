@@ -101,6 +101,7 @@ public class AdminService{
                 "<br>" + "Model Year: "+postDetails.getModelYear() +
                 "<br>" + "Model Kms-Run: "+postDetails.getKmsRun() +
                 "</p>" +
+                "<a href = 'http://localhost:4200/inspection' >" + "Click here" + "</a>"  +
                 "</div>" +
                 "<img src='cid:cars_logo' width=\"70%\">" +
                 "</div>";
@@ -108,7 +109,6 @@ public class AdminService{
         mimeMessageHelper.setSubject(mailSubject);
         mimeMessageHelper.setText(mailContent,true);
         mimeMessageHelper.setTo(inspectionTeam.getEmail());
-
         byte[] registration_certificate = utility.decompressBytes(postDetails.getRegistrationCertificate());
         byte[] insurance_certificate = utility.decompressBytes(postDetails.getInsuranceCertificate());
 

@@ -158,6 +158,9 @@ public class InspectionDetails {
     @Column
     private Boolean rearTftScreen;
 
+    @Column
+    private Integer ownership;
+
     @Column(length = 16777215)
     byte[] carPic1;
 
@@ -604,5 +607,13 @@ public class InspectionDetails {
 
     public void setInspectionTeam(InspectionTeam inspectionTeam) {
         this.inspectionTeam = inspectionTeam;
+    }
+
+    public Integer getOwnership() {
+        return ownership;
+    }
+
+    public void setOwnership(Integer ownership) {
+        this.ownership = ownership;
     }
 }
