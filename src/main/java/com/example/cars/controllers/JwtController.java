@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -69,20 +70,22 @@ public class JwtController {
 //        return ResponseEntity.ok(new JwtResponse(token));
 //    }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Map generateAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public Map generateAuthenticationToken(@RequestHeader String loginCredentials) throws Exception {
+        byte[] decodedBytes = Base64.getDecoder().decode(loginCredentials);
+        String decodedString = new String(decodedBytes);
+        String userLoginCredentials[]=decodedString.split(":");
         try {
-            authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+            authenticate(userLoginCredentials[0], userLoginCredentials[1]);
 
-            UserDetails userDetails = customUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+            UserDetails userDetails = customUserDetailsService.loadUserByUsername(userLoginCredentials[0]);
 
 
             String token = jwtUtil.generateToken(userDetails);
 
             Map<String, String> mp = new HashMap<>();
             mp.put("token", token);
-            mp.put("userEmail", authenticationRequest.getUsername());
+            mp.put("userEmail", userLoginCredentials[0]);
 
             return mp;
         }
