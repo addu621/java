@@ -55,6 +55,15 @@ public class PostDetails {
     @Column(columnDefinition = "boolean default false")
     private boolean isSentForInspection;
 
+    @Column
+    private String registrationYear;
+
+    @Column
+    private String registrationNumber;
+
+    @Column
+    private String address;
+
     public PostDetails(){}
     public User getUserId() {
         return userId;
@@ -166,6 +175,30 @@ public class PostDetails {
 
     public void setInspectionTeamId(Integer inspectionTeamId) {
         this.inspectionTeamId = inspectionTeamId;
+    }
+
+    public String getRegistrationYear() {
+        return registrationYear;
+    }
+
+    public void setRegistrationYear(String registrationYear) {
+        this.registrationYear = registrationYear;
+    }
+
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
 

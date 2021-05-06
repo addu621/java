@@ -31,7 +31,7 @@ public class UserController {
             return userService.save(user);
     }
 
-    @GetMapping("/verify")
+    @PatchMapping("/verify")
     public Map verify(@RequestBody Map<String,String> mp){
         return userService.verify(mp.get("userEmail"),mp.get("verification_token"));
     }
@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @GetMapping("/getModelDetails")
-    public List<Map> getModelsByCarId(@RequestBody Integer car_id){
+    public List<Map> getModelsByCarId(@RequestParam Integer car_id){
         return utility.getModelsByCarId(car_id);
     }
     @GetMapping("/getBrands")
@@ -50,7 +50,7 @@ public class UserController {
         return utility.getAllBrands();
     }
     @GetMapping("/getCars")
-    public List<Map> getAllCarsByBrand(@RequestBody Integer brandId){
+    public List<Map> getAllCarsByBrand(@RequestParam Integer brandId){
         return utility.getAllCarsByBrand(brandId);
     }
 
