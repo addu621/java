@@ -70,7 +70,7 @@ public class JwtController {
 //        return ResponseEntity.ok(new JwtResponse(token));
 //    }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @GetMapping(value = "/login")
     public Map generateAuthenticationToken(@RequestHeader String loginCredentials) throws Exception {
         byte[] decodedBytes = Base64.getDecoder().decode(loginCredentials);
         String decodedString = new String(decodedBytes);
@@ -80,10 +80,17 @@ public class JwtController {
 
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(userLoginCredentials[0]);
 
+            User user= userService.findUser(userLoginCredentials[0]);
+            Map<String, String> mp = new HashMap<>();
+
+            if(!user.isVerified()){
+                mp.put("Error","Email id not verified, please verify you email id first");
+                return mp;
+            }
 
             String token = jwtUtil.generateToken(userDetails);
 
-            Map<String, String> mp = new HashMap<>();
+
             mp.put("token", token);
             mp.put("userEmail", userLoginCredentials[0]);
 

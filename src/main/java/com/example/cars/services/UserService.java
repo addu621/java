@@ -152,4 +152,8 @@ public class UserService {
 
         return "";
     }
+
+    public User findUser(String userLoginCredential) {
+        return userRepo.findByUserEmail(userLoginCredential);
+    }
 }
