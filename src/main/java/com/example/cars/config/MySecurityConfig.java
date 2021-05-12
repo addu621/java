@@ -32,7 +32,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().disable().authorizeRequests()
-                .antMatchers("/login", "/user/**", "/register", "/admin/**","/inspection/**","/post/**").permitAll()
+                .antMatchers("/**","/login", "/user/**", "/register", "/admin/**","/inspection/**","/post/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
