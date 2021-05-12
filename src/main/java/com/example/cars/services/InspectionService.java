@@ -31,12 +31,6 @@ public class InspectionService {
 
         InspectionDetails savedInspectionDetails=inspectionDetailsRepo.save(inspectionDetails);
 
-//        savedInspectionDetails.setCarPic1(utility.decompressBytes(savedInspectionDetails.getCarPic1()));
-//        savedInspectionDetails.setCarPic2(utility.decompressBytes(savedInspectionDetails.getCarPic2()));
-//        savedInspectionDetails.setCarPic3(utility.decompressBytes(savedInspectionDetails.getCarPic3()));
-//        savedInspectionDetails.setCarPic4(utility.decompressBytes(savedInspectionDetails.getCarPic4()));
-//        savedInspectionDetails.setCarPic5(utility.decompressBytes(savedInspectionDetails.getCarPic5()));
-
         PostDetails post=postDetailsRepo.findByPostId(inspectionDetails.getPostId());
         post.setInspectionDone(true);
         postDetailsRepo.save(post);
