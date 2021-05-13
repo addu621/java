@@ -6,10 +6,9 @@ build:
   image: maven:3.6.3-openjdk-11
   stage: build
   only:
-  - master
-  - ApiCreation
+  - adarsh
   tags:
-  - docker-runner
+  - runner-4
   script:
     - export DATABASE_NAME=d6k2na2gesniot
     - export DATABASE_USER=eedkrcnvcubdmv
@@ -24,9 +23,9 @@ deploy_job:
   image: google/cloud-sdk:alpine
   stage: deploy
   only:
-  - master
+  - adarsh
   tags:
-  - docker-runner
+  - runner-4
   dependencies: 
     - build
   before_script:
