@@ -1,0 +1,74 @@
+stages:
+  - build
+  - deploy
+  
+build:
+  image: maven:3.6.3-openjdk-11
+  stage: build
+  only:
+  - master
+  - ApiCreation
+  tags:
+  - docker-runner
+  script:
+    - export DATABASE_NAME=autorecruitment
+    - export DATABASE_USER=auto-recruitment
+    - export DATABASE_PASSWORD="45JSJFUjjsj@"
+    - export DATABASE_HOST=34.93.210.170
+    - export DATABASE_PORT=5432
+    - mvn clean package -B
+  artifacts:
+    paths:
+      - target/
+deploy_job:
+  image: google/cloud-sdk:alpine
+  stage: deploy
+  only:
+  - master
+  tags:
+  - docker-runner
+  dependencies: 
+    - build
+  before_script:
+  - "ServiceName=${CI_PROJECT_NAME/./-}"
+  - "echo $ServiceName"
+  - |
+    cat <<EOF >> app.yaml
+    runtime: java11
+    env_variables:
+      DATABASE_NAME: "$DATABASE_NAME"
+      DATABASE_USER: "$DATABASE_USER"
+      DATABASE_PASSWORD: "$DATABASE_PASSWORD"
+      DATABASE_HOST: "$DATABASE_HOST"
+      DATABASE_PORT: "$DATABASE_PORT"
+    manual_scaling:
+      instances: 1
+    liveness_check:
+      path: "/test"
+    readiness_check:
+      path: "/test"
+    service: $ServiceName
+    EOF
+  - "cat app.yaml"
+  - |
+    cat <<EOF >> $CI_PIPELINE_ID.json
+    {
+      "type": "service_account",
+      "project_id": "hu18-groupa-angular",
+      "private_key_id": "c59f673a3fd69074313b291469d18de04213736d",
+      "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCqUd9TNH98hl0/\nH7UfrmN8EWUCowUiBiI3xe6Flh8MTWDQXu55BOxB1+pIMlRibApTou/jtoHhPDpD\nkIRSD29YyDzklfMERnT81MuBeC4Ag2YP08JQhM3pJasoluD00Q0Ar4HNBkHpk39Q\nCEVZdUaGXizcSrL6TWTtAxhvDqz/ZlZre18V71yx7Ki5zuxX66cCO0q5hntO2F81\nS0IZljilPhYmJBqVRbG8NI3KBNpqrZLnpLiqrXtGzoAZGMofAbE/ITgnGD+FNc8t\nxx8/aj5MNaudj+itkWVPeFrUsnxUGBLAUb1eqOPGR1UdRP6bhuo2mZGUumaHgEUd\n+je/DTCVAgMBAAECggEADRP2zjyGeoEVuWJdpcZd+LmcNDjgzMVETNyLrWHC1g69\n+5oCfTPp0T97S5pjvN/3ZgcpnOZXcDxP6/61jliFj/9mH5Y9AAvJ8V0EmFcqTxtH\n07jKn6Sm6/taumXldZ70vOP9F0le98i92p8b9hvJc8lY7/xjZFFbidB2SJbLpVut\n/f0KeaDBrrEQ/BRRFXQDSXlARBip3en365skx1oDvvqC7hUY6ZUxsQPMt+T9o+ot\nPPSQPxo8y4iW1MKjR8YKFmErst5JVpIeIK056aCuHYWdxxF+ylckgW6Nm1FpoA/f\nw60uNSC2BHMfSJcApzbPdnxL71op2XYk7f3u+TyzmQKBgQDUmvj0AW6NFvcqye7Y\nTb7XvA1ZubTiBQa6kxgBgpO+W/QmYgNVy8grTz/3+iE5HB4WLwg8iwJY9IwUei5V\n8RO0sPT5rFFjL78sUkIwvcMntL+LklG3OR43176hUdx3skv6t9igc3f8XpYv5Tfw\nFPcnJSX2hRgeN6TtXMfGOB7aSQKBgQDNFWaoJKfqZ5qWb+eMU0Xj1vv8WfriGEPv\naVW8kJw+5MqB1waII31vUbOFW5xh3JqlUqlR2nvKT9lTc5mah1IYxJe0+I7qotd/\ns+kEfZQGPSBqj9Ocbx/euhj685ryLfZGhwUKveTOEAub8XBiakDTRL4f1D+rd7PY\nqDaUHHxD7QKBgQCSEeOHqdAtqaCpylGKVWgQSsiVY+zt+OwVlehBaVheykilcmO+\nN6NQdkOJ+VWIKlRVg3zSM+OqAGKZ0xQwwdB7LbUyMP09+1kKd324hTgm+J09pIr2\nKo0jatwzc83YgyyGlneETbEbOFVRlNfo4E6qm3BIvkrCwBJVbpBnFLnF2QKBgQDF\n16pz9QDEQfRAwm220rKurLvk4w0DRnNrJ8vdIAiLJ/4wKbaUaOBeHow3z3vacI4D\nhO3xF/up3UQDnJaHG5pYaHcNz2dX9YY9HNtjSJ4fMqLuChgTZqRxIkhs98r3bN2T\nhjeX+D8dhx8b7lwDpQsqhLuBSymtCcpG7WfRlHVQtQKBgQDR+w0x5Vmc+raEPLxn\nFs1yWJwIgXZ4uRaLfSSWZFyofrsebc3nYgvqX2mY2IJ808Oe3ctgPNvZzi0XH83Z\nRT2TZs2+0ZZsxq7WROPxjKugpX3Oc+EB7KxBF+g7NYZ2C3QlnbwTQerAO1Hsot47\nYPRDCfDVRIYpa0RytwHMvZBlPg==\n-----END PRIVATE KEY-----\n",
+      "client_email": "huappengine@hu18-groupa-angular.iam.gserviceaccount.com",
+      "client_id": "104726124207565481899",
+      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+      "token_uri": "https://oauth2.googleapis.com/token",
+      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/huappengine%40hu18-groupa-angular.iam.gserviceaccount.com"
+    }
+    EOF
+  script:
+  - gcloud auth activate-service-account --key-file $CI_PIPELINE_ID.json
+  - gcloud --project hu18-groupa-angular app deploy target/*.jar --appyaml app.yaml --version v1
+  - url=$(gcloud app services browse $ServiceName --no-launch-browser --project hu18-groupa-angular)
+  - echo $url
+  after_script:
+  - rm $CI_PIPELINE_ID.json
