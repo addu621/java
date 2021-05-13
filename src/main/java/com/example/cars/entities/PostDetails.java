@@ -1,5 +1,6 @@
 package com.example.cars.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javassist.runtime.Inner;
 
 import javax.persistence.*;

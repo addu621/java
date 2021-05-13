@@ -7,11 +7,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.time.LocalDate;
 import java.util.Date;
 
 @SpringBootApplication
+@EnableAsync
 public class CarsApplication {
 	@Autowired
 	private AdminService adminService;
