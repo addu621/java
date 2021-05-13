@@ -11,10 +11,10 @@ build:
   tags:
   - docker-runner
   script:
-    - export DATABASE_NAME=autorecruitment
-    - export DATABASE_USER=auto-recruitment
-    - export DATABASE_PASSWORD="45JSJFUjjsj@"
-    - export DATABASE_HOST=34.93.210.170
+    - export DATABASE_NAME=d6k2na2gesniot
+    - export DATABASE_USER=eedkrcnvcubdmv
+    - export DATABASE_PASSWORD="802ad6fb734537170df5a0f83b8593798f8d1fbcbe9df2b09baa744bb52c9d22"
+    - export DATABASE_HOST=ec2-184-73-198-174.compute-1.amazonaws.com
     - export DATABASE_PORT=5432
     - mvn clean package -B
   artifacts:
