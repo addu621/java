@@ -103,7 +103,7 @@ public class AdminService{
                 "<br>" + "Model Year: "+postDetails.getModelYear() +
                 "<br>" + "Model Kms-Run: "+postDetails.getKmsRun() +
                 "</p>" +
-                "<a href ='http://localhost:4200/inspection/"+postId+"/"+inspectionTeamId+"' >" + "Click here" + "</a>"  +
+                "<a href ='https://carstudio2-dot-hu18-groupa-angular.et.r.appspot.com/inspection/"+postId+"/"+inspectionTeamId+"' >" + "Click here" + "</a>"  +
                 "</div>" +
                 "<img src='cid:cars_logo' width=\"70%\">" +
                 "</div>";

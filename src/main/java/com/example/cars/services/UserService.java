@@ -1,7 +1,9 @@
 package com.example.cars.services;
 
+import com.example.cars.entities.InspectionTeam;
 import com.example.cars.entities.User;
 import com.example.cars.entities.UserFavourites;
+import com.example.cars.repositories.InspectionTeamRepo;
 import com.example.cars.repositories.UserFavRepo;
 import com.example.cars.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,9 @@ public class UserService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    @Autowired
+    private InspectionTeamRepo inspectionTeamRepo;
 
     public Map save(User user){
         String token= utility.getToken(6);
@@ -143,14 +148,44 @@ public class UserService {
         return "No data exists with User id: " + userId + " and CarId: " + carId;
     }
 
-    public String sendCustomizeRequest(String requestedItems) throws MessagingException {
-        //"inspectionTeamId: 9001, customize: abc, abcd, xyz, abcde"
+    public String sendCustomizeRequest(Map<String,String> request) throws MessagingException, UnsupportedEncodingException {
+
+        /*
+        center: "Mumbai"
+        city: "Mumbai"
+        contactNo: "9387383838"
+        email: "mayank.sharma@hashedin.com"
+        name: "Mayank Sharma"
+       	requirments: "Reflector Lights,Antennas,Jumper Cables"
+        */
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
 
+        String team = request.get("center");
+        InspectionTeam inspectionTeam = inspectionTeamRepo.findByInspectionTeam(team);
 
-        return "";
+        String mailSubject = "Car Customization Request";
+        String mailContent = "<div>" +
+                "<h1 style=\"color: purple\">Inspection Email</h1>" +
+                "<div>" +
+                "<p>" +
+                "Hi "+ inspectionTeam.getName() +
+                ",<br>" + "You have recieved a car-customization request.<br>" +
+                "Find the details of Customizations and customer below - <br>" +
+                "<br>" +
+                "<br>" + "Customer Name: "+ request.get("name") +
+                "<br>" + "Customer Contact No.: "+ request.get("contactNo") +
+                "<br>" + "Customer email: "+ request.get("email") +
+                "<br>" + "Requested features"+ request.get("requirments") +
+                "</div>";
+        mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
+        mimeMessageHelper.setSubject(mailSubject);
+        mimeMessageHelper.setText(mailContent,true);
+        mimeMessageHelper.setTo(inspectionTeam.getEmail());
+
+        javaMailSender.send(mimeMessage);
+        return inspectionTeam.getName();
     }
 
     public User findUser(String userLoginCredential) {

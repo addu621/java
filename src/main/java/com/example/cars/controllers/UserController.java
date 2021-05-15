@@ -67,9 +67,9 @@ public class UserController {
         return userService.removeFavourite(userFavourites);
     }
 
-    @GetMapping
-    public String sendCustomizeRequest(@RequestBody String requestedItems) throws MessagingException {
-        return userService.sendCustomizeRequest(requestedItems);
+    @GetMapping("/customize")
+    public String sendCustomizeRequest(@RequestBody Map<String,String> request) throws MessagingException, UnsupportedEncodingException {
+        return userService.sendCustomizeRequest(request);
     }
     @GetMapping("/getApprovedCars")
     public List<ApprovedCars> getApprovedCars(){
