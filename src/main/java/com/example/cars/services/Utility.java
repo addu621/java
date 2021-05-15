@@ -1,10 +1,7 @@
 package com.example.cars.services;
 
 import com.example.cars.entities.*;
-import com.example.cars.repositories.ApprovedCarsRepo;
-import com.example.cars.repositories.CarsBrandRepo;
-import com.example.cars.repositories.CarsRepo;
-import com.example.cars.repositories.ModelDetailsRepo;
+import com.example.cars.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +40,9 @@ public class Utility {
 
     @Autowired
     private ApprovedCarsRepo approvedCarsRepo;
+
+    @Autowired
+    private CityRepo cityRepo;
 
 
     @Async
@@ -173,5 +173,11 @@ public class Utility {
 
     public List<ApprovedCars> getApprovedCars() {
         return this.approvedCarsRepo.findAllApprovedCars();
+    }
+
+    public List getAllCities() {
+
+        return cityRepo.findAll();
+
     }
 }

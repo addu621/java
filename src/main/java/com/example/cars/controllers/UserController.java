@@ -25,7 +25,7 @@ public class UserController {
     public String hello() {
         return "Hello";
     }
-    //http://localhost:8080/user/save
+
     @PostMapping("/save")
     public Map signUp(@RequestBody User user){
             return userService.save(user);
@@ -75,5 +75,7 @@ public class UserController {
     public List<ApprovedCars> getApprovedCars(){
         return this.utility.getApprovedCars();
     }
+
+
 
 }
