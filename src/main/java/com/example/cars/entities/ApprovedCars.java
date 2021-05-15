@@ -8,11 +8,9 @@ public class ApprovedCars {
 
     public ApprovedCars(){}
 
-    public ApprovedCars(Integer approvedCarId, PostDetails postID, modelDetails modelID, User sellerID, Integer price, InspectionDetails inspectionDetails, Boolean isSold) {
+    public ApprovedCars(Integer approvedCarId, PostDetails postID,Integer price, InspectionDetails inspectionDetails, Boolean isSold) {
         this.approvedCarId = approvedCarId;
         this.postID = postID;
-        this.modelID = modelID;
-        this.sellerID = sellerID;
         this.price = price;
         this.inspectionDetails = inspectionDetails;
         this.isSold = isSold;
@@ -25,14 +23,6 @@ public class ApprovedCars {
     @JoinColumn(name = "postID")
     @OneToOne
     private PostDetails postID;
-
-    @JoinColumn(name = "modelId")
-    @OneToOne
-    private modelDetails modelID;
-
-    @JoinColumn(name = "sellerId")
-    @OneToOne
-    private User sellerID;
 
     @Column
     private Integer price;
@@ -58,22 +48,6 @@ public class ApprovedCars {
 
     public void setPostID(PostDetails postID) {
         this.postID = postID;
-    }
-
-    public modelDetails getModelID() {
-        return modelID;
-    }
-
-    public void setModelID(modelDetails modelID) {
-        this.modelID = modelID;
-    }
-
-    public User getSellerID() {
-        return sellerID;
-    }
-
-    public void setSellerID(User sellerID) {
-        this.sellerID = sellerID;
     }
 
     public Integer getPrice() {

@@ -9,7 +9,7 @@ public class InspectionDetails {
 
     public InspectionDetails(){}
 
-    public InspectionDetails(Integer postId, InspectionTeam inspectionTeam, String price, String isReadyForSale, String mileage, String maxPower, String torque, String seats, String gearBox, String driveType, String steeringType, String turningRadius, String frontBrakeType, String rearBrakeType, String tyreType, String wheelSize, String cargoVolume, String engineType, String numberOfCylinder, String valvesPerCylinder, String length, String width, String height, String groundClearance, String wheelBase, String grossWeight, String adjustableSteering, String adjustableSeatHeight, String powerWindows, String centralLocking, String autoClimateControl, String adjustableHeadRest, String pushStartButton, String smartDisplay, String airBags, String fogLamps, String rearWiper, String bodyColor, String motorisedORVM, String reverseGearCamera, String parkingSensors, String adjustableHeadlights, String multimediaSystem, String steeringMediaControls, String speakers, String woofers, String navigation, String rearTftScreen, String ownership, String bodyType, String fuelType, String displacementVolume, String doors, byte[] carPic1, byte[] carPic2, byte[] carPic3, byte[] carPic4, byte[] carPic5) {
+    public InspectionDetails(Integer postId, InspectionTeam inspectionTeam, String price, String isReadyForSale, String mileage, String maxPower, String torque, String seats, String gearBox, String driveType, String steeringType, String turningRadius, String frontBrakeType, String rearBrakeType, String tyreType, String wheelSize, String cargoVolume, String engineType, String numberOfCylinder, String valvesPerCylinder, String length, String width, String height, String groundClearance, String wheelBase, String grossWeight, String adjustableSteering, String adjustableSeatHeight, String powerWindows, String centralLocking, String autoClimateControl, String adjustableHeadRest, String pushStartButton, String smartDisplay, String airBags, String fogLamps, String rearWiper, String bodyColor, String motorisedORVM, String reverseGearCamera, String parkingSensors, String adjustableHeadlights, String multimediaSystem, String steeringMediaControls, String speakers, String woofers, String navigation, String rearTftScreen, String ownership, String bodyType, String fuelType, String displacementVolume, String transmission, String doors, byte[] carPic1, byte[] carPic2, byte[] carPic3, byte[] carPic4, byte[] carPic5) {
         this.postId = postId;
         this.inspectionTeam = inspectionTeam;
         this.price = price;
@@ -62,6 +62,7 @@ public class InspectionDetails {
         this.bodyType = bodyType;
         this.fuelType = fuelType;
         this.displacementVolume = displacementVolume;
+        this.transmission = transmission;
         this.doors = doors;
         this.carPic1 = carPic1;
         this.carPic2 = carPic2;
@@ -227,6 +228,9 @@ public class InspectionDetails {
 
     @Column
     private String displacementVolume;
+
+    @Column
+    private String transmission;
 
     @Column
     private String doors;
@@ -709,5 +713,13 @@ public class InspectionDetails {
 
     public void setCarPic5(byte[] carPic5) {
         this.carPic5 = carPic5;
+    }
+
+    public String getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(String transmission) {
+        this.transmission = transmission;
     }
 }
