@@ -146,6 +146,11 @@ public class UserService {
         return "User deleted";
     }
 
+    public List<UserFavourites> getAllFavs(String userId) {
+        List<UserFavourites> userFavs = userFavRepo.findAllByUserId(userId);
+        return userFavs;
+    }
+
     public String remFav(String userId, String carId) {
         List<UserFavourites> userFavouritesList = userFavRepo.findAll();
         for(UserFavourites userFavourites : userFavouritesList)

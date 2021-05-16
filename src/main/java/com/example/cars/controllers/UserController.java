@@ -46,10 +46,12 @@ public class UserController {
     public List<Map> getModelsByCarId(@RequestParam Integer car_id){
         return utility.getModelsByCarId(car_id);
     }
+
     @GetMapping("/getBrands")
     public List<CarsBrand> getAllCarBrands(){
         return utility.getAllBrands();
     }
+
     @GetMapping("/getCars")
     public List<Map> getAllCarsByBrand(@RequestParam Integer brandId){
         return utility.getAllCarsByBrand(brandId);
@@ -67,6 +69,9 @@ public class UserController {
     public String removeFromFav(@PathVariable Integer id) {
         return userService.removeFavourite(id);
     }
+
+    @GetMapping("/getFavs")
+    public List<UserFavourites> getAllFavs(@RequestBody String userId) { return userService.getAllFavs(userId); }
 
     @GetMapping("/customize")
     public String sendCustomizeRequest(@RequestBody Map<String,String> request) throws MessagingException, UnsupportedEncodingException {
