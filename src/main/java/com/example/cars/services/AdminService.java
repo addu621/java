@@ -142,6 +142,40 @@ public class AdminService{
         return inspectionTeam.getName();
     }
 
+    public String sendVerificationReqUser(String postId, String inspectionTeamId) throws MessagingException, UnsupportedEncodingException {
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
+
+        PostDetails postDetails = postDetailsRepo.findByPostId(Integer.parseInt(postId));
+
+        InspectionTeam inspectionTeam = inspectionTeamRepo.findByInspectionTeamId(Integer.parseInt(inspectionTeamId));
+
+        String mailSubject = "Update: Car sell request Approved";
+        String mailContent = "<div>" +
+                "<h1 style=\"color: purple\">Inspection Email</h1>" +
+                "<div>" +
+                "<p>" +
+                "Hi "+ postDetails.getUserId().getUserName() +
+                ",<br>" + "Congratulations!!! We're glad to let you know that your request for selling your car :- " + postDetails.getModelID().getCarId().getBrandId().getBrandName()
+                + " " + postDetails.getModelID().getCarId().getCarName() + " " + postDetails.getModelID().getModelName() + " has been approved by the administration team.<br>" +
+                "<br>" +
+                "<br>" + "And your request has been assigned to the center - " + inspectionTeam.getName() +
+                "<br>" +
+                "<br>" + " Soon you'll be receiving a call from our service center team for scheduling of the appointment for inspection and further arrangements"+
+                "</p>" +
+                "<img src='cid:cars_logo' width=\"70%\">" +
+                "</div>";
+        mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
+        mimeMessageHelper.setSubject(mailSubject);
+        mimeMessageHelper.setText(mailContent,true);
+        mimeMessageHelper.setTo(postDetails.getUserId().getUserName());
+
+        javaMailSender.send(mimeMessage);
+
+        return "Mail sent to the user - " + postDetails.getUserId().getUserName();
+    }
+
     public String sendVerificationReq2(String inspectionTeamId){
 
         InspectionTeam team = inspectionTeamRepo.findByInspectionTeamId(Integer.parseInt(inspectionTeamId));
