@@ -156,7 +156,7 @@ public class AdminService{
 
         String mailSubject = "Update: Car sell request Approved";
         String mailContent = "<div>" +
-                "<h1 style=\"color: purple\">Inspection Email</h1>" +
+                "<h1 style=\"color: purple\">Sell Request Approved!!! </h1>" +
                 "<div>" +
                 "<p>" +
                 "Hi "+ postDetails.getUserId().getUserName() +

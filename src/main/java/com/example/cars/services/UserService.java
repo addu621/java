@@ -167,6 +167,7 @@ public class UserService {
         return "No data exists with User id: " + userId + " and CarId: " + carId;
     }
 
+    @Async
     public String sendCustomizeRequestUser(Map<String,String> request) throws MessagingException, UnsupportedEncodingException {
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
@@ -174,7 +175,7 @@ public class UserService {
 
 
         String team = request.get("center");
-        InspectionTeam inspectionTeam = inspectionTeamRepo.findByInspectionTeam(team);
+        InspectionTeam inspectionTeam = inspectionTeamRepo.findByName(team);
 
         String mailSubject = "Car Customization Request";
         String mailContent = "<div>" +
@@ -201,6 +202,7 @@ public class UserService {
         return request.get("name");
     }
 
+    @Async
     public String sendCustomizeRequest(Map<String,String> request) throws MessagingException, UnsupportedEncodingException {
 
         /*
@@ -216,7 +218,7 @@ public class UserService {
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
 
         String team = request.get("center");
-        InspectionTeam inspectionTeam = inspectionTeamRepo.findByInspectionTeam(team);
+        InspectionTeam inspectionTeam = inspectionTeamRepo.findByName(team);
 
         String mailSubject = "Car Customization Request";
         String mailContent = "<div>" +

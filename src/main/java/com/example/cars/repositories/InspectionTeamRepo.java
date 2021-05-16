@@ -13,5 +13,5 @@ public interface InspectionTeamRepo extends JpaRepository<InspectionTeam,Integer
 
     List<InspectionTeam> findAllByLocation(String city);
 
-    InspectionTeam findByInspectionTeam(String team);
+    InspectionTeam findByName(String team);
 }
