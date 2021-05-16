@@ -41,11 +41,11 @@ public class UserFavourites {
         this.userId = userId;
     }
 
-    public ApprovedCars getCarId() {
+    public ApprovedCars getApprovedCarId() {
         return approvedCarId;
     }
 
-    public void setCarId(ApprovedCars carId) {
+    public void setApprovedCarId(ApprovedCars carId) {
         this.approvedCarId = carId;
     }
 }

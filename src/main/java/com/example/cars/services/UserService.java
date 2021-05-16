@@ -138,7 +138,7 @@ public class UserService {
 
     public String addFavourite(UserFavourites userFavourites) {
         userFavRepo.save(userFavourites);
-        return "Car Id: " + userFavourites.getCarId() + " is added to favourites of User Id:" + userFavourites.getUserId();
+        return "Car Id: " + userFavourites.getApprovedCarId() + " is added to favourites of User Id:" + userFavourites.getUserId();
     }
 
     public String removeFavourite(Integer userFavourites) {
@@ -157,10 +157,10 @@ public class UserService {
         {
             if(userFavourites.getUserId().toString().equals(userId))
             {
-             if(userFavourites.getCarId().toString().equals(carId))
+             if(userFavourites.getApprovedCarId().toString().equals(carId))
              {
                  userFavRepo.delete(userFavourites);
-                 return "User Id: " + userFavourites.getUserId() + " hates Car " + userFavourites.getCarId();
+                 return "User Id: " + userFavourites.getUserId() + " hates Car " + userFavourites.getApprovedCarId();
              }
             }
         }
