@@ -63,9 +63,9 @@ public class UserController {
         return userService.addFavourite(userFavourites);
     }
 
-    @DeleteMapping("/removeFav")
-    public String removeFromFav(@RequestBody Integer userFavourites) {
-        return userService.removeFavourite(userFavourites);
+    @DeleteMapping("/removeFav/{id}")
+    public String removeFromFav(@PathVariable Integer id) {
+        return userService.removeFavourite(id);
     }
 
     @GetMapping
