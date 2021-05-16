@@ -183,15 +183,18 @@ public class UserService {
                 "<div>" +
                 "<p>" +
                 "Hi "+ request.get("name") +
-                ",<br>" + "We have received your Car-Customization request for items :- " + request.get("requirements") +".<br>" +
+                ",<br>" +
+                "<br>" + "We have received your Car-Customization request for items :- " + request.get("requirements") +".<br>" +
                 "<br>" +
                 "<br>" + "Our team at center " + team + " will be contacting you for the further details and arrangements"+
                 "</p>" +
                 "Meanwhile, if you want to sell or buy a old car, then you can checkout our website, where we offer competitive rates :-" +
-                "<a href ='https://carstudio2-dot-hu18-groupa-angular.et.r.appspot.com'>" + "Click here" + "</a>" +
+                "<br> <a href ='https://carstudio2-dot-hu18-groupa-angular.et.r.appspot.com'>" + "Click here" + "</a>" +
                 "</div>" +
                 "</div>";
 
+        System.out.println(request.get("name"));
+        System.out.println(request.get("email"));
         mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
         mimeMessageHelper.setSubject(mailSubject);
         mimeMessageHelper.setText(mailContent,true);
@@ -232,7 +235,7 @@ public class UserService {
                 "<br>" + "Customer Name: "+ request.get("name") +
                 "<br>" + "Customer Contact No.: "+ request.get("contactNo") +
                 "<br>" + "Customer email: "+ request.get("email") +
-                "<br>" + "Requested features"+ request.get("requirements") +
+                "<br>" + "Requested features: "+ request.get("requirements") +
                 "</p>" +
                 "</div>" +
                 "</div>";
