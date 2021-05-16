@@ -1,12 +1,15 @@
 package com.example.cars.services;
 
-import com.example.cars.entities.User;
-import com.example.cars.entities.UserFavourites;
-import com.example.cars.repositories.UserFavRepo;
-import com.example.cars.repositories.UserRepo;
+import com.example.cars.entities.*;
+import com.example.cars.repositories.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +23,7 @@ import java.util.Map;
 
 @Service
 public class UserService {
+    Logger logger = LoggerFactory.getLogger(UserService.class);
     @Autowired
     private Utility utility;
     @Autowired
@@ -33,6 +37,15 @@ public class UserService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    @Autowired
+    private BuyRequestRepo buyRequestRepo;
+
+    @Autowired
+    private PostDetailsRepo postDetailsRepo;
+
+    @Autowired
+    private InspectionTeamRepo inspectionTeamRepo;
 
     public Map save(User user){
         String token= utility.getToken(6);
@@ -156,4 +169,22 @@ public class UserService {
     public User findUser(String userLoginCredential) {
         return userRepo.findByUserEmail(userLoginCredential);
     }
+
+
+    public String saveBuyRequest(BuyRequest buyRequest) {
+        buyRequest.setDateOfRequest(new Date());
+        buyRequest.setApproved(false);
+        try {
+            buyRequestRepo.save(buyRequest);
+            utility.sendEmailToShowRoom(buyRequest);
+            return "Success";
+        }
+        catch(Exception ex){
+            return ex.getMessage();
+//            return "Server Error, Request Not Accepted";
+        }
+    }
+
+
+
 }

@@ -5,6 +5,7 @@ import com.example.cars.services.UserService;
 import com.example.cars.services.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
@@ -58,7 +59,7 @@ public class UserController {
     public List<cars> getCarsByCarType(@RequestBody String carType) { return utility.getCarsByCarType(carType);}
 
     @PostMapping("/addFav")
-    public String addToFav(@RequestBody UserFavourites userFavourites) {
+    public String addToFav(@ModelAttribute UserFavourites userFavourites) {
         return userService.addFavourite(userFavourites);
     }
 
@@ -75,6 +76,19 @@ public class UserController {
     public List<ApprovedCars> getApprovedCars(){
         return this.utility.getApprovedCars();
     }
+
+//    @PostMapping("/buyReq/save")
+//    public String saveBuyRequest(@RequestBody Map<String,String> buyMap){
+//        //System.out.println(buyRequest.toString());
+//        return this.userService.saveBuyRequest(buyMap);
+//    }
+
+
+    @PostMapping("/buyReq/save")
+    public String saveBuyRequest(@ModelAttribute BuyRequest buyRequest){
+        return this.userService.saveBuyRequest(buyRequest);
+    }
+
 
 
 

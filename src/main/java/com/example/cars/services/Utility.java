@@ -157,6 +157,71 @@ public class Utility {
 
     }
 
+    @Async
+    public void sendEmailToShowRoom(BuyRequest buyRequest) throws UnsupportedEncodingException, MessagingException {
+
+        User user=buyRequest.getUserId();
+        PostDetails postDetails=buyRequest.getPostId();
+        InspectionTeam inspectionTeam=buyRequest.getInspectionTeamId();
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage,true);
+
+        String mailSubject="Request for Buying a Car";
+        String mailContent="<div style=\"margin-left: 2%; \">\n" +
+                "\t<h1 style=\"color: purple\">Buy Car Request</h1>\n" +
+                "\t<div>\n" +
+                "\t\t<p>\n" +
+                "\t\tHi "+inspectionTeam.getName()+" Team,<br>\n" +
+                "\t\t<p>"+user.getUserName()+" is interested in buying "+postDetails.getModelID().getCarId().getCarName()+" "+postDetails.getModelID().getModelName()+" Model (carId -"+postDetails.getModelID().getCarId().getCarId()+")</p>\n" +
+                "\t\t<p>\n" +
+                "\t\t\t<b><u>Contact Details</u></b>\n" +
+                "\t\t\t<ul style=\"width: 200px\">\n" +
+                "\t\t\t<li>\n" +
+                "\t\t\t<div style=\"display: flex;margin-bottom: 10px\">\n" +
+                "\t\t\t\t<div style=\"margin-right:10px\">Phone Number:</div>\n" +
+                "\t\t\t\t<div>"+user.getPhoneNumber()+"</div>\n" +
+                "\t\t\t</div>\n" +
+                "\t\t\t</li>\n" +
+                "\t\t\t<li>\n" +
+                "\t\t\t<div style=\"display: flex;margin-bottom: 10px\">\n" +
+                "\t\t\t\t<div style=\"margin-right:10px\">Email:</div>\n" +
+                "\t\t\t\t<div>"+user.getUserEmail()+"</div>\n" +
+                "\t\t\t</div>\n" +
+                "\t\t\t</li>\n" +
+                "\t\t\t<li>\n" +
+                "\t\t\t<div style=\"display: flex;margin-bottom: 10px\">\n" +
+                "\t\t\t\t<div style=\"margin-right:10px\">Address:</div>\n" +
+                "\t\t\t\t<div>"+user.getAddress()+"</div>\n" +
+                "\t\t\t</div>\n" +
+                "\t\t\t</li>\n" +
+                "\t\t\t</ul>\n" +
+                "\t\t</p>\n" +
+                "\t\t</p>\n" +
+                "\t\t<h4 style=\"color: red\">Please Click this link to update the result of this request <a href=\"www.google.com\">Link</a></h4>\n" +
+                "\t\t<p>\n" +
+                "\t\t\tFor any further query , please contact to the Cars Studio Team at <b>studiocars2021@gmail.com</b> \n" +
+                "\t\t</p>\n" +
+                "\t</div>\n" +
+                "\n" +
+                "\t<img src='cid:cars_logo' width=\"70%\">\n" +
+                "\t\n" +
+                "</div>";
+
+
+        helper.setFrom("studiocars2021@gmail.com","Cars Studio");
+        helper.setSubject(mailSubject);
+        helper.setText(mailContent,true);
+        helper.setTo(inspectionTeam.getEmail());
+
+        ClassPathResource resource = new ClassPathResource("/static/images/cars_logo.png");
+        helper.addInline("cars_logo",resource);
+
+        javaMailSender.send(mimeMessage);
+
+        logger.info("Mail Sent Successfully");
+    }
+
     public List<CarsBrand> getAllBrands() {
         return carsBrandRepo.findAll();
     }
