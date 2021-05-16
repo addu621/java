@@ -6,11 +6,15 @@ import com.example.cars.entities.InspectionDetails;
 import com.example.cars.entities.PostDetails;
 import com.example.cars.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -33,7 +37,10 @@ public class PostService {
     @Autowired
     ApprovedCarsRepo approvedCarsRepo;
 
-    public PostDetails savePost(PostDetails postDetails, MultipartFile insurance,MultipartFile rc) throws IOException {
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    public PostDetails savePost(PostDetails postDetails, MultipartFile insurance,MultipartFile rc) throws IOException, MessagingException {
         postDetails.setApproved(false);
         postDetails.setSold(false);
         postDetails.setInsuranceCertificate(utility.compressBytes(insurance.getBytes()));
@@ -43,6 +50,32 @@ public class PostService {
         PostDetails savedPost=postDetailsRepo.save(postDetails);
         savedPost.setInsuranceCertificate(utility.decompressBytes(savedPost.getInsuranceCertificate()));
         savedPost.setRegistrationCertificate(utility.decompressBytes(savedPost.getRegistrationCertificate()));
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
+
+        String email = postDetails.getUserId().getUserEmail();
+
+        String mailSubject = "Car Customization Request";
+        String mailContent = "<div>" +
+                "<h1 style=\"color: purple\">Customization Email</h1>" +
+                "<div>" +
+                "<p>" +
+                "Hi "+ postDetails.getUserId().getUserName() +
+                ",<br>" + "We have received your request for selling your car :- " + postDetails.getModelID().getCarId().getBrandId().getBrandName()
+                + " " + postDetails.getModelID().getCarId().getCarName() + " " + postDetails.getModelID().getModelName() +".<br>" +
+                "<br>" +
+                "<br>" + "Shortly, Our nearest center will be contacting you for the car inspection and further arrangements"+
+                "</p>" +
+                "</div>" +
+                "</div>";
+
+        mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
+        mimeMessageHelper.setSubject(mailSubject);
+        mimeMessageHelper.setText(mailContent,true);
+        mimeMessageHelper.setTo(email);
+
+        javaMailSender.send(mimeMessage);
 
         return savedPost;
     }
@@ -83,7 +116,7 @@ public class PostService {
 
     public String changeApproveStatus(String postId, String status) {
         try{
-            if(status.equals("false")) {
+            if(status.equals("No")) {
                 this.postDetailsRepo.deleteById(Integer.parseInt(postId));
                 return "rejected";
             }

@@ -4,6 +4,12 @@ import com.example.cars.entities.*;
 import com.example.cars.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.example.cars.entities.InspectionTeam;
+import com.example.cars.entities.User;
+import com.example.cars.entities.UserFavourites;
+import com.example.cars.repositories.InspectionTeamRepo;
+import com.example.cars.repositories.UserFavRepo;
+import com.example.cars.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -140,6 +146,11 @@ public class UserService {
         return "User deleted";
     }
 
+    public List<UserFavourites> getAllFavs(String userId) {
+        List<UserFavourites> userFavs = userFavRepo.findAllByUserId(userId);
+        return userFavs;
+    }
+
     public String remFav(String userId, String carId) {
         List<UserFavourites> userFavouritesList = userFavRepo.findAll();
         for(UserFavourites userFavourites : userFavouritesList)
@@ -156,14 +167,85 @@ public class UserService {
         return "No data exists with User id: " + userId + " and CarId: " + carId;
     }
 
-    public String sendCustomizeRequest(String requestedItems) throws MessagingException {
-        //"inspectionTeamId: 9001, customize: abc, abcd, xyz, abcde"
+    @Async
+    public String sendCustomizeRequestUser(Map<String,String> request) throws MessagingException, UnsupportedEncodingException {
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
 
 
-        return "";
+        String team = request.get("center");
+        InspectionTeam inspectionTeam = inspectionTeamRepo.findByName(team);
+
+        String mailSubject = "Car Customization Request";
+        String mailContent = "<div>" +
+                "<h1 style=\"color: purple\">Customization Email</h1>" +
+                "<div>" +
+                "<p>" +
+                "Hi "+ request.get("name") +
+                ",<br>" +
+                "<br>" + "We have received your Car-Customization request for items :- " + request.get("requirements") +".<br>" +
+                "<br>" +
+                "<br>" + "Our team at center " + team + " will be contacting you for the further details and arrangements"+
+                "</p>" +
+                "Meanwhile, if you want to sell or buy a old car, then you can checkout our website, where we offer competitive rates :-" +
+                "<br> <a href ='https://carstudio2-dot-hu18-groupa-angular.et.r.appspot.com'>" + "Click here" + "</a>" +
+                "</div>" +
+                "</div>";
+
+        System.out.println(request.get("name"));
+        System.out.println(request.get("email"));
+        mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
+        mimeMessageHelper.setSubject(mailSubject);
+        mimeMessageHelper.setText(mailContent,true);
+        mimeMessageHelper.setTo(request.get("email"));
+
+        javaMailSender.send(mimeMessage);
+
+        return request.get("name");
+    }
+
+    @Async
+    public String sendCustomizeRequest(Map<String,String> request) throws MessagingException, UnsupportedEncodingException {
+
+        /*
+        center: "Mumbai"
+        city: "Mumbai"
+        contactNo: "9387383838"
+        email: "mayank.sharma@hashedin.com"
+        name: "Mayank Sharma Chomu"
+       	requirements: "Reflector Lights,Antennas,Jumper Cables"
+        */
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
+
+        String team = request.get("center");
+        InspectionTeam inspectionTeam = inspectionTeamRepo.findByName(team);
+
+        String mailSubject = "Car Customization Request";
+        String mailContent = "<div>" +
+                "<h1 style=\"color: purple\">Customization Email</h1>" +
+                "<div>" +
+                "<p>" +
+                "Hi "+ inspectionTeam.getName() +
+                ",<br>" + "You have received a car-customization request.<br>" +
+                "Find the details of Customizations and customer below - <br>" +
+                "<br>" +
+                "<br>" + "Customer Name: "+ request.get("name") +
+                "<br>" + "Customer Contact No.: "+ request.get("contactNo") +
+                "<br>" + "Customer email: "+ request.get("email") +
+                "<br>" + "Requested features: "+ request.get("requirements") +
+                "</p>" +
+                "</div>" +
+                "</div>";
+        mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
+        mimeMessageHelper.setSubject(mailSubject);
+        mimeMessageHelper.setText(mailContent,true);
+        mimeMessageHelper.setTo(inspectionTeam.getEmail());
+
+        javaMailSender.send(mimeMessage);
+        return inspectionTeam.getName();
     }
 
     public User findUser(String userLoginCredential) {

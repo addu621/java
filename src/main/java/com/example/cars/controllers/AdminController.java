@@ -51,6 +51,7 @@ public class AdminController {
 
     @PostMapping("/sendForInspection")
     public String sendVerificationReq(@RequestBody Map<String,String> mp) throws MessagingException, IOException {
+        adminService.sendVerificationReqUser(mp.get("postId"),mp.get("inspectionTeamId"));
         return adminService.sendVerificationReq(mp.get("postId"),mp.get("inspectionTeamId"));
     }
 

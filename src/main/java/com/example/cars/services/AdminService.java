@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -78,6 +79,7 @@ public class AdminService{
 
     }
 
+    @Async
     public String sendVerificationReq(String postId, String inspectionTeamId) throws MessagingException, IOException {
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
@@ -103,7 +105,7 @@ public class AdminService{
                 "<br>" + "Model Year: "+postDetails.getModelYear() +
                 "<br>" + "Model Kms-Run: "+postDetails.getKmsRun() +
                 "</p>" +
-                "<a href ='http://localhost:4200/inspection/"+postId+"/"+inspectionTeamId+"' >" + "Click here" + "</a>"  +
+                "<a href ='https://carstudio2-dot-hu18-groupa-angular.et.r.appspot.com/inspection/"+postId+"/"+inspectionTeamId+"' >" + "Click here" + "</a>"  +
                 "</div>" +
                 "<img src='cid:cars_logo' width=\"70%\">" +
                 "</div>";
@@ -140,6 +142,41 @@ public class AdminService{
         javaMailSender.send(mimeMessage);
 
         return inspectionTeam.getName();
+    }
+
+    @Async
+    public String sendVerificationReqUser(String postId, String inspectionTeamId) throws MessagingException, UnsupportedEncodingException {
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
+
+        PostDetails postDetails = postDetailsRepo.findByPostId(Integer.parseInt(postId));
+
+        InspectionTeam inspectionTeam = inspectionTeamRepo.findByInspectionTeamId(Integer.parseInt(inspectionTeamId));
+
+        String mailSubject = "Update: Car sell request Approved";
+        String mailContent = "<div>" +
+                "<h1 style=\"color: purple\">Sell Request Approved!!! </h1>" +
+                "<div>" +
+                "<p>" +
+                "Hi "+ postDetails.getUserId().getUserName() +
+                ",<br>" + "Congratulations!!! We're glad to let you know that your request for selling your car :- " + postDetails.getModelID().getCarId().getBrandId().getBrandName()
+                + " " + postDetails.getModelID().getCarId().getCarName() + " " + postDetails.getModelID().getModelName() + " has been approved by the administration team.<br>" +
+                "<br>" +
+                "<br>" + "And your request has been assigned to the center - " + inspectionTeam.getName() +
+                "<br>" +
+                "<br>" + " Soon you'll be receiving a call from our service center team for scheduling of the appointment for inspection and further arrangements"+
+                "</p>" +
+                "<img src='cid:cars_logo' width=\"70%\">" +
+                "</div>";
+        mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
+        mimeMessageHelper.setSubject(mailSubject);
+        mimeMessageHelper.setText(mailContent,true);
+        mimeMessageHelper.setTo(postDetails.getUserId().getUserName());
+
+        javaMailSender.send(mimeMessage);
+
+        return "Mail sent to the user - " + postDetails.getUserId().getUserName();
     }
 
     public String sendVerificationReq2(String inspectionTeamId){

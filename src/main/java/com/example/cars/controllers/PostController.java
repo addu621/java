@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,9 +20,7 @@ public class PostController {
     PostService postService;
 
     @PostMapping("/save")
-    public PostDetails savePost(@ModelAttribute PostDetails postDetails,@RequestParam("insurance") MultipartFile insurance,@RequestParam("rc")MultipartFile rc) throws IOException {
-
-
+    public PostDetails savePost(@ModelAttribute PostDetails postDetails,@RequestParam("insurance") MultipartFile insurance,@RequestParam("rc")MultipartFile rc) throws IOException, MessagingException {
         return postService.savePost(postDetails,insurance,rc);
     }
 
