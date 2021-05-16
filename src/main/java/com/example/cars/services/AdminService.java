@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -78,6 +79,7 @@ public class AdminService{
 
     }
 
+    @Async
     public String sendVerificationReq(String postId, String inspectionTeamId) throws MessagingException, IOException {
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
@@ -142,6 +144,7 @@ public class AdminService{
         return inspectionTeam.getName();
     }
 
+    @Async
     public String sendVerificationReqUser(String postId, String inspectionTeamId) throws MessagingException, UnsupportedEncodingException {
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
