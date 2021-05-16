@@ -69,6 +69,7 @@ public class UserController {
 
     @GetMapping("/customize")
     public String sendCustomizeRequest(@RequestBody Map<String,String> request) throws MessagingException, UnsupportedEncodingException {
+        userService.sendCustomizeRequestUser(request);
         return userService.sendCustomizeRequest(request);
     }
     @GetMapping("/getApprovedCars")
