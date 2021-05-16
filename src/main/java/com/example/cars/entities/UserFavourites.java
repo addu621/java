@@ -7,10 +7,10 @@ import javax.persistence.*;
 public class UserFavourites {
 
     public UserFavourites() {}
-    public UserFavourites(Integer id, String userId, Integer carId) {
+    public UserFavourites(Integer id, String userId, ApprovedCars approvedCarId) {
         this.id = id;
         this.userId = userId;
-        this.carId = carId;
+        this.approvedCarId = approvedCarId;
     }
 
     @Id
@@ -21,8 +21,9 @@ public class UserFavourites {
     @Column
     private String userId;
 
-    @Column
-    private Integer carId;
+    @JoinColumn
+    @OneToOne
+    private ApprovedCars approvedCarId;
 
     public Integer getId() {
         return id;
@@ -40,11 +41,11 @@ public class UserFavourites {
         this.userId = userId;
     }
 
-    public Integer getCarId() {
-        return carId;
+    public ApprovedCars getCarId() {
+        return approvedCarId;
     }
 
-    public void setCarId(Integer carId) {
-        this.carId = carId;
+    public void setCarId(ApprovedCars carId) {
+        this.approvedCarId = carId;
     }
 }

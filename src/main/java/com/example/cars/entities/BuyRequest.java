@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "buyDetails")
+@Table(name = "buyRequests")
 public class BuyRequest {
 
     @Id
@@ -13,22 +13,35 @@ public class BuyRequest {
     private Integer buyId;
 
 
-    @JoinColumn
+    @JoinColumn(name = "userId")
     @ManyToOne
     private User userId;
 
-    @JoinColumn
+    @JoinColumn(name = "postId")
     @OneToOne
     private PostDetails postId;
 
     @Column
     private Date dateOfRequest;
 
-    @Column
+    @Column(columnDefinition = "boolean default false")
     private Boolean isApproved;
 
-    @Column
-    private String location;
+    @JoinColumn(name = "inspectionTeamId")
+    @ManyToOne
+    private InspectionTeam inspectionTeamId;
+
+    public BuyRequest() {
+    }
+
+    public BuyRequest(Integer buyId, User userId, PostDetails postId, Date dateOfRequest, Boolean isApproved, InspectionTeam inspectionTeamId) {
+        this.buyId = buyId;
+        this.userId = userId;
+        this.postId = postId;
+        this.dateOfRequest = dateOfRequest;
+        this.isApproved = isApproved;
+        this.inspectionTeamId = inspectionTeamId;
+    }
 
     public Integer getBuyId() {
         return buyId;
@@ -70,12 +83,23 @@ public class BuyRequest {
         isApproved = approved;
     }
 
-    public String getLocation() {
-        return location;
+    public InspectionTeam getInspectionTeamId() {
+        return inspectionTeamId;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setInspectionTeamId(InspectionTeam inspectionTeamId) {
+        this.inspectionTeamId = inspectionTeamId;
     }
 
+    @Override
+    public String toString() {
+        return "BuyRequest{" +
+                "buyId=" + buyId +
+                ", userId=" + userId +
+                ", postId=" + postId +
+                ", dateOfRequest=" + dateOfRequest +
+                ", isApproved=" + isApproved +
+                ", inspectionTeamId=" + inspectionTeamId +
+                '}';
+    }
 }

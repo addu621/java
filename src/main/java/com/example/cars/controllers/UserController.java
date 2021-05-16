@@ -5,6 +5,7 @@ import com.example.cars.services.UserService;
 import com.example.cars.services.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;
@@ -25,7 +26,7 @@ public class UserController {
     public String hello() {
         return "Hello";
     }
-    //http://localhost:8080/user/save
+
     @PostMapping("/save")
     public Map signUp(@RequestBody User user){
             return userService.save(user);
@@ -58,13 +59,13 @@ public class UserController {
     public List<cars> getCarsByCarType(@RequestBody String carType) { return utility.getCarsByCarType(carType);}
 
     @PostMapping("/addFav")
-    public String addToFav(@RequestBody UserFavourites userFavourites) {
+    public String addToFav(@ModelAttribute UserFavourites userFavourites) {
         return userService.addFavourite(userFavourites);
     }
 
-    @DeleteMapping("/removeFav")
-    public String removeFromFav(@RequestBody Integer userFavourites) {
-        return userService.removeFavourite(userFavourites);
+    @DeleteMapping("/removeFav/{id}")
+    public String removeFromFav(@PathVariable Integer id) {
+        return userService.removeFavourite(id);
     }
 
     @GetMapping("/customize")
@@ -76,5 +77,20 @@ public class UserController {
     public List<ApprovedCars> getApprovedCars(){
         return this.utility.getApprovedCars();
     }
+
+//    @PostMapping("/buyReq/save")
+//    public String saveBuyRequest(@RequestBody Map<String,String> buyMap){
+//        //System.out.println(buyRequest.toString());
+//        return this.userService.saveBuyRequest(buyMap);
+//    }
+
+
+    @PostMapping("/buyReq/save")
+    public String saveBuyRequest(@ModelAttribute BuyRequest buyRequest){
+        return this.userService.saveBuyRequest(buyRequest);
+    }
+
+
+
 
 }
