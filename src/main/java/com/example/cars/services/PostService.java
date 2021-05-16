@@ -116,7 +116,7 @@ public class PostService {
 
     public String changeApproveStatus(String postId, String status) {
         try{
-            if(status.equals("false")) {
+            if(status.equals("No")) {
                 this.postDetailsRepo.deleteById(Integer.parseInt(postId));
                 return "rejected";
             }

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class UserFavourites {
 
     public UserFavourites() {}
-    public UserFavourites(Integer id, Integer userId, Integer carId) {
+    public UserFavourites(Integer id, String userId, Integer carId) {
         this.id = id;
         this.userId = userId;
         this.carId = carId;
@@ -19,7 +19,7 @@ public class UserFavourites {
     private Integer id;
 
     @Column
-    private Integer userId;
+    private String userId;
 
     @Column
     private Integer carId;
@@ -32,11 +32,11 @@ public class UserFavourites {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
