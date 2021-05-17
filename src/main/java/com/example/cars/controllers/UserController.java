@@ -78,10 +78,14 @@ public class UserController {
         userService.sendCustomizeRequest(request);
         return userService.sendCustomizeRequestUser(request);
     }
+
     @GetMapping("/getApprovedCars")
     public List<ApprovedCars> getApprovedCars(){
         return this.utility.getApprovedCars();
     }
+
+    @GetMapping("/ifFavExists")
+    public Boolean ifFavExists(@RequestBody Map<String,String> request) { return this.userService.ifFavExists(request); }
 
 //    @PostMapping("/buyReq/save")
 //    public String saveBuyRequest(@RequestBody Map<String,String> buyMap){

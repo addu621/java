@@ -17,4 +17,7 @@ public interface UserFavRepo extends JpaRepository<UserFavourites, Integer> {
     @Transactional
     @Query(value = "delete from user_favourites where user_id=?1 and approved_car_id=?2", nativeQuery = true)
     public void deleteByUserIdApprovedId(String userId, Integer approvedCarId);
+
+    @Query(value = "select count(*) from user_favourites where user_id=?1 and approved_car_id=?2", nativeQuery = true)
+    public Integer findAllByUserIdApprovedId(String userId, Integer approvedCarId);
 }

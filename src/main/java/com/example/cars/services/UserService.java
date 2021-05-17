@@ -18,6 +18,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -142,7 +143,6 @@ public class UserService {
     }
 
     public String removeFavourite(Map<String,String> remove) {
-        System.out.println(remove);
         userFavRepo.deleteByUserIdApprovedId(remove.get("userId") , Integer.parseInt(remove.get("approvedCarId")));
         return "User deleted";
     }
@@ -150,6 +150,13 @@ public class UserService {
     public List<UserFavourites> getAllFavs(String userId) {
         List<UserFavourites> userFavs = userFavRepo.findAllByUserId(userId);
         return userFavs;
+    }
+
+    public Boolean ifFavExists(Map<String,String> request) {
+        Integer counts = userFavRepo.findAllByUserIdApprovedId(request.get("userId") , Integer.parseInt(request.get("approvedCarId")));
+        if(counts>0)
+            return Boolean.TRUE;
+        return Boolean.FALSE;
     }
 
     public String remFav(String userId, String carId) {
