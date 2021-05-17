@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 @RestController
@@ -23,7 +24,7 @@ public class InspectionTeamController {
                                              @RequestParam("carpic2") MultipartFile carPic2,
                                              @RequestParam("carpic3") MultipartFile carPic3,
                                              @RequestParam("carpic4") MultipartFile carPic4,
-                                             @RequestParam("carpic5") MultipartFile carPic5) throws IOException {
+                                             @RequestParam("carpic5") MultipartFile carPic5) throws IOException, MessagingException {
 
 
         return inspectionService.saveInspectionDetails(inspectionDetails,carPic1,carPic2,carPic3,carPic4,carPic5);

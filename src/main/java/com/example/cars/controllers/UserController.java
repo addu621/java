@@ -65,23 +65,22 @@ public class UserController {
         return userService.addFavourite(userFavourites);
     }
 
-    @DeleteMapping("/removeFav/{id}")
-    public String removeFromFav(@PathVariable Integer id) {
-        return userService.removeFavourite(id);
+    @DeleteMapping("/removeFav")
+    public String removeFromFav(@RequestBody Map<String,String> remove) {
+        return userService.removeFavourite(remove);
     }
 
     @GetMapping("/getFavs")
-    public List<UserFavourites> getAllFavs(@RequestBody String userId) { return userService.getAllFavs(userId); }
+    public List<UserFavourites> getAllFavs(@RequestHeader("userid") String userId) { return userService.getAllFavs(userId); }
 
-    @PostMapping("/customize")
-    public String sendCustomizeRequest(@RequestBody Map<String,String> request) throws MessagingException, UnsupportedEncodingException {
-        userService.sendCustomizeRequest(request);
-        return userService.sendCustomizeRequestUser(request);
-    }
+
     @GetMapping("/getApprovedCars")
     public List<ApprovedCars> getApprovedCars(){
         return this.utility.getApprovedCars();
     }
+
+    @GetMapping("/ifFavExists")
+    public Boolean ifFavExists(@RequestHeader("approvedcarid") String approvedCarId, @RequestHeader("userid") String userId) { return this.userService.ifFavExists(userId,approvedCarId); }
 
 //    @PostMapping("/buyReq/save")
 //    public String saveBuyRequest(@RequestBody Map<String,String> buyMap){
@@ -106,6 +105,10 @@ public class UserController {
         return this.userService.getUserById(userEmail);
     }
 
+    @PatchMapping("/changePassword")
+    public String changePassword(@RequestBody Map<String,String> payload){
+        return userService.changePassword(payload);
+    }
     @GetMapping("/bookingList")
     public List<BuyRequest> getBookingList(@RequestParam("userId") String userEmail){
         return this.userService.getBookingList(userEmail);

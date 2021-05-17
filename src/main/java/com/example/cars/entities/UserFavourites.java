@@ -21,7 +21,7 @@ public class UserFavourites {
     @Column
     private String userId;
 
-    @JoinColumn
+    @JoinColumn(name = "approvedCarId")
     @OneToOne
     private ApprovedCars approvedCarId;
 

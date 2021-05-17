@@ -18,6 +18,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -147,14 +148,21 @@ public class UserService {
         return "Car Id: " + userFavourites.getApprovedCarId() + " is added to favourites of User Id:" + userFavourites.getUserId();
     }
 
-    public String removeFavourite(Integer userFavourites) {
-        userFavRepo.deleteById(userFavourites);
+    public String removeFavourite(Map<String,String> remove) {
+        userFavRepo.deleteByUserIdApprovedId(remove.get("userId") , Integer.parseInt(remove.get("approvedCarId")));
         return "User deleted";
     }
 
     public List<UserFavourites> getAllFavs(String userId) {
         List<UserFavourites> userFavs = userFavRepo.findAllByUserId(userId);
         return userFavs;
+    }
+
+    public Boolean ifFavExists(String userId, String approvedCarId) {
+        Integer counts = userFavRepo.findAllByUserIdApprovedId(userId , Integer.parseInt(approvedCarId));
+        if(counts>0)
+            return Boolean.TRUE;
+        return Boolean.FALSE;
     }
 
     public String remFav(String userId, String carId) {
@@ -171,87 +179,6 @@ public class UserService {
             }
         }
         return "No data exists with User id: " + userId + " and CarId: " + carId;
-    }
-
-    @Async
-    public String sendCustomizeRequestUser(Map<String,String> request) throws MessagingException, UnsupportedEncodingException {
-
-        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
-
-
-        String team = request.get("center");
-        InspectionTeam inspectionTeam = inspectionTeamRepo.findByName(team);
-
-        String mailSubject = "Car Customization Request";
-        String mailContent = "<div>" +
-                "<h1 style=\"color: purple\">Customization Email</h1>" +
-                "<div>" +
-                "<p>" +
-                "Hi "+ request.get("name") +
-                ",<br>" +
-                "<br>" + "We have received your Car-Customization request for items :- " + request.get("requirements") +".<br>" +
-                "<br>" +
-                "<br>" + "Our team at center " + team + " will be contacting you for the further details and arrangements"+
-                "</p>" +
-                "Meanwhile, if you want to sell or buy a old car, then you can checkout our website, where we offer competitive rates :-" +
-                "<br> <a href ='https://carstudio2-dot-hu18-groupa-angular.et.r.appspot.com'>" + "Click here" + "</a>" +
-                "</div>" +
-                "</div>";
-
-        System.out.println(request.get("name"));
-        System.out.println(request.get("email"));
-        mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
-        mimeMessageHelper.setSubject(mailSubject);
-        mimeMessageHelper.setText(mailContent,true);
-        mimeMessageHelper.setTo(request.get("email"));
-
-        javaMailSender.send(mimeMessage);
-
-        return request.get("name");
-    }
-
-    @Async
-    public String sendCustomizeRequest(Map<String,String> request) throws MessagingException, UnsupportedEncodingException {
-
-        /*
-        center: "Mumbai"
-        city: "Mumbai"
-        contactNo: "9387383838"
-        email: "mayank.sharma@hashedin.com"
-        name: "Mayank Sharma Chomu"
-       	requirements: "Reflector Lights,Antennas,Jumper Cables"
-        */
-
-        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
-
-        String team = request.get("center");
-        InspectionTeam inspectionTeam = inspectionTeamRepo.findByName(team);
-
-        String mailSubject = "Car Customization Request";
-        String mailContent = "<div>" +
-                "<h1 style=\"color: purple\">Customization Email</h1>" +
-                "<div>" +
-                "<p>" +
-                "Hi "+ inspectionTeam.getName() +
-                ",<br>" + "You have received a car-customization request.<br>" +
-                "Find the details of Customizations and customer below - <br>" +
-                "<br>" +
-                "<br>" + "Customer Name: "+ request.get("name") +
-                "<br>" + "Customer Contact No.: "+ request.get("contactNo") +
-                "<br>" + "Customer email: "+ request.get("email") +
-                "<br>" + "Requested features: "+ request.get("requirements") +
-                "</p>" +
-                "</div>" +
-                "</div>";
-        mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
-        mimeMessageHelper.setSubject(mailSubject);
-        mimeMessageHelper.setText(mailContent,true);
-        mimeMessageHelper.setTo(inspectionTeam.getEmail());
-
-        javaMailSender.send(mimeMessage);
-        return inspectionTeam.getName();
     }
 
     public User findUser(String userLoginCredential) {
@@ -273,7 +200,20 @@ public class UserService {
         }
     }
 
+    public String changePassword(Map<String,String> payload) {
+        //userid
+        //oldpassword
+        //newpassword
+        User user = userRepo.findByUserEmail(payload.get("userid"));
+        String currentPassword = user.getUserPassword();
 
+        if(currentPassword.matches(bcryptEncoder.encode(payload.get("oldpassword"))))
+        {
+            user.setUserPassword(bcryptEncoder.encode(payload.get("newpassword")));
+            return "Password updated";
+        }
+        return "Password mismatch";
+    }
     public boolean getBookingStatus(String userEmail, String approvedcarid){
         BuyRequest buyRequest = buyRequestRepo.findBuyRequest(userEmail,Integer.parseInt(approvedcarid));
 
