@@ -56,15 +56,14 @@ public class PostService {
 
         String email = postDetails.getUserId().getUserEmail();
 
-        String mailSubject = "Car Customization Request";
+        String mailSubject = "Car Sell Request";
         String mailContent = "<div>" +
-                "<h1 style=\"color: purple\">Customization Email</h1>" +
+                "<h1 style=\"color: purple\">Car Sell Email</h1>" +
                 "<div>" +
                 "<p>" +
                 "Hi "+ postDetails.getUserId().getUserName() +
                 ",<br>" + "We have received your request for selling your car :- " + postDetails.getModelID().getCarId().getBrandId().getBrandName()
                 + " " + postDetails.getModelID().getCarId().getCarName() + " " + postDetails.getModelID().getModelName() +".<br>" +
-                "<br>" +
                 "<br>" + "Shortly, Our nearest center will be contacting you for the car inspection and further arrangements"+
                 "</p>" +
                 "</div>" +
