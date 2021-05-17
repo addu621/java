@@ -141,8 +141,9 @@ public class UserService {
         return "Car Id: " + userFavourites.getApprovedCarId() + " is added to favourites of User Id:" + userFavourites.getUserId();
     }
 
-    public String removeFavourite(Integer userFavourites) {
-        userFavRepo.deleteById(userFavourites);
+    public String removeFavourite(Map<String,String> remove) {
+        System.out.println(remove);
+        userFavRepo.deleteByUserIdApprovedId(remove.get("userId") , Integer.parseInt(remove.get("approvedCarId")));
         return "User deleted";
     }
 
