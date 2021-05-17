@@ -11,4 +11,7 @@ import java.util.List;
 public interface ApprovedCarsRepo extends JpaRepository<ApprovedCars,Integer> {
     @Query(value = "select * from approved_cars where is_sold=false",nativeQuery = true)
     List<ApprovedCars> findAllApprovedCars();
+
+    @Query(value = "select * from approved_cars where postid in (select post_id from post_details where user_id=?1)",nativeQuery = true)
+    List<ApprovedCars> findCarsSoldByUser(String userEmail);
 }
