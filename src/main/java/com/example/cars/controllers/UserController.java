@@ -95,6 +95,9 @@ public class UserController {
     }
 
 
-
+    @PatchMapping("/changePassword")
+    public String changePassword(@RequestBody Map<String,String> payload){
+        return userService.changePassword(payload);
+    }
 
 }

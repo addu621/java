@@ -295,7 +295,7 @@ public class Utility {
         city: "Mumbai"
         contactNo: "9387383838"
         email: "mayank.sharma@hashedin.com"
-        name: "Mayank Sharma Chomu"
+        name: "Mayank Sharma"
        	requirements: "Reflector Lights,Antennas,Jumper Cables"
         */
 
@@ -358,6 +358,6 @@ public class Utility {
         mimeMessageHelper.setTo("mayank.singh@hashedin.com");
 
         javaMailSender.send(mimeMessage);
-        return "";
+        return "Request recieved";
     }
 }

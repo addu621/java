@@ -194,6 +194,19 @@ public class UserService {
         }
     }
 
+    public String changePassword(Map<String,String> payload) {
+        //userid
+        //oldpassword
+        //newpassword
+        User user = userRepo.findByUserEmail(payload.get("userid"));
+        String currentPassword = user.getUserPassword();
 
+        if(currentPassword.matches(bcryptEncoder.encode(payload.get("oldpassword"))))
+        {
+            user.setUserPassword(bcryptEncoder.encode(payload.get("newpassword")));
+            return "Password updated";
+        }
+        return "Password mismatch";
+    }
 
 }
