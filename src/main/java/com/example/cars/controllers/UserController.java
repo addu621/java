@@ -71,7 +71,7 @@ public class UserController {
     }
 
     @GetMapping("/getFavs")
-    public List<UserFavourites> getAllFavs(@RequestBody String userId) { return userService.getAllFavs(userId); }
+    public List<UserFavourites> getAllFavs(@RequestHeader("userid") String userId) { return userService.getAllFavs(userId); }
 
     @PostMapping("/customize")
     public String sendCustomizeRequest(@RequestBody Map<String,String> request) throws MessagingException, UnsupportedEncodingException {

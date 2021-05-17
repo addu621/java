@@ -5,10 +5,16 @@ import com.example.cars.entities.PostDetails;
 import com.example.cars.repositories.InspectionDetailsRepo;
 import com.example.cars.repositories.PostDetailsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import java.io.IOException;
+import java.util.Date;
 
 @Service
 public class InspectionService {
@@ -21,7 +27,11 @@ public class InspectionService {
     @Autowired
     PostDetailsRepo postDetailsRepo;
 
-    public InspectionDetails saveInspectionDetails(InspectionDetails inspectionDetails, MultipartFile carPic1, MultipartFile carPic2, MultipartFile carPic3, MultipartFile carPic4, MultipartFile carPic5) throws IOException {
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    @Async
+    public InspectionDetails saveInspectionDetails(InspectionDetails inspectionDetails, MultipartFile carPic1, MultipartFile carPic2, MultipartFile carPic3, MultipartFile carPic4, MultipartFile carPic5) throws IOException, MessagingException {
 
         inspectionDetails.setCarPic1(carPic1.getBytes());
         inspectionDetails.setCarPic2(carPic2.getBytes());
@@ -34,6 +44,57 @@ public class InspectionService {
         PostDetails post=postDetailsRepo.findByPostId(inspectionDetails.getPostId());
         post.setInspectionDone(true);
         postDetailsRepo.save(post);
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
+
+        String email = post.getUserId().getUserEmail();
+        Date date = new Date();
+        String mailSubject = "Car Inspection Confirmation";
+        String mailContent = "<div>" +
+                "<h1 style=\"color: purple\">Car Inspection Report: Completed</h1>" +
+                "<div>" +
+                "<p>" +
+                "Hi "+ post.getUserId().getUserName() +
+                ",<br>" + "We're glad to let you know that the car inspection is done and also we thank you for making your deal with us!!!" +
+                "<br>" + "You can find the details of the deal below :-"+
+                "<br>" + "<b><u>Deal Details</u></b>"+
+                "<ul style=\"width: 200px\">" +
+                "<li>" +
+                "<div style=\"display: flex;margin-bottom: 10px\">" +
+                "<div style=\"margin-right:10px\">Car Name:</div>" +
+                "<div>"+post.getModelID().getCarId().getBrandId().getBrandName() + " " + post.getModelID().getCarId().getCarName() + " " + post.getModelID().getModelName() +"</div>" +
+                "</div>" +
+                "</li>" +
+                "<li>" +
+                "<div style=\"display: flex;margin-bottom: 10px\">" +
+                "<div style=\"margin-right:10px\">Date of deal:</div>" +
+                "<div>"+ date +"</div>" +
+                "</div>" +
+                "</li>" +
+                "<li>" +
+                "<div style=\"display: flex;margin-bottom: 10px\">" +
+                "<div style=\"margin-right:10px\">Deal Price:</div>" +
+                "<div>"+ inspectionDetails.getPrice() +"</div>" +
+                "</div>" +
+                "</li>" +
+                "</ul>" +
+                "</p>" +
+                "</div>" +
+                "<br>" + "We once again Thank you for trusting on us and we hope we can be helpful to you in future." +
+                "<br>" + "Have a Great Day Ahead!!!" +
+                "<br>" +
+                "<br>" + "For any further query , please contact to the Cars Studio Team at <b>studiocars2021@gmail.com</b>" +
+                "</div>";
+
+        mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
+        mimeMessageHelper.setSubject(mailSubject);
+        mimeMessageHelper.setText(mailContent,true);
+        mimeMessageHelper.setTo(email);
+
+        javaMailSender.send(mimeMessage);
+
+
         return savedInspectionDetails;
     }
 }
