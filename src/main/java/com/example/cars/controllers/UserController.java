@@ -85,7 +85,7 @@ public class UserController {
     }
 
     @GetMapping("/ifFavExists")
-    public Boolean ifFavExists(@RequestBody Map<String,String> request) { return this.userService.ifFavExists(request); }
+    public Boolean ifFavExists(@RequestHeader("approvedcarid") String approvedCarId, @RequestHeader("userid") String userId) { return this.userService.ifFavExists(userId,approvedCarId); }
 
 //    @PostMapping("/buyReq/save")
 //    public String saveBuyRequest(@RequestBody Map<String,String> buyMap){

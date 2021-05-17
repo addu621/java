@@ -152,8 +152,8 @@ public class UserService {
         return userFavs;
     }
 
-    public Boolean ifFavExists(Map<String,String> request) {
-        Integer counts = userFavRepo.findAllByUserIdApprovedId(request.get("userId") , Integer.parseInt(request.get("approvedCarId")));
+    public Boolean ifFavExists(String userId, String approvedCarId) {
+        Integer counts = userFavRepo.findAllByUserIdApprovedId(userId , Integer.parseInt(approvedCarId));
         if(counts>0)
             return Boolean.TRUE;
         return Boolean.FALSE;
