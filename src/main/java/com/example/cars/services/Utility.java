@@ -329,4 +329,35 @@ public class Utility {
         javaMailSender.send(mimeMessage);
         return inspectionTeam.getName();
     }
+
+    public String contact(Map<String,String> payload) throws MessagingException, UnsupportedEncodingException {
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
+
+        String mailSubject = "User Contacting Request";
+        String mailContent = "<div>" +
+                "<h1 style=\"color: purple\">Contact Us Email</h1>" +
+                "<div>" +
+                "<p>" +
+                "Hi Cars-Studio Team" +
+                ",<br>" + "You have received a User contacting request.<br>" +
+                "Find the details of requested user below - <br>" +
+                "<br>" +
+                "<br>" + "User Name: "+ payload.get("name") +
+                "<br>" + "User Contact No.: "+ payload.get("phoneNo") +
+                "<br>" + "User City Location: "+ payload.get("city") +
+                "<br>" + "User email: "+ payload.get("email") +
+                "<br>" + "Message: "+ payload.get("message") +
+                "</p>" +
+                "</div>" +
+                "</div>";
+        mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
+        mimeMessageHelper.setSubject(mailSubject);
+        mimeMessageHelper.setText(mailContent,true);
+        mimeMessageHelper.setTo("studiocars2021@gmail.com");
+
+        javaMailSender.send(mimeMessage);
+        return "";
+    }
 }

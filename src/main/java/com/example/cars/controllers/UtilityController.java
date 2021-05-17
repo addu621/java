@@ -29,4 +29,9 @@ public class UtilityController {
         utility.sendCustomizeRequest(request);
         return utility.sendCustomizeRequestUser(request);
     }
+
+    @PostMapping("/contactus")
+    public String contact(@RequestBody Map<String ,String> payload) throws MessagingException, UnsupportedEncodingException {
+        return utility.contact(payload);
+    }
 }
