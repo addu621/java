@@ -1,5 +1,6 @@
 package com.example.cars.controllers;
 
+import com.example.cars.entities.cars;
 import com.example.cars.services.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -43,5 +44,10 @@ public class UtilityController {
     @PostMapping("/contactus")
     public String contact(@RequestBody Map<String ,String> payload) throws MessagingException, UnsupportedEncodingException {
         return utility.contact(payload);
+    }
+
+    @GetMapping("/getAllCars")
+    public List<cars> getAllCars(){
+        return utility.getAllCars();
     }
 }

@@ -440,4 +440,8 @@ public class Utility {
 
         return "Password updated";
     }
+
+    public List<cars> getAllCars() {
+        return this.carsRepo.findAll();
+    }
 }
