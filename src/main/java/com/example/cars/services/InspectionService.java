@@ -1,7 +1,9 @@
 package com.example.cars.services;
 
+import com.example.cars.entities.ApprovedCars;
 import com.example.cars.entities.InspectionDetails;
 import com.example.cars.entities.PostDetails;
+import com.example.cars.repositories.ApprovedCarsRepo;
 import com.example.cars.repositories.InspectionDetailsRepo;
 import com.example.cars.repositories.PostDetailsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class InspectionService {
     @Autowired
     private JavaMailSender javaMailSender;
 
+    @Autowired
+    private ApprovedCarsRepo approvedCarsRepo;
+
     @Async
     public InspectionDetails saveInspectionDetails(InspectionDetails inspectionDetails, MultipartFile carPic1, MultipartFile carPic2, MultipartFile carPic3, MultipartFile carPic4, MultipartFile carPic5) throws IOException, MessagingException {
 
@@ -48,6 +53,15 @@ public class InspectionService {
             post.setApproved(true);
         else
             post.setDeclined(true);
+
+        ApprovedCars approveCar=new ApprovedCars();
+
+        approveCar.setApprovedCarId(post.getPostId());
+        approveCar.setPostID(post);
+        approveCar.setSold(false);
+        approveCar.setInspectionDetails(inspectionDetails);
+        approveCar.setPrice(Integer.parseInt(inspectionDetails.getPrice()));
+        approvedCarsRepo.save(approveCar);
 
         postDetailsRepo.save(post);
 

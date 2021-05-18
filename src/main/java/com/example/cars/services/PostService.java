@@ -113,7 +113,7 @@ public class PostService {
     }
 
 
-    public String changeApproveStatus(String postId, String status) {
+    public String rejectSellRequest(String postId, String status) {
         try{
             if(status.equals("No")) {
                 this.postDetailsRepo.deleteById(Integer.parseInt(postId));

@@ -74,7 +74,7 @@ public class AdminController {
     @PatchMapping("/changeStatus")
     public String changeApproveStatus(@RequestBody Map<String,String> mp){
 
-        return this.postService.changeApproveStatus(mp.get("postId"),mp.get("status"));
+        return this.postService.rejectSellRequest(mp.get("postId"),mp.get("status"));
     }
 
     @PostMapping("/addInspectionTeam")
