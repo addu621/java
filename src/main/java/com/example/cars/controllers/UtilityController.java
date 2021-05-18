@@ -30,7 +30,7 @@ public class UtilityController {
     }
 
     @GetMapping("/forgetPassword")
-    public String generateNewPassword(@RequestParam String userEmail){
+    public String generateNewPassword(@RequestParam String userEmail) throws UnsupportedEncodingException, MessagingException {
         return utility.newPassword(userEmail);
     }
 
