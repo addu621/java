@@ -91,5 +91,7 @@ public class AdminController {
         return this.adminService.getInspectionCentre(city);
     }
 
+//    @PostMapping("/")
+
 
 }

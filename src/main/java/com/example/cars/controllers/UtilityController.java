@@ -24,6 +24,16 @@ public class UtilityController {
         return utility.getAllCities();
     }
 
+    @PatchMapping("/changeRequestStatus")
+    public String changeRequestStatus(@RequestBody Map<String,String> mp){
+        return utility.changeRequestStatus(mp.get("status"),mp.get("buyId"));
+    }
+
+    @GetMapping("/forgetPassword")
+    public String generateNewPassword(@RequestParam String userEmail){
+        return "JBLASAD";
+    }
+
     @PostMapping("/customize")
     public String sendCustomizeRequest(@RequestBody Map<String,String> request) throws MessagingException, UnsupportedEncodingException {
         utility.sendCustomizeRequest(request);

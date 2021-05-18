@@ -54,6 +54,12 @@ public class UserService {
     @Autowired
     private InspectionTeamRepo inspectionTeamRepo;
 
+    @Autowired
+    private SoldCarRepo soldCarRepo;
+
+    @Autowired
+    private ApprovedCarsRepo approvedCarsRepo;
+
     public Map save(User user){
         String token= utility.getToken(6);
         user.setVerificationToken(token);
@@ -213,5 +219,32 @@ public class UserService {
         }
         return "Password mismatch";
     }
+    public boolean getBookingStatus(String userEmail, String approvedcarid){
+        BuyRequest buyRequest = buyRequestRepo.findBuyRequest(userEmail,Integer.parseInt(approvedcarid));
 
+        if(buyRequest==null || buyRequest.isDeclined())
+            return false;
+
+
+        return true;
+
+    }
+
+    public User getUserById(String userEmail) {
+
+        return this.userRepo.findByUserEmail(userEmail);
+
+    }
+
+    public List<BuyRequest> getBookingList(String userEmail) {
+        return this.buyRequestRepo.findActiveRequests(userEmail);
+    }
+
+    public List<SoldCars> getPurchasedCars(String userEmail) {
+        return this.soldCarRepo.findAllByBuyerId(userEmail);
+    }
+
+    public List<ApprovedCars> getCarsSoldByUser(String userEmail) {
+        return this.approvedCarsRepo.findCarsSoldByUser(userEmail);
+    }
 }

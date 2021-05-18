@@ -94,10 +94,34 @@ public class UserController {
         return this.userService.saveBuyRequest(buyRequest);
     }
 
+    @GetMapping("/bookingStatus")
+    public boolean getBookingStatus(@RequestHeader("userid") String userEmail,@RequestHeader("approvedcarid") String approvedcarid)
+    {
+        return this.userService.getBookingStatus(userEmail,approvedcarid);
+    }
+
+    @GetMapping("/getUserById")
+    public User getUserById(@RequestParam("userId") String userEmail){
+        return this.userService.getUserById(userEmail);
+    }
 
     @PatchMapping("/changePassword")
     public String changePassword(@RequestBody Map<String,String> payload){
         return userService.changePassword(payload);
+    }
+    @GetMapping("/bookingList")
+    public List<BuyRequest> getBookingList(@RequestParam("userId") String userEmail){
+        return this.userService.getBookingList(userEmail);
+    }
+
+    @GetMapping("/purchasedCars")
+    public List<SoldCars> getPurchasedCars(@RequestParam("userId") String userEmail){
+        return this.userService.getPurchasedCars(userEmail);
+    }
+
+    @GetMapping("/soldCars")
+    public List<ApprovedCars> getCarsSoldByUser(@RequestParam("userId") String userEmail){
+        return this.userService.getCarsSoldByUser(userEmail);
     }
 
 }

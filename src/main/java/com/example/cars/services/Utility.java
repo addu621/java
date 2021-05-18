@@ -46,6 +46,12 @@ public class Utility {
 
     @Autowired
     private InspectionTeamRepo inspectionTeamRepo;
+    @Autowired
+    private BuyRequestRepo buyRequestRepo;
+
+    @Autowired
+    private SoldCarRepo soldCarRepo;
+
 
     @Async
     public void sendMail(User user, String token) throws UnsupportedEncodingException, MessagingException {
@@ -163,7 +169,7 @@ public class Utility {
     public void sendEmailToShowRoom(BuyRequest buyRequest) throws UnsupportedEncodingException, MessagingException {
 
         User user=buyRequest.getUserId();
-        PostDetails postDetails=buyRequest.getPostId();
+        PostDetails postDetails=buyRequest.getApprovedCarId().getPostID();
         InspectionTeam inspectionTeam=buyRequest.getInspectionTeamId();
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
@@ -175,7 +181,7 @@ public class Utility {
                 "\t<div>\n" +
                 "\t\t<p>\n" +
                 "\t\tHi "+inspectionTeam.getName()+" Team,<br>\n" +
-                "\t\t<p>"+user.getUserName()+" is interested in buying "+postDetails.getModelID().getCarId().getCarName()+" "+postDetails.getModelID().getModelName()+" Model (carId -"+postDetails.getModelID().getCarId().getCarId()+")</p>\n" +
+                "\t\t<p>"+user.getUserName()+" is interested in buying "+postDetails.getModelID().getCarId().getBrandId().getBrandName()+" "+postDetails.getModelID().getCarId().getCarName()+" "+postDetails.getModelID().getModelName()+" Model (carId -"+postDetails.getModelID().getCarId().getCarId()+")</p>\n" +
                 "\t\t<p>\n" +
                 "\t\t\t<b><u>Contact Details</u></b>\n" +
                 "\t\t\t<ul style=\"width: 200px\">\n" +
@@ -200,7 +206,7 @@ public class Utility {
                 "\t\t\t</ul>\n" +
                 "\t\t</p>\n" +
                 "\t\t</p>\n" +
-                "\t\t<h4 style=\"color: red\">Please Click this link to update the result of this request <a href=\"www.google.com\">Link</a></h4>\n" +
+                "\t\t<h4 style=\"color: red\">Please Click this link to update the result of this request <a href='http://localhost:4200/approveBuyReq?buyId="+buyRequest.getBuyId()+"&userName="+user.getUserName()+"&carName="+postDetails.getModelID().getCarId().getBrandId().getBrandName()+" "+postDetails.getModelID().getCarId().getCarName()+" "+postDetails.getModelID().getModelName()+"'>Link</a></h4>\n" +
                 "\t\t<p>\n" +
                 "\t\t\tFor any further query , please contact to the Cars Studio Team at <b>studiocars2021@gmail.com</b> \n" +
                 "\t\t</p>\n" +
@@ -359,5 +365,32 @@ public class Utility {
 
         javaMailSender.send(mimeMessage);
         return "Request recieved";
+    }
+
+    public String changeRequestStatus(String status, String buyId) {
+        BuyRequest buyRequest=buyRequestRepo.findByBuyId(Integer.parseInt(buyId));
+        ApprovedCars car=buyRequest.getApprovedCarId();
+        SoldCars alreadySoldCar=soldCarRepo.findSoldCar(car.getApprovedCarId(),buyRequest.getUserId().getUserEmail());
+
+        if(alreadySoldCar!=null || buyRequest.isDeclined()){
+            return "Response, Already Submitted !";
+        }
+
+        if(status.equals("approve")){
+            SoldCars soldCar = new SoldCars();
+            soldCar.setBuyerId(buyRequest.getUserId().getUserEmail());
+            soldCar.setApprovedCars(car);
+            buyRequest.setApproved(true);
+            car.setSold(true);
+            soldCarRepo.save(soldCar);
+            approvedCarsRepo.save(car);
+            buyRequestRepo.save(buyRequest);
+        }
+        else{
+            buyRequest.setDeclined(true);
+            buyRequestRepo.save(buyRequest);
+        }
+
+        return "Response, Saved Successfully!";
     }
 }

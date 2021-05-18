@@ -17,9 +17,9 @@ public class BuyRequest {
     @ManyToOne
     private User userId;
 
-    @JoinColumn(name = "postId")
+    @JoinColumn(name = "approvedCarId")
     @OneToOne
-    private PostDetails postId;
+    private ApprovedCars approvedCarId;
 
     @Column
     private Date dateOfRequest;
@@ -31,13 +31,16 @@ public class BuyRequest {
     @ManyToOne
     private InspectionTeam inspectionTeamId;
 
+    @Column(columnDefinition = "boolean default false")
+    private boolean isDeclined;
+
     public BuyRequest() {
     }
 
-    public BuyRequest(Integer buyId, User userId, PostDetails postId, Date dateOfRequest, Boolean isApproved, InspectionTeam inspectionTeamId) {
+    public BuyRequest(Integer buyId, User userId, ApprovedCars approvedCarId, Date dateOfRequest, Boolean isApproved, InspectionTeam inspectionTeamId) {
         this.buyId = buyId;
         this.userId = userId;
-        this.postId = postId;
+        this.approvedCarId = approvedCarId;
         this.dateOfRequest = dateOfRequest;
         this.isApproved = isApproved;
         this.inspectionTeamId = inspectionTeamId;
@@ -59,12 +62,12 @@ public class BuyRequest {
         this.userId = userId;
     }
 
-    public PostDetails getPostId() {
-        return postId;
+    public ApprovedCars getApprovedCarId() {
+        return approvedCarId;
     }
 
-    public void setPostId(PostDetails postId) {
-        this.postId = postId;
+    public void setApprovedCarId(ApprovedCars approvedCarId) {
+        this.approvedCarId = approvedCarId;
     }
 
     public Date getDateOfRequest() {
@@ -91,15 +94,24 @@ public class BuyRequest {
         this.inspectionTeamId = inspectionTeamId;
     }
 
+    public boolean isDeclined() {
+        return isDeclined;
+    }
+
+    public void setDeclined(boolean declined) {
+        isDeclined = declined;
+    }
+
     @Override
     public String toString() {
         return "BuyRequest{" +
                 "buyId=" + buyId +
                 ", userId=" + userId +
-                ", postId=" + postId +
+                ", approvedCarId=" + approvedCarId +
                 ", dateOfRequest=" + dateOfRequest +
                 ", isApproved=" + isApproved +
                 ", inspectionTeamId=" + inspectionTeamId +
+                ", isDeclined=" + isDeclined +
                 '}';
     }
 }
