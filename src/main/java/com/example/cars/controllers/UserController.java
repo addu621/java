@@ -124,4 +124,8 @@ public class UserController {
         return this.userService.getCarsSoldByUser(userEmail);
     }
 
+    @PatchMapping("/updateUserInfo")
+    public String updateUserInfo(@RequestBody User user) {
+        return userService.updateUserInfo(user);
+    }
 }
