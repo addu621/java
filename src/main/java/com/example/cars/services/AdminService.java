@@ -101,7 +101,8 @@ public class AdminService{
                 "<br>" + "Location: "+postDetails.getLocation() +
 //                "<br>" + "Brand Name: "+postDetails.getModelID().getCarId().getBrandId().getBrandName() +
 //                "<br>" + "Car Name: "+postDetails.getModelID().getCarId().getCarName() +
-                "<br>" + "Model Id: "+postDetails.getModelID() +
+                "<br>" + "Car : "+ postDetails.getModelID().getCarId().getBrandId().getBrandName()
+                + " " + postDetails.getModelID().getCarId().getCarName() + " " + postDetails.getModelID().getModelName()  +
                 "<br>" + "Model Year: "+postDetails.getModelYear() +
                 "<br>" + "Model Kms-Run: "+postDetails.getKmsRun() +
                 "</p>" +
@@ -172,7 +173,7 @@ public class AdminService{
         mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
         mimeMessageHelper.setSubject(mailSubject);
         mimeMessageHelper.setText(mailContent,true);
-        mimeMessageHelper.setTo(postDetails.getUserId().getUserName());
+        mimeMessageHelper.setTo(postDetails.getUserId().getUserEmail());
 
         javaMailSender.send(mimeMessage);
 
