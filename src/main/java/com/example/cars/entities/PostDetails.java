@@ -65,6 +65,9 @@ public class PostDetails {
     @Column
     private String address;
 
+    @Column(columnDefinition = "boolean default false")
+    private boolean isDeclined;
+
     public PostDetails(){}
     public User getUserId() {
         return userId;
@@ -200,6 +203,14 @@ public class PostDetails {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public boolean isDeclined() {
+        return isDeclined;
+    }
+
+    public void setDeclined(boolean declined) {
+        isDeclined = declined;
     }
 }
 

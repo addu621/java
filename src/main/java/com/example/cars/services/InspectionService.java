@@ -43,6 +43,12 @@ public class InspectionService {
 
         PostDetails post=postDetailsRepo.findByPostId(inspectionDetails.getPostId());
         post.setInspectionDone(true);
+
+        if(inspectionDetails.getIsReadyForSale().equals("Yes"))
+            post.setApproved(true);
+        else
+            post.setDeclined(true);
+
         postDetailsRepo.save(post);
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
