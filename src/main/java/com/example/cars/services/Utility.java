@@ -355,7 +355,7 @@ public class Utility {
         mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
         mimeMessageHelper.setSubject(mailSubject);
         mimeMessageHelper.setText(mailContent,true);
-        mimeMessageHelper.setTo("mayank.singh@hashedin.com");
+        mimeMessageHelper.setTo("mayank.sharma@hashedin.com");
 
         javaMailSender.send(mimeMessage);
         return "Request recieved";
