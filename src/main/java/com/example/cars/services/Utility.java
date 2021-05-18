@@ -393,4 +393,8 @@ public class Utility {
 
         return "Response, Saved Successfully!";
     }
+
+    public List<cars> getAllCars() {
+        return this.carsRepo.findAll();
+    }
 }
