@@ -207,14 +207,10 @@ public class UserService {
         User user = userRepo.findByUserEmail(payload.get("userid"));
         String currentPassword = user.getUserPassword();
 
-        System.out.println(payload);
-
-        System.out.println(currentPassword);
-        System.out.println(bcryptEncoder.encode(payload.get("oldpassword")));
-
         if(bcryptEncoder.matches(payload.get("oldpassword"),currentPassword))
         {
             user.setUserPassword(bcryptEncoder.encode(payload.get("newpassword")));
+            userRepo.save(user);
             return "Password updated";
         }
         return "Password mismatch";
