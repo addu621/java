@@ -113,29 +113,18 @@ public class PostService {
     }
 
 
-    public String rejectSellRequest(String postId, String status) {
+    public String rejectSellRequest(String postId) {
         try{
-            if(status.equals("No")) {
-                this.postDetailsRepo.deleteById(Integer.parseInt(postId));
-                return "rejected";
-            }
+
+
             PostDetails post=this.postDetailsRepo.findByPostId(Integer.parseInt(postId));
 
-            post.setApproved(true);
+            post.setDeclined(true);
 
-            ApprovedCars approveCar=new ApprovedCars();
-
-            InspectionDetails inspectionDetails=inspectionDetailsRepo.findByPostId(Integer.parseInt(postId));
-            approveCar.setApprovedCarId(Integer.parseInt(postId));
-            approveCar.setPostID(post);
-            approveCar.setSold(false);
-            approveCar.setInspectionDetails(inspectionDetails);
-            approveCar.setPrice(Integer.parseInt(inspectionDetails.getPrice()));
 
             this.postDetailsRepo.save(post);
-            this.approvedCarsRepo.save(approveCar);
 
-            return "approved";
+            return "rejected";
         }
         catch (Exception ex){
             System.out.println(ex.getMessage());
