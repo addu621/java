@@ -31,7 +31,7 @@ public class UtilityController {
 
     @GetMapping("/forgetPassword")
     public String generateNewPassword(@RequestParam String userEmail){
-        return "JBLASAD";
+        return utility.newPassword(userEmail);
     }
 
     @PostMapping("/customize")

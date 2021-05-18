@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table
 public class InspectionTeam {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer inspectionTeamId;
 

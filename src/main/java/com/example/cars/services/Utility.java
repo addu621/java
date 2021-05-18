@@ -10,6 +10,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -51,6 +52,12 @@ public class Utility {
 
     @Autowired
     private SoldCarRepo soldCarRepo;
+
+    @Autowired
+    private UserRepo userRepo;
+
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
 
 
     @Async
@@ -392,5 +399,45 @@ public class Utility {
         }
 
         return "Response, Saved Successfully!";
+    }
+
+    public String newPassword(String userEmail) throws MessagingException, UnsupportedEncodingException {
+        User user = userRepo.findByUserEmail(userEmail);
+
+        if(user==null)
+        {
+            return "User Email not found";
+        }
+
+        String newPassword = getToken(6);
+        user.setUserPassword(bcryptEncoder.encode(newPassword));
+
+        userRepo.save(user);
+
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
+
+        String mailSubject = "Password Support";
+
+        String mailContent = "<div>" +
+                "<h1 style=\"color: purple\">Password Updated</h1>" +
+                "<div>" +
+                "<p>" +
+                "Hi" + user.getUserName() +
+                ",<br>" + "Your password has been updated.<br>" +
+                "Find the your new password below - <br>" +
+                "<br>" +
+                "<br>" + newPassword +
+                "</p>" +
+                "</div>" +
+                "</div>";
+        mimeMessageHelper.setFrom("studiocars2021@gmail.com","Cars Studio");
+        mimeMessageHelper.setSubject(mailSubject);
+        mimeMessageHelper.setText(mailContent,true);
+        mimeMessageHelper.setTo(user.getUserEmail());
+
+        javaMailSender.send(mimeMessage);
+
+        return "Password updated";
     }
 }
