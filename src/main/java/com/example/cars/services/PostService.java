@@ -1,9 +1,6 @@
 package com.example.cars.services;
 
-import com.example.cars.entities.ApprovedCars;
-import com.example.cars.entities.BuyRequest;
-import com.example.cars.entities.InspectionDetails;
-import com.example.cars.entities.PostDetails;
+import com.example.cars.entities.*;
 import com.example.cars.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -16,9 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class PostService {
@@ -108,8 +103,31 @@ public class PostService {
         return result;
     }
 
-    public BuyRequest getBuyRequest(String reqId) {
-        return buyRequestRepo.findByBuyId(Integer.parseInt(reqId));
+    public List<Map> getBuyRequest() {
+
+        List<BuyRequest> buyRequests= this.buyRequestRepo.findAll();
+
+        List<Map> modifiedBuyRequests=new ArrayList<>();
+        modelDetails model;
+        for(int i=0;i<buyRequests.size();i++){
+            Map<String,String> mp=new HashMap<>();
+            model=buyRequests.get(i).getApprovedCarId().getPostID().getModelID();
+            mp.put("buyer",buyRequests.get(i).getUserId().getUserName());
+            mp.put("showRoom",buyRequests.get(i).getInspectionTeamId().getName());
+            mp.put("carName",model.getCarId().getBrandId().getBrandName()+" "+model.getCarId().getCarName()+" "+model.getModelName());
+
+            if(buyRequests.get(i).isDeclined())
+                mp.put("status","Rejected");
+            else if(buyRequests.get(i).getApproved())
+                mp.put("status","Approved");
+            else if(!buyRequests.get(i).getApproved() && !buyRequests.get(i).isDeclined())
+                mp.put("status","Pending");
+
+            mp.put("requestDate",buyRequests.get(i).getDateOfRequest().toString());
+            modifiedBuyRequests.add(mp);
+        }
+
+        return modifiedBuyRequests;
     }
 
 

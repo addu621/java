@@ -51,8 +51,13 @@ public class InspectionService {
 
         if(inspectionDetails.getIsReadyForSale().equals("Yes"))
             post.setApproved(true);
-        else
+        else {
             post.setDeclined(true);
+            postDetailsRepo.save(post);
+            return inspectionDetails;
+        }
+
+
 
         ApprovedCars approveCar=new ApprovedCars();
 

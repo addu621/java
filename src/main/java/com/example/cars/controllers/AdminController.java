@@ -60,15 +60,9 @@ public class AdminController {
         return adminService.sendVerificationReq2(inspectionTeamId);
     }
 
-    @GetMapping("/getBuyRequest/{reqId}")
-    public Map getBuyRequest(@PathVariable("reqId") String reqId){
-        BuyRequest buyRequest=this.postService.getBuyRequest(reqId);
-
-        Map<String,Object> obj=new HashMap<>();
-
-
-
-        return obj;
+    @GetMapping("/getBuyRequest")
+    public List<Map> getBuyRequest(){
+        return this.postService.getBuyRequest();
     }
 
     @PatchMapping("/changeStatus")
