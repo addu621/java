@@ -21,4 +21,7 @@ public interface BuyRequestRepo extends JpaRepository<BuyRequest,Integer> {
 
     @Query(value="select buy_id,date_of_request,is_approved,is_declined,inspection_team_id,approved_car_id,user_id from buy_requests",nativeQuery = true)
     List<Map> getAllBuyRequests();
+
+    @Query(value = "select count(*) from buy_requests where user_id=?1 and approved_car_id=?2 and is_approved=false and is_declined=false", nativeQuery = true)
+    Integer findIfBooked(String userId, Integer approvedCarId);
 }

@@ -243,6 +243,14 @@ public class UserService {
         return this.approvedCarsRepo.findCarsSoldByUser(userEmail);
     }
 
+    public Boolean ifBooked(String userId,String approvedCarId) {
+        Integer counts = buyRequestRepo.findIfBooked(userId , Integer.parseInt(approvedCarId));
+
+        if(counts>0)
+            return Boolean.TRUE;
+        return Boolean.FALSE;
+    }
+
     public String updateUserInfo(User userObj) {
 
         User user = userRepo.findByUserEmail(userObj.getUserEmail());

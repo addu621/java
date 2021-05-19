@@ -67,7 +67,6 @@ public class AdminController {
 
     @PatchMapping("/changeStatus")
     public String changeApproveStatus(@RequestBody Map<String,String> mp){
-
         return this.postService.rejectSellRequest(mp.get("postId"));
     }
 
@@ -80,12 +79,11 @@ public class AdminController {
     public Map sendVerificationReq3(@RequestParam Integer postId){
         return this.adminService.sendVerificationReq3(postId);
     }
+
     @GetMapping("/getInspectionCentre")
     public List<InspectionTeam> getInspectionCentre(@RequestParam String city){
         return this.adminService.getInspectionCentre(city);
     }
-
-//    @PostMapping("/")
 
 
 }

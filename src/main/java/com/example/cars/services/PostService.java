@@ -138,7 +138,24 @@ public class PostService {
             PostDetails post=this.postDetailsRepo.findByPostId(Integer.parseInt(postId));
 
             post.setDeclined(true);
+//getapprovedcarbyid
+            MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage,true);
 
+            String mailSubject = "Update: Car sell request Declined";
+            String mailContent = "<div>" +
+                    "<h1 style=\"color: purple\">Sell Request Rejected!!! </h1>" +
+                    "<div>" +
+                    "<p>" +
+                    "Hi "+ post.getUserId().getUserName() +
+                    ",<br>" + "We're Sorry to let you know that your request for selling your car :- " + post.getModelID().getCarId().getBrandId().getBrandName()+
+                    " " + post.getModelID().getCarId().getCarName() + " " + post.getModelID().getModelName() + " has been rejected by the administration team.<br>" +
+                    "<br>" +
+                    "<br>" + " We again thank you for expressing your interest in dealing with us. Thank you!!!"+
+                    "</p>" +
+                    "</div>" +
+                    "<img src='cid:cars_logo' width=\"70%\">" +
+                    "</div>";
 
             this.postDetailsRepo.save(post);
 
