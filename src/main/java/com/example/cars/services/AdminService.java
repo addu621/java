@@ -186,7 +186,7 @@ public class AdminService{
         return "Mail sent to the user - " + postDetails.getUserId().getUserName();
     }
 
-    public String sendVerificationReq2(String inspectionTeamId){
+    public String getCentreName(String inspectionTeamId){
 
         InspectionTeam team = inspectionTeamRepo.findByInspectionTeamId(Integer.parseInt(inspectionTeamId));
 
