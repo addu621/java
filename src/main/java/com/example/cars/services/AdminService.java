@@ -229,7 +229,7 @@ public class AdminService{
 
     public List<Map> getAllApprovedCars(){
 
-        List<ApprovedCars> approvedCarsList = approvedCarsRepo.findAll();
+        List<ApprovedCars> approvedCarsList = approvedCarsRepo.findAllApprovedCars();
         List<Map> res = new ArrayList<>();
 
         for(int i=0;i<approvedCarsList.size();i++){
