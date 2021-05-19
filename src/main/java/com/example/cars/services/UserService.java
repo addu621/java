@@ -159,7 +159,7 @@ public class UserService {
     }
 
     public Boolean ifFavExists(String userId, String approvedCarId) {
-        Integer counts = buyRequestRepo.findIfBooked(userId , Integer.parseInt(approvedCarId));
+        Integer counts = userFavRepo.findAllByUserIdApprovedId(userId , Integer.parseInt(approvedCarId));
         if(counts>0)
             return Boolean.TRUE;
         return Boolean.FALSE;
@@ -244,8 +244,7 @@ public class UserService {
     }
 
     public Boolean ifBooked(String userId,String approvedCarId) {
-
-        Integer counts = userFavRepo.findAllByUserIdApprovedId(userId , Integer.parseInt(approvedCarId));
+        Integer counts = buyRequestRepo.findIfBooked(userId , Integer.parseInt(approvedCarId));
 
         if(counts>0)
             return Boolean.TRUE;
