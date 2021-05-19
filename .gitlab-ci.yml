@@ -6,7 +6,7 @@ build:
   image: maven:3.6.3-openjdk-11
   stage: build
   only:
-  - adarsh
+  - dishant
   tags:
   - runner-4
   script:
@@ -23,7 +23,7 @@ deploy_job:
   image: google/cloud-sdk:alpine
   stage: deploy
   only:
-  - adarsh
+  - dishant
   tags:
   - runner-4
   dependencies: 
