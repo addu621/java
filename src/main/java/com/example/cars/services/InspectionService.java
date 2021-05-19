@@ -54,6 +54,7 @@ public class InspectionService {
         else
         {
             post.setDeclined(true);
+            postDetailsRepo.save(post);
             return inspectionDetails;
         }
 

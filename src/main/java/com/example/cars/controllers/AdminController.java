@@ -63,17 +63,12 @@ public class AdminController {
     @GetMapping("/getBuyRequest/{reqId}")
     public Map getBuyRequest(@PathVariable("reqId") String reqId){
         BuyRequest buyRequest=this.postService.getBuyRequest(reqId);
-
         Map<String,Object> obj=new HashMap<>();
-
-
-
         return obj;
     }
 
     @PatchMapping("/changeStatus")
     public String changeApproveStatus(@RequestBody Map<String,String> mp){
-
         return this.postService.rejectSellRequest(mp.get("postId"));
     }
 
@@ -86,12 +81,11 @@ public class AdminController {
     public Map sendVerificationReq3(@RequestParam Integer postId){
         return this.adminService.sendVerificationReq3(postId);
     }
+
     @GetMapping("/getInspectionCentre")
     public List<InspectionTeam> getInspectionCentre(@RequestParam String city){
         return this.adminService.getInspectionCentre(city);
     }
-
-//    @PostMapping("/")
 
 
 }
