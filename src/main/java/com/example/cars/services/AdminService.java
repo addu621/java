@@ -45,6 +45,12 @@ public class AdminService{
     @Autowired
     private ApprovedCarsRepo approvedCarsRepo;
 
+    @Autowired
+    private SoldCarRepo soldCarRepo;
+
+    @Autowired
+    private UserRepo userRepo;
+
     public String loginUser(String email,String password){
         Admin admin = adminRepo.findByAdminEmail(email);
 
@@ -239,6 +245,29 @@ public class AdminService{
 
             res.add(mp);
 
+        }
+
+        return res;
+    }
+
+    public List<Map> getAllSoldCars(){
+        List<SoldCars> soldCarsList = soldCarRepo.findAll();
+        List<Map> res = new ArrayList<>();
+
+        for(int i=0;i<soldCarsList.size();i++){
+
+            Map<String,String> mp = new HashMap<>();
+
+            mp.put("brand",soldCarsList.get(i).getApprovedCar().getPostID().getModelID().getCarId().getBrandId().getBrandName());
+            mp.put("name",soldCarsList.get(i).getApprovedCar().getPostID().getModelID().getCarId().getCarName());
+            mp.put("model",soldCarsList.get(i).getApprovedCar().getPostID().getModelID().getModelName());
+            mp.put("showroomName",soldCarsList.get(i).getApprovedCar().getInspectionDetails().getInspectionTeam().getName());
+            mp.put("price",soldCarsList.get(i).getApprovedCar().getPrice().toString());
+
+            User user =  userRepo.findByUserEmail(soldCarsList.get(i).getBuyerId());
+            mp.put("buyerName",user.getUserName());
+
+            res.add(mp);
         }
 
         return res;

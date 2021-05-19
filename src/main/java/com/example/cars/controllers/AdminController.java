@@ -90,4 +90,9 @@ public class AdminController {
         return adminService.getAllApprovedCars();
     }
 
+    @GetMapping("/getAllSoldCars")
+    public List<Map> getAllSoldCars(){
+        return adminService.getAllSoldCars();
+    }
+
 }
