@@ -2,9 +2,11 @@ package com.example.cars.services;
 
 import com.example.cars.entities.ApprovedCars;
 import com.example.cars.entities.InspectionDetails;
+import com.example.cars.entities.InspectionTeam;
 import com.example.cars.entities.PostDetails;
 import com.example.cars.repositories.ApprovedCarsRepo;
 import com.example.cars.repositories.InspectionDetailsRepo;
+import com.example.cars.repositories.InspectionTeamRepo;
 import com.example.cars.repositories.PostDetailsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -35,6 +37,9 @@ public class InspectionService {
     @Autowired
     private ApprovedCarsRepo approvedCarsRepo;
 
+    @Autowired
+    private InspectionTeamRepo inspectionTeamRepo;
+
     @Async
     public InspectionDetails saveInspectionDetails(InspectionDetails inspectionDetails, MultipartFile carPic1, MultipartFile carPic2, MultipartFile carPic3, MultipartFile carPic4, MultipartFile carPic5) throws IOException, MessagingException {
 
@@ -48,6 +53,12 @@ public class InspectionService {
 
         PostDetails post=postDetailsRepo.findByPostId(inspectionDetails.getPostId());
         post.setInspectionDone(true);
+
+        InspectionTeam inspectionTeam=inspectionTeamRepo.findByInspectionTeamId(post.getInspectionTeamId());
+
+        inspectionTeam.setPendingRequests(inspectionTeam.getPendingRequests()-1);
+
+        inspectionTeamRepo.save(inspectionTeam);
 
         if(inspectionDetails.getIsReadyForSale().equals("Yes"))
             post.setApproved(true);

@@ -95,4 +95,9 @@ public class AdminController {
         return adminService.getAllSoldCars();
     }
 
+    @GetMapping("/getInspectionTeams")
+    public List<InspectionTeam> getInspectionTeams(){
+        return adminService.getInspectionTeams();
+    }
+
 }

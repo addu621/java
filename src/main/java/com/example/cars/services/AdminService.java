@@ -272,4 +272,8 @@ public class AdminService{
 
         return res;
     }
+
+    public List<InspectionTeam> getInspectionTeams(){
+        return this.inspectionTeamRepo.findAll();
+    }
 }

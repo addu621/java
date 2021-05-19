@@ -7,8 +7,9 @@ import javax.persistence.*;
 @Entity
 @Table
 public class InspectionTeam {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Integer inspectionTeamId;
 
@@ -27,11 +28,11 @@ public class InspectionTeam {
     @Column
     private String email;
 
-    public Integer getId() {
+    public Integer getInspectionTeamId() {
         return inspectionTeamId;
     }
 
-    public void setId(Integer id) {
+    public void setInspectionTeamId(Integer inspectionTeamId) {
         this.inspectionTeamId = inspectionTeamId;
     }
 
@@ -73,5 +74,17 @@ public class InspectionTeam {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "InspectionTeam{" +
+                "inspectionTeamId=" + inspectionTeamId +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", pendingRequests=" + pendingRequests +
+                ", totalRequests=" + totalRequests +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
