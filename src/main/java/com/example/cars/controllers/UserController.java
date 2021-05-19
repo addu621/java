@@ -124,6 +124,11 @@ public class UserController {
         return this.userService.getCarsSoldByUser(userEmail);
     }
 
+    @GetMapping("/isBooked")
+    public Boolean ifBooked(@RequestHeader("userid") String userId, @RequestHeader("approvedcarid") String approvedCarId) {
+        return userService.ifBooked(userId, approvedCarId);
+    }
+
     @PatchMapping("/updateUserInfo")
     public String updateUserInfo(@RequestBody User user) {
         return userService.updateUserInfo(user);
