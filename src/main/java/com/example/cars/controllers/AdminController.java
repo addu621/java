@@ -85,5 +85,9 @@ public class AdminController {
         return this.adminService.getInspectionCentre(city);
     }
 
+    @GetMapping("/getAllApprovedCars")
+    public List<Map>getAllApprovedCars(){
+        return adminService.getAllApprovedCars();
+    }
 
 }

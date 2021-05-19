@@ -1,10 +1,7 @@
 package com.example.cars.services;
 
 import com.example.cars.entities.*;
-import com.example.cars.repositories.AdminRepo;
-import com.example.cars.repositories.InspectionDetailsRepo;
-import com.example.cars.repositories.InspectionTeamRepo;
-import com.example.cars.repositories.PostDetailsRepo;
+import com.example.cars.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +41,9 @@ public class AdminService{
 
     @Autowired
     private Utility utility;
+
+    @Autowired
+    private ApprovedCarsRepo approvedCarsRepo;
 
     public String loginUser(String email,String password){
         Admin admin = adminRepo.findByAdminEmail(email);
@@ -219,5 +219,28 @@ public class AdminService{
     public List<InspectionTeam> getInspectionCentre(String city) {
 
         return this.inspectionTeamRepo.findAllByLocation(city);
+    }
+
+    public List<Map> getAllApprovedCars(){
+
+        List<ApprovedCars> approvedCarsList = approvedCarsRepo.findAll();
+        List<Map> res = new ArrayList<>();
+
+        for(int i=0;i<approvedCarsList.size();i++){
+
+            Map<String,String> mp = new HashMap<>();
+
+            mp.put("brand",approvedCarsList.get(i).getPostID().getModelID().getCarId().getBrandId().getBrandName());
+            mp.put("name",approvedCarsList.get(i).getPostID().getModelID().getCarId().getCarName());
+            mp.put("model",approvedCarsList.get(i).getPostID().getModelID().getModelName());
+            mp.put("location",approvedCarsList.get(i).getPostID().getLocation());
+            mp.put("modelYear",approvedCarsList.get(i).getPostID().getModelYear().toString());
+            mp.put("inspectionCentre",approvedCarsList.get(i).getInspectionDetails().getInspectionTeam().getName());
+
+            res.add(mp);
+
+        }
+
+        return res;
     }
 }
