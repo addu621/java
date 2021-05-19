@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table
 public class InspectionTeam {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
