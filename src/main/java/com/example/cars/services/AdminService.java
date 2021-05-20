@@ -186,11 +186,14 @@ public class AdminService{
         return "Mail sent to the user - " + postDetails.getUserId().getUserName();
     }
 
-    public String getCentreName(String inspectionTeamId){
+    public Map<String,String> getCentreName(String inspectionTeamId){
 
         InspectionTeam team = inspectionTeamRepo.findByInspectionTeamId(Integer.parseInt(inspectionTeamId));
 
-        return team.getName();
+        Map<String,String> mp=new HashMap<>();
+        mp.put("name",team.getName());
+
+        return mp;
 
     }
 

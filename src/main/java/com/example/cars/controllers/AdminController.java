@@ -56,7 +56,7 @@ public class AdminController {
     }
 
     @GetMapping("/getCentreName")
-    public String getCentreName(@RequestParam String inspectionTeamId) {
+    public Map<String,String> getCentreName(@RequestParam String inspectionTeamId) {
         return adminService.getCentreName(inspectionTeamId);
     }
 
